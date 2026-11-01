@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -109,7 +110,7 @@
 	});
 </script>
 
-<PageMeta title="{t('tools.leaks.name')} — FreeOSINT-UI" description={t('leaks.metaDescription')} />
+<PageMeta title="{t('tools.leaks.name')} — OSINT / LAB" description={t('leaks.metaDescription')} />
 
 <ToolHeader title={t('tools.leaks.name')} description={t('leaks.intro')} />
 

@@ -25,7 +25,7 @@ export default defineConfig([
 
 	{
 		files: ['**/*.svelte', '**/*.svelte.js'],
-		languageOptions: { parserOptions: {} }
+		languageOptions: { parserOptions: { parser: tseslint.parser } }
 	},
 
 	{

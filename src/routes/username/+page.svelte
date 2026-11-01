@@ -132,7 +132,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.username.name')} — FreeOSINT-UI"
+	title="{t('tools.username.name')} — OSINT / LAB"
 	description={t('username.metaDescription')}
 />
 

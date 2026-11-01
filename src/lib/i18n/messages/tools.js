@@ -1,5 +1,4 @@
-// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
-// Tool names, descriptions and categories (src/lib/tools.js).
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 export default {
 	en: {
 		'category.search': 'Search',
@@ -8,68 +7,68 @@ export default {
 		'category.breaches': 'Breaches',
 		'category.files': 'Files & hashes',
 		'category.blockchain': 'Blockchain',
-		'dorks.name': 'Google Dork Generator',
+		'dorks.name': 'Dork builder',
 		'dorks.description':
-			'Generate Google dorks for a username, email, name, phone number or domain, grouped by type (social, documents, code, pastes) with direct search links.',
-		'hash.name': 'Hash Checker',
+			'Build targeted Google searches for accounts, emails, names, phone numbers and domains.',
+		'hash.name': 'Hash lab',
 		'hash.description':
-			'Compute MD5, SHA-1, SHA-2, SHA-3, BLAKE and CRC32 hashes of text or files, identify an unknown hash and verify it.',
-		'domain.name': 'Domain Analyzer',
+			'Calculate file and text hashes, identify possible hash types and compare fingerprints.',
+		'domain.name': 'Domain recon',
 		'domain.description':
-			'Analyze a domain: DNS records, SPF/DMARC email security, RDAP registration data, subdomains from certificate transparency and Wayback Machine snapshots.',
-		'ip.name': 'IP Analyzer',
+			'Inspect DNS, email security, registration data, certificate subdomains and archived pages.',
+		'ip.name': 'IP recon',
 		'ip.description':
-			'Analyze an IPv4/IPv6 address or hostname: approximate geolocation, ASN and ISP, reverse DNS, RDAP network owner and abuse contact, and open ports and CVEs from Shodan InternetDB (passive).',
-		'email.name': 'Email Analyzer',
+			'Explore network ownership, approximate location, reverse DNS and passive port and CVE data.',
+		'email.name': 'Email inspection',
 		'email.description':
-			'Analyze an email address: syntax, free or disposable provider, role address, MX mail servers, SPF/DMARC protection and public Gravatar profile.',
-		'leaks.name': 'Leak Check',
+			'Check address syntax, provider type, mail servers, email security and public Gravatar details.',
+		'leaks.name': 'Breach check',
 		'leaks.description':
-			'Check which known data breaches include an email address, and whether a password has been exposed (k-anonymity: the password never leaves your browser).',
-		'username.name': 'Username Analyzer',
+			'Look for known email breaches and exposed passwords using password hash prefixes.',
+		'username.name': 'Username radar',
 		'username.description':
-			'Check whether a username exists on hundreds of websites and social networks (WhatsMyName list). Requires the API service.',
-		'phone.name': 'Phone Analyzer',
+			'Check a username across hundreds of public sites using the WhatsMyName catalogue.',
+		'phone.name': 'Phone inspection',
 		'phone.description':
-			'Validate a phone number offline: country, number type (mobile, fixed line, VoIP, toll free), standard formats and WhatsApp, Telegram and Google search links.',
-		'telegram.name': 'Telegram OSINT',
+			'Validate number formats, country and number type locally. Get links for further research.',
+		'telegram.name': 'Telegram profiles',
 		'telegram.description':
-			'Look up a Telegram username: account type (channel, group, bot, user), name, bio, subscribers or members and latest channel posts. Requires the API service.',
-		'crypto.name': 'Crypto Tracer',
+			'Read public account previews, member counts and recent posts from public channels.',
+		'crypto.name': 'Crypto trail',
 		'crypto.description':
-			'Detect and validate a Bitcoin, Litecoin or Ethereum address, then trace its balance, totals and latest transactions, following counterparties with one click.',
-		'github.name': 'GitHub OSINT',
+			'Inspect supported crypto addresses, balances and recent transactions. Follow counterparties.',
+		'github.name': 'GitHub footprint',
 		'github.description':
-			'Investigate a GitHub user: profile, repositories and top languages, organizations, emails leaked in public commits, SSH and GPG keys.',
-		'metadata.name': 'Metadata Extractor',
+			'Explore public profiles, repositories, organizations, commit emails and published keys.',
+		'metadata.name': 'Metadata explorer',
 		'metadata.description':
-			'Read hidden metadata from images (EXIF, GPS with map links, XMP, IPTC), PDFs and Office documents: camera, location, author, software and dates. The file never leaves your browser.',
+			'Extract image, PDF and Office metadata locally: authors, dates, software and available GPS data.',
 		'category.threat': 'Threat intel & phishing',
 		'category.utilities': 'Decoders & utilities',
-		'lookalike.name': 'Lookalike Domain Finder',
+		'lookalike.name': 'Lookalike domains',
 		'lookalike.description':
-			'Generate typos, homoglyphs, IDN homographs, bitsquatting and TLD swaps of a domain and check with DNS which ones are registered and have mail servers (phishing risk).',
-		'favicon.name': 'Favicon Hash',
+			'Generate domain lookalikes and check DNS and mail records for possible phishing leads.',
+		'favicon.name': 'Favicon fingerprint',
 		'favicon.description':
-			'Compute the Shodan favicon hash (mmh3), MD5 and SHA-256 of a favicon file locally and search Shodan, FOFA, ZoomEye, Censys and urlscan.io for servers using the same icon.',
-		'headers.name': 'Email Header Analyzer',
+			'Calculate favicon hashes locally and open searches for infrastructure using the same icon.',
+		'headers.name': 'Email header inspection',
 		'headers.description':
-			'Analyze raw email headers offline: Received path with hop delays, originating IP, SPF/DKIM/DMARC/ARC results and phishing triage findings such as Reply-To or Return-Path mismatches.',
-		'footprint.name': 'Passive Site Footprint',
+			'Reconstruct mail routes and inspect authentication results and suspicious header mismatches.',
+		'footprint.name': 'Archive footprint',
 		'footprint.description':
-			"Map a site's archived URLs from Common Crawl and the Wayback Machine without contacting it: subdomains, documents, backups, config files, admin paths and parameters. The Wayback part requires the API service.",
-		'url.name': 'URL Analyzer',
+			'Explore archived URLs in Common Crawl and Wayback without contacting the target site.',
+		'url.name': 'URL inspection',
 		'url.description':
-			'Break down a suspicious link without opening it: look-alike hosts, user@host and numeric-IP tricks, tracking parameters, hidden redirects, short link expansion, urlscan.io and URLhaus. Requires the API service.',
-		'timestamp.name': 'ID and Timestamp Decoder',
+			'Inspect link structure and suspicious patterns. Expand short links and consult public threat sources.',
+		'timestamp.name': 'ID & time decoder',
 		'timestamp.description':
-			'Decode the creation date hidden in X, Discord, Instagram, TikTok, Mastodon and LinkedIn IDs, UUIDs, ULIDs and ObjectIds, read Unix, FILETIME, Chrome, Cocoa and Excel timestamps, or convert a date into all of them.',
-		'mac.name': 'MAC Address Vendor Lookup',
+			'Decode supported platform IDs and timestamps, or convert dates between formats.',
+		'mac.name': 'MAC vendor lookup',
 		'mac.description':
-			'Find the vendor of a MAC address from the IEEE registries, convert it to every notation and EUI-64, and spot multicast, locally administered and randomized private addresses. Works offline.',
-		'reputation.name': 'Reputation Checker',
+			'Identify IEEE vendor assignments, convert address formats and spot local or multicast addresses.',
+		'reputation.name': 'Reputation signals',
 		'reputation.description':
-			'Check an IP, domain, URL or email against public blocklists and threat feeds: OTX, StopForumSpam, Tor exits, Spamhaus DROP, URLhaus, ThreatFox. A listing is a lead, not proof. Partly requires the API service.'
+			'Compare IPs, domains, URLs and emails with public threat feeds. Listings are leads, not proof.'
 	},
 	it: {
 		'category.search': 'Ricerca',
@@ -78,68 +77,68 @@ export default {
 		'category.breaches': 'Data breach',
 		'category.files': 'File e hash',
 		'category.blockchain': 'Blockchain',
-		'dorks.name': 'Generatore di Google Dork',
+		'dorks.name': 'Generatore di dork',
 		'dorks.description':
-			"Genera Google dork per uno username, un'email, un nome, un numero di telefono o un dominio, raggruppati per tipo (social, documenti, codice, paste) con link diretti alla ricerca.",
-		'hash.name': 'Verifica Hash',
+			'Crea ricerche Google mirate per account, email, nomi, numeri di telefono e domini.',
+		'hash.name': 'Laboratorio hash',
 		'hash.description':
-			'Calcola gli hash MD5, SHA-1, SHA-2, SHA-3, BLAKE e CRC32 di testo o file, identifica un hash sconosciuto e verificalo.',
-		'domain.name': 'Analisi Dominio',
+			'Calcola hash di file e testo, riconosci i possibili formati e confronta le impronte.',
+		'domain.name': 'Ricognizione domini',
 		'domain.description':
-			'Analizza un dominio: record DNS, sicurezza email SPF/DMARC, dati di registrazione RDAP, sottodomini dalla certificate transparency e snapshot della Wayback Machine.',
-		'ip.name': 'Analisi IP',
+			'Esamina DNS, sicurezza email, registrazione, sottodomini nei certificati e pagine archiviate.',
+		'ip.name': 'Ricognizione IP',
 		'ip.description':
-			'Analizza un indirizzo IPv4/IPv6 o un hostname: geolocalizzazione approssimativa, ASN e ISP, DNS inverso, proprietario della rete e contatto abuse da RDAP, porte aperte e CVE da Shodan InternetDB (passivo).',
-		'email.name': 'Analisi Email',
+			'Esplora intestazione della rete, posizione approssimativa, DNS inverso e dati passivi su porte e CVE.',
+		'email.name': 'Ispezione email',
 		'email.description':
-			'Analizza un indirizzo email: sintassi, provider gratuito o usa e getta, indirizzo di ruolo, server di posta MX, protezione SPF/DMARC e profilo Gravatar pubblico.',
-		'leaks.name': 'Controllo Leak',
+			'Verifica sintassi, tipo di provider, server di posta, sicurezza email e dati Gravatar pubblici.',
+		'leaks.name': 'Verifica data breach',
 		'leaks.description':
-			'Controlla in quali data breach noti compare un indirizzo email e se una password è stata esposta (k-anonymity: la password non lascia mai il tuo browser).',
-		'username.name': 'Analisi Username',
+			'Cerca email nei data breach noti e password esposte usando solo prefissi del loro hash.',
+		'username.name': 'Radar username',
 		'username.description':
-			'Controlla se uno username esiste su centinaia di siti web e social network (lista WhatsMyName). Richiede il servizio API.',
-		'phone.name': 'Analisi Telefono',
+			'Verifica uno username su centinaia di siti pubblici con il catalogo WhatsMyName.',
+		'phone.name': 'Ispezione numeri',
 		'phone.description':
-			'Verifica un numero di telefono offline: paese, tipo di numero (mobile, fisso, VoIP, numero verde), formati standard e link di ricerca per WhatsApp, Telegram e Google.',
-		'telegram.name': 'Telegram OSINT',
+			'Verifica localmente formato, paese e tipo di numero. Ottieni link per approfondire.',
+		'telegram.name': 'Profili Telegram',
 		'telegram.description':
-			'Cerca uno username Telegram: tipo di account (canale, gruppo, bot, utente), nome, bio, iscritti o membri e ultimi post del canale. Richiede il servizio API.',
-		'crypto.name': 'Tracciamento Crypto',
+			'Leggi anteprime pubbliche degli account, numero di membri e post recenti dei canali pubblici.',
+		'crypto.name': 'Tracce crypto',
 		'crypto.description':
-			'Rileva e verifica un indirizzo Bitcoin, Litecoin o Ethereum, poi traccia saldo, totali e ultime transazioni, seguendo le controparti con un clic.',
-		'github.name': 'GitHub OSINT',
+			'Esamina indirizzi crypto supportati, saldi e transazioni recenti. Segui le controparti.',
+		'github.name': 'Impronta GitHub',
 		'github.description':
-			'Indaga su un utente GitHub: profilo, repository e linguaggi principali, organizzazioni, email esposte nei commit pubblici, chiavi SSH e GPG.',
-		'metadata.name': 'Estrattore di Metadati',
+			'Esplora profili pubblici, repository, organizzazioni, email nei commit e chiavi pubblicate.',
+		'metadata.name': 'Esplora metadati',
 		'metadata.description':
-			'Leggi i metadati nascosti di immagini (EXIF, GPS con link alla mappa, XMP, IPTC), PDF e documenti Office: fotocamera, posizione, autore, software e date. Il file non lascia mai il tuo browser.',
+			'Estrai localmente metadati da immagini, PDF e file Office: autori, date, software e dati GPS disponibili.',
 		'category.threat': 'Threat intel e phishing',
 		'category.utilities': 'Decoder e utility',
-		'lookalike.name': 'Ricerca Domini Simili',
+		'lookalike.name': 'Domini somiglianti',
 		'lookalike.description':
-			'Genera errori di battitura, omoglifi, omografi IDN, bitsquatting e cambi di TLD di un dominio e verifica via DNS quali sono registrati e hanno server di posta (rischio phishing).',
-		'favicon.name': 'Hash Favicon',
+			'Genera domini somiglianti e verifica DNS e record di posta per individuare possibili piste di phishing.',
+		'favicon.name': 'Impronta favicon',
 		'favicon.description':
-			'Calcola in locale l’hash favicon di Shodan (mmh3), MD5 e SHA-256 di un file favicon e cerca su Shodan, FOFA, ZoomEye, Censys e urlscan.io i server che usano la stessa icona.',
-		'headers.name': 'Analisi Header Email',
+			'Calcola gli hash delle favicon in locale e apri ricerche sulle infrastrutture che usano la stessa icona.',
+		'headers.name': 'Ispezione header email',
 		'headers.description':
-			"Analizza offline gli header grezzi di un'email: percorso Received con i ritardi tra i salti, IP di origine, risultati SPF/DKIM/DMARC/ARC e segnalazioni di triage del phishing, come Reply-To o Return-Path diversi.",
-		'footprint.name': 'Impronta Passiva del Sito',
+			'Ricostruisci il percorso delle email ed esamina autenticazione e incongruenze negli header.',
+		'footprint.name': 'Tracce negli archivi',
 		'footprint.description':
-			'Mappa gli URL archiviati di un sito da Common Crawl e Wayback Machine senza contattarlo: sottodomini, documenti, backup, file di configurazione, percorsi admin e parametri. La parte Wayback richiede il servizio API.',
-		'url.name': 'Analisi URL',
+			'Esplora gli URL archiviati in Common Crawl e Wayback senza contattare il sito di destinazione.',
+		'url.name': 'Ispezione URL',
 		'url.description':
-			'Scomponi un link sospetto senza aprirlo: host somiglianti, trucchi user@host e IP numerici, parametri di tracciamento, redirect nascosti, espansione link brevi, urlscan.io e URLhaus. Richiede il servizio API.',
-		'timestamp.name': 'Decoder di ID e Timestamp',
+			'Esamina struttura e anomalie dei link. Espandi URL brevi e consulta fonti pubbliche sulle minacce.',
+		'timestamp.name': 'Decoder ID e date',
 		'timestamp.description':
-			'Decodifica la data di creazione nascosta negli ID di X, Discord, Instagram, TikTok, Mastodon e LinkedIn, negli UUID, ULID e ObjectId, leggi timestamp Unix, FILETIME, Chrome, Cocoa ed Excel o converti una data in tutti i formati.',
-		'mac.name': 'Produttore Indirizzo MAC',
+			'Decodifica ID e timestamp supportati o converti date tra diversi formati.',
+		'mac.name': 'Produttore MAC',
 		'mac.description':
-			'Trova il produttore di un indirizzo MAC dai registri IEEE, convertilo in tutte le notazioni e in EUI-64 e riconosci gli indirizzi multicast, amministrati localmente e privati casuali. Funziona offline.',
-		'reputation.name': 'Verifica Reputazione',
+			'Identifica i produttori nei registri IEEE, converti formati e riconosci indirizzi locali o multicast.',
+		'reputation.name': 'Segnali di reputazione',
 		'reputation.description':
-			'Controlla IP, dominio, URL o email su blocklist pubbliche e feed di minacce: OTX, StopForumSpam, uscite Tor, Spamhaus DROP, URLhaus, ThreatFox. Una segnalazione è una pista, non una prova. In parte richiede il servizio API.'
+			'Confronta IP, domini, URL ed email con feed pubblici di minacce. Le segnalazioni sono piste, non prove.'
 	},
 	fr: {
 		'category.search': 'Recherche',
@@ -168,13 +167,13 @@ export default {
 			'Vérifiez dans quelles fuites de données connues figure une adresse e-mail, et si un mot de passe a été exposé (k-anonymity : le mot de passe ne quitte jamais votre navigateur).',
 		'username.name': "Analyse de Nom d'utilisateur",
 		'username.description':
-			"Vérifiez si un nom d'utilisateur existe sur des centaines de sites web et réseaux sociaux (liste WhatsMyName). Nécessite le service API.",
+			"Vérifiez si un nom d'utilisateur existe sur des centaines de sites web et réseaux sociaux (liste WhatsMyName).",
 		'phone.name': 'Analyse de Téléphone',
 		'phone.description':
 			'Validez un numéro de téléphone hors ligne : pays, type de numéro (mobile, fixe, VoIP, numéro gratuit), formats standard et liens de recherche WhatsApp, Telegram et Google.',
 		'telegram.name': 'Telegram OSINT',
 		'telegram.description':
-			"Recherchez un nom d'utilisateur Telegram : type de compte (canal, groupe, bot, utilisateur), nom, bio, abonnés ou membres et derniers messages du canal. Nécessite le service API.",
+			"Recherchez un nom d'utilisateur Telegram : type de compte (canal, groupe, bot, utilisateur), nom, bio, abonnés ou membres et derniers messages du canal.",
 		'crypto.name': 'Traceur Crypto',
 		'crypto.description':
 			'Détectez et validez une adresse Bitcoin, Litecoin ou Ethereum, puis tracez son solde, ses totaux et ses dernières transactions, en suivant les contreparties en un clic.',
@@ -197,10 +196,10 @@ export default {
 			"Analysez hors ligne les en-têtes bruts d'un e-mail : chemin Received avec les délais entre sauts, IP d'origine, résultats SPF/DKIM/DMARC/ARC et signalements de tri du phishing, comme un Reply-To ou un Return-Path différent.",
 		'footprint.name': 'Empreinte Passive du Site',
 		'footprint.description':
-			"Cartographiez les URL archivées d'un site via Common Crawl et la Wayback Machine sans le contacter : sous-domaines, documents, sauvegardes, fichiers de configuration, chemins admin et paramètres. La partie Wayback nécessite le service API.",
+			"Cartographiez les URL archivées d'un site via Common Crawl et la Wayback Machine sans le contacter : sous-domaines, documents, sauvegardes, fichiers de configuration, chemins admin et paramètres.",
 		'url.name': "Analyse d'URL",
 		'url.description':
-			"Décortiquez un lien suspect sans l'ouvrir : hôtes sosies, astuces user@host et IP numériques, paramètres de suivi, redirections cachées, liens courts, urlscan.io et URLhaus. Nécessite le service API.",
+			"Décortiquez un lien suspect sans l'ouvrir : hôtes sosies, astuces user@host et IP numériques, paramètres de suivi, redirections cachées, liens courts, urlscan.io et URLhaus.",
 		'timestamp.name': "Décodeur d'Identifiants et d'Horodatages",
 		'timestamp.description':
 			'Décodez la date de création cachée dans les identifiants X, Discord, Instagram, TikTok, Mastodon et LinkedIn, les UUID, ULID et ObjectId, lisez les horodatages Unix, FILETIME, Chrome, Cocoa et Excel ou convertissez une date.',
@@ -209,7 +208,7 @@ export default {
 			"Trouvez le fabricant d'une adresse MAC dans les registres IEEE, convertissez-la dans toutes les notations et en EUI-64, et repérez les adresses multicast, locales et privées aléatoires. Fonctionne hors ligne.",
 		'reputation.name': 'Vérification de Réputation',
 		'reputation.description':
-			'Vérifiez une IP, un domaine, une URL ou un e-mail sur des listes de blocage et flux de menaces publics : OTX, StopForumSpam, sorties Tor, Spamhaus DROP, URLhaus, ThreatFox. Un signalement est une piste, pas une preuve. Nécessite en partie le service API.'
+			'Vérifiez une IP, un domaine, une URL ou un e-mail sur des listes de blocage et flux de menaces publics : OTX, StopForumSpam, sorties Tor, Spamhaus DROP, URLhaus, ThreatFox. Un signalement est une piste, pas une preuve.'
 	},
 	ja: {
 		'category.search': '検索',
@@ -238,13 +237,13 @@ export default {
 			'メールアドレスが既知のデータ漏えいに含まれているか、パスワードが流出していないかを確認します (k-匿名性: パスワードがブラウザの外に送られることはありません)。',
 		'username.name': 'ユーザー名分析',
 		'username.description':
-			'ユーザー名が数百の Web サイトや SNS に存在するかを確認します (WhatsMyName リスト)。API サービスが必要です。',
+			'ユーザー名が数百の Web サイトや SNS に存在するかを確認します (WhatsMyName リスト)。',
 		'phone.name': '電話番号分析',
 		'phone.description':
 			'電話番号をオフラインで検証します: 国、番号種別 (携帯、固定、VoIP、フリーダイヤル)、標準形式、WhatsApp・Telegram・Google の検索リンク。',
 		'telegram.name': 'Telegram OSINT',
 		'telegram.description':
-			'Telegram のユーザー名を検索します: アカウント種別 (チャンネル、グループ、ボット、ユーザー)、名前、自己紹介、購読者数またはメンバー数、チャンネルの最新投稿。API サービスが必要です。',
+			'Telegram のユーザー名を検索します: アカウント種別 (チャンネル、グループ、ボット、ユーザー)、名前、自己紹介、購読者数またはメンバー数、チャンネルの最新投稿。',
 		'crypto.name': '暗号資産トレーサー',
 		'crypto.description':
 			'Bitcoin、Litecoin、Ethereum のアドレスを検出・検証し、残高、合計、最新のトランザクションを追跡します。取引相手もワンクリックでたどれます。',
@@ -267,10 +266,10 @@ export default {
 			'メールの生ヘッダーをオフラインで分析します: ホップごとの遅延付きの Received 経路、送信元 IP、SPF/DKIM/DMARC/ARC の結果、Reply-To や Return-Path の不一致などのフィッシング判定の所見。',
 		'footprint.name': 'パッシブ サイトフットプリント',
 		'footprint.description':
-			'サイトに接続せずに、Common Crawl と Wayback Machine からアーカイブ済み URL を洗い出します: サブドメイン、ドキュメント、バックアップ、設定ファイル、管理画面のパス、パラメータ。Wayback 部分には API サービスが必要です。',
+			'サイトに接続せずに、Common Crawl と Wayback Machine からアーカイブ済み URL を洗い出します: サブドメイン、ドキュメント、バックアップ、設定ファイル、管理画面のパス、パラメータ。',
 		'url.name': 'URL 分析',
 		'url.description':
-			'怪しいリンクを開かずに分解します: 類似ホスト、user@host や数値 IP のトリック、トラッキングパラメータ、隠れたリダイレクト、短縮 URL の展開、urlscan.io と URLhaus。API サービスが必要です。',
+			'怪しいリンクを開かずに分解します: 類似ホスト、user@host や数値 IP のトリック、トラッキングパラメータ、隠れたリダイレクト、短縮 URL の展開、urlscan.io と URLhaus。',
 		'timestamp.name': 'ID・タイムスタンプデコーダー',
 		'timestamp.description':
 			'X、Discord、Instagram、TikTok、Mastodon、LinkedIn の ID や UUID、ULID、ObjectId に隠れた作成日時をデコードし、Unix、FILETIME、Chrome、Cocoa、Excel のタイムスタンプを読み取ります。日付からすべての形式への変換も可能です。',
@@ -279,6 +278,6 @@ export default {
 			'IEEE の登録情報から MAC アドレスのベンダーを調べ、すべての表記と EUI-64 に変換し、マルチキャスト、ローカル管理、ランダム化されたプライベートアドレスを見分けます。オフラインで動作します。',
 		'reputation.name': 'レピュテーションチェック',
 		'reputation.description':
-			'IP、ドメイン、URL、メールアドレスを公開ブロックリストや脅威フィードと照合します: OTX、StopForumSpam、Tor 出口ノード、Spamhaus DROP、URLhaus、ThreatFox。掲載は手がかりであり、証拠ではありません。一部 API サービスが必要です。'
+			'IP、ドメイン、URL、メールアドレスを公開ブロックリストや脅威フィードと照合します: OTX、StopForumSpam、Tor 出口ノード、Spamhaus DROP、URLhaus、ThreatFox。掲載は手がかりであり、証拠ではありません。'
 	}
 };

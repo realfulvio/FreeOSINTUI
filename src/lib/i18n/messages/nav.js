@@ -1,4 +1,4 @@
-// Navbar, footer and language switch.
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 export default {
 	en: {
 		main: 'Main',
@@ -6,7 +6,7 @@ export default {
 		tools: 'Tools',
 		language: 'Language',
 		footerAbout:
-			'FreeOSINT-UI — free OSINT tools that run entirely in your browser. Made by kerlo.',
+			'An independent fork of FreeOSINT-UI: a workspace for public-source research and local analysis.',
 		inspiredBy: 'Inspired by'
 	},
 	it: {
@@ -15,7 +15,7 @@ export default {
 		tools: 'Strumenti',
 		language: 'Lingua',
 		footerAbout:
-			'FreeOSINT-UI — strumenti OSINT gratuiti che funzionano interamente nel tuo browser. Creato da kerlo.',
+			'Un fork indipendente di FreeOSINT-UI: uno spazio di lavoro per la ricerca su fonti pubbliche e l’analisi locale.',
 		inspiredBy: 'Ispirato a'
 	},
 	fr: {
@@ -24,7 +24,7 @@ export default {
 		tools: 'Outils',
 		language: 'Langue',
 		footerAbout:
-			'FreeOSINT-UI — outils OSINT gratuits qui fonctionnent entièrement dans votre navigateur. Créé par kerlo.',
+			'Un fork indépendant de FreeOSINT-UI : un espace de travail pour la recherche en sources ouvertes et l’analyse locale.',
 		inspiredBy: 'Inspiré de'
 	},
 	ja: {
@@ -32,7 +32,8 @@ export default {
 		home: 'ホーム',
 		tools: 'ツール',
 		language: '言語',
-		footerAbout: 'FreeOSINT-UI — すべてブラウザ内で動作する無料の OSINT ツール。制作: kerlo。',
+		footerAbout:
+			'FreeOSINT-UI の独立したフォーク。公開情報の調査とローカル分析のためのワークスペースです。',
 		inspiredBy: 'インスピレーション元:'
 	}
 };

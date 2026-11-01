@@ -52,7 +52,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.telegram.name')} — FreeOSINT-UI"
+	title="{t('tools.telegram.name')} — OSINT / LAB"
 	description={t('telegram.metaDescription')}
 />
 

@@ -29,10 +29,10 @@ export default {
 			'Latest {count} monthly crawls, queried one after the other from your browser. The index server is often slow or overloaded.',
 		'cc.loading': 'Querying crawls… {done}/{total} done.',
 		'wayback.note':
-			'First capture of each URL, through the FreeOSINT-UI backend (the Wayback CDX API cannot be called from the browser).',
+			'First capture of each URL, through the OSINT / LAB backend (the Wayback CDX API cannot be called from the browser).',
 		'wayback.loading': 'Querying the Wayback Machine… this can take up to 30 seconds.',
 		'wayback.backendNeeded':
-			'The Wayback Machine section needs the FreeOSINT-UI API service; Common Crawl works without it. Please try again later.',
+			'The Wayback Machine section needs the OSINT / LAB API service; Common Crawl works without it. Please try again later.',
 		'stats.title': 'Overview',
 		'stats.total': { one: 'unique archived URL', other: 'unique archived URLs' },
 		'stats.bySource': 'By source',
@@ -126,10 +126,10 @@ export default {
 			"Ultime {count} scansioni mensili, interrogate una dopo l'altra dal tuo browser. Il server dell'indice è spesso lento o sovraccarico.",
 		'cc.loading': 'Interrogazione delle scansioni… {done}/{total} completate.',
 		'wayback.note':
-			'Prima acquisizione di ogni URL, tramite il backend di FreeOSINT-UI (la CDX API della Wayback Machine non si può chiamare dal browser).',
+			'Prima acquisizione di ogni URL, tramite il backend di OSINT / LAB (la CDX API della Wayback Machine non si può chiamare dal browser).',
 		'wayback.loading': 'Interrogazione della Wayback Machine… può richiedere fino a 30 secondi.',
 		'wayback.backendNeeded':
-			'La sezione Wayback Machine richiede il servizio API di FreeOSINT-UI; Common Crawl funziona anche senza. Riprova tra poco.',
+			'La sezione Wayback Machine richiede il servizio API di OSINT / LAB; Common Crawl funziona anche senza. Riprova tra poco.',
 		'stats.title': 'Panoramica',
 		'stats.total': { one: 'URL archiviato unico', other: 'URL archiviati unici' },
 		'stats.bySource': 'Per fonte',
@@ -223,11 +223,11 @@ export default {
 			"{count} derniers crawls mensuels, interrogés l'un après l'autre depuis votre navigateur. Le serveur d'index est souvent lent ou surchargé.",
 		'cc.loading': 'Interrogation des crawls… {done}/{total} terminés.',
 		'wayback.note':
-			"Première capture de chaque URL, via le backend de FreeOSINT-UI (l'API CDX de la Wayback Machine ne peut pas être appelée depuis le navigateur).",
+			"Première capture de chaque URL, via le backend de OSINT / LAB (l'API CDX de la Wayback Machine ne peut pas être appelée depuis le navigateur).",
 		'wayback.loading':
 			"Interrogation de la Wayback Machine… cela peut prendre jusqu'à 30 secondes.",
 		'wayback.backendNeeded':
-			'La section Wayback Machine nécessite le service API de FreeOSINT-UI ; Common Crawl fonctionne sans. Réessayez plus tard.',
+			'La section Wayback Machine nécessite le service API de OSINT / LAB ; Common Crawl fonctionne sans. Réessayez plus tard.',
 		'stats.title': 'Vue d’ensemble',
 		'stats.total': { one: 'URL archivée unique', other: 'URL archivées uniques' },
 		'stats.bySource': 'Par source',
@@ -323,10 +323,10 @@ export default {
 			'直近 {count} 回の月次クロールを、ブラウザから順番に照会します。インデックスサーバーは遅いか過負荷になっていることがよくあります。',
 		'cc.loading': 'クロールを照会中… {done}/{total} 完了。',
 		'wayback.note':
-			'各 URL の最初のキャプチャです。FreeOSINT-UI のバックエンド経由で取得します (Wayback CDX API はブラウザから呼び出せません)。',
+			'各 URL の最初のキャプチャです。OSINT / LAB のバックエンド経由で取得します (Wayback CDX API はブラウザから呼び出せません)。',
 		'wayback.loading': 'Wayback Machine を照会中… 最大 30 秒かかることがあります。',
 		'wayback.backendNeeded':
-			'Wayback Machine のセクションには FreeOSINT-UI の API サービスが必要です。Common Crawl はバックエンドなしで動作します。後でもう一度お試しください。',
+			'Wayback Machine のセクションには OSINT / LAB の API サービスが必要です。Common Crawl はバックエンドなしで動作します。後でもう一度お試しください。',
 		'stats.title': '概要',
 		'stats.total': { other: '件の一意なアーカイブ済み URL' },
 		'stats.bySource': 'ソース別',

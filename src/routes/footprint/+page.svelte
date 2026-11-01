@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -134,7 +135,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.footprint.name')} — FreeOSINT-UI"
+	title="{t('tools.footprint.name')} — OSINT / LAB"
 	description={t('footprint.metaDescription')}
 />
 

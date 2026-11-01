@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -36,6 +37,11 @@
 		width: 100%;
 		max-width: var(--content-width);
 		margin: 0 auto;
-		padding: 2rem 1rem 4rem;
+		padding: 2rem 2.5rem 4rem;
+	}
+	@media (max-width: 640px) {
+		main {
+			padding: 1.25rem 1rem 3rem;
+		}
 	}
 </style>

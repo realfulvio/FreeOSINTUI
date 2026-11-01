@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
@@ -46,7 +47,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.metadata.name')} — FreeOSINT-UI"
+	title="{t('tools.metadata.name')} — OSINT / LAB"
 	description={t('metadata.metaDescription')}
 />
 

@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
@@ -82,7 +83,7 @@
 		});
 </script>
 
-<PageMeta title="{t('tools.hash.name')} — FreeOSINT-UI" description={t('hash.metaDescription')} />
+<PageMeta title="{t('tools.hash.name')} — OSINT / LAB" description={t('hash.metaDescription')} />
 
 <ToolHeader title={t('tools.hash.name')} description={t('hash.intro')} />
 

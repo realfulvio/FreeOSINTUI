@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio; original attribution in NOTICE. -->
 <script>
 	import { afterNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
@@ -5,6 +6,7 @@
 	import { toolsByCategory } from '$lib/tools.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
 	import LanguageSwitch from './LanguageSwitch.svelte';
+	import { SITE_NAME } from '$lib/site.js';
 	import NavbarClock from './NavbarClock.svelte';
 
 	const groups = toolsByCategory();
@@ -29,7 +31,9 @@
 <header>
 	<nav aria-label={t('nav.main')}>
 		<a class="brand" href={resolve('/')}>
-			<span aria-hidden="true">&gt;_</span> FreeOSINT-UI
+			<span class="brand-mark" aria-hidden="true">↗</span><span
+				>{SITE_NAME}<small>OPEN SOURCE INTELLIGENCE</small></span
+			>
 		</a>
 		<ul class="top">
 			<li>
@@ -72,6 +76,26 @@
 </header>
 
 <style>
+	.brand-mark {
+		display: grid;
+		place-items: center;
+		width: 36px;
+		height: 36px;
+		background: var(--color-accent);
+		color: var(--color-bg);
+		font-size: 1.9rem;
+		line-height: 1;
+	}
+	.brand small {
+		display: block;
+		color: var(--color-text-muted);
+		font: 0.5rem var(--font-mono);
+		letter-spacing: 0.1em;
+		margin-top: 0.15rem;
+	}
+	.top {
+		font-size: 0.7rem;
+	}
 	header {
 		border-bottom: 1px solid var(--color-border);
 		background: var(--color-bg);
@@ -96,7 +120,12 @@
 		font-weight: 700;
 		font-size: 1.15rem;
 		text-decoration: none;
-		text-shadow: 0 0 8px var(--color-text-muted);
+		font-family: var(--font-display);
+		letter-spacing: -0.04em;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		color: var(--color-text);
 	}
 
 	ul {
@@ -128,7 +157,8 @@
 	}
 
 	a[aria-current='page']::before {
-		content: '> ';
+		content: '// ';
+		color: var(--color-accent);
 	}
 
 	summary {
@@ -162,7 +192,7 @@
 		background: var(--color-bg);
 		border: 1px solid var(--color-text-muted);
 		border-radius: var(--radius);
-		box-shadow: 0 0 16px var(--color-text-muted);
+		box-shadow: 8px 8px 0 #0008;
 	}
 
 	.group-label {
@@ -199,6 +229,9 @@
 	}
 
 	@media (max-width: 40rem) {
+		.top > li:first-child {
+			display: none;
+		}
 		/* The wrapped navbar is tall: not sticky, so the open menu can be scrolled with the page. */
 		header {
 			position: relative;
