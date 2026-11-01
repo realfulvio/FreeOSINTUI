@@ -1,0 +1,238 @@
+{
+	"conditions": {
+		"homepage": "Chrome desktop profile, mobile viewport 390x844 DPR1, CPU slowdown4, download200000 B/s, upload93750 B/s, latency150ms, HTTP cache disabled, Italian locale, 3 reloads per version; warm connections; browser extensions present",
+		"hash": "Desktop CPU1, no network throttling, same deterministic 64MiB file, twelve algorithms, 3 runs per public site; change event to result table; first run can include lazy worker/WASM setup"
+	},
+	"homepage": [
+		{
+			"site": "original",
+			"run": 1,
+			"lcp_ms": 544,
+			"fcp_ms": 544,
+			"cls": 0.19751254210190855,
+			"compressed_bytes": 169456,
+			"resource_complete_ms": 1248.6000000014901,
+			"resource_count": 17
+		},
+		{
+			"site": "original",
+			"run": 2,
+			"lcp_ms": 520,
+			"fcp_ms": 520,
+			"cls": 0.19751254210190855,
+			"compressed_bytes": 169456,
+			"resource_complete_ms": 1234.5,
+			"resource_count": 17
+		},
+		{
+			"site": "tracepunk-before",
+			"run": 1,
+			"lcp_ms": 2956,
+			"fcp_ms": 640,
+			"cls": 0.07105975195856147,
+			"compressed_bytes": 176059,
+			"resource_complete_ms": 1313.3000000044703,
+			"resource_count": 17
+		},
+		{
+			"site": "tracepunk-before",
+			"run": 2,
+			"lcp_ms": 3072,
+			"fcp_ms": 620,
+			"cls": 0.07105975195856147,
+			"compressed_bytes": 176024,
+			"resource_complete_ms": 1321.6000000014901,
+			"resource_count": 17
+		},
+		{
+			"site": "tracepunk-before",
+			"run": 3,
+			"lcp_ms": 2224,
+			"fcp_ms": 656,
+			"cls": 0.07105975195856147,
+			"compressed_bytes": 176132,
+			"resource_complete_ms": 1322.7999999970198,
+			"resource_count": 17
+		},
+		{
+			"site": "original",
+			"run": 3,
+			"lcp_ms": 520,
+			"fcp_ms": 520,
+			"cls": 0.19751254210190855,
+			"compressed_bytes": 169456,
+			"resource_complete_ms": 1235,
+			"resource_count": 17
+		},
+		{
+			"site": "tracepunk-after",
+			"run": 1,
+			"lcp_ms": 632,
+			"fcp_ms": 632,
+			"cls": 0,
+			"compressed_bytes": 72256,
+			"resource_complete_ms": 1078.2000000029802,
+			"resource_count": 17
+		},
+		{
+			"site": "tracepunk-after",
+			"run": 2,
+			"lcp_ms": 680,
+			"fcp_ms": 680,
+			"cls": 0,
+			"compressed_bytes": 72256,
+			"resource_complete_ms": 1217.1999999955297,
+			"resource_count": 17
+		},
+		{
+			"site": "tracepunk-after",
+			"run": 3,
+			"lcp_ms": 660,
+			"fcp_ms": 660,
+			"cls": 0,
+			"compressed_bytes": 72253,
+			"resource_complete_ms": 1191.7999999970198,
+			"resource_count": 17
+		}
+	],
+	"hash": [
+		{
+			"site": "original",
+			"run": 1,
+			"duration_ms": 1956.0,
+			"long_tasks": 16,
+			"longest_task_ms": 133,
+			"long_task_total_ms": 1898,
+			"digests": [
+				"dc1e3c57e079dd9487b3ed4395227138",
+				"5b8763809d119d790f28c89618b837621425d424",
+				"4d3288ac4eea725ac54f99f29eb76380bbbc6eb0a4913b7ed4eab7e8",
+				"281e519df3077b557c6b03f5da83c4e8d397219259615dd7c3308f89cae8f2a6",
+				"dba3f4798ad9c798805f99285d8a62a90ffd9454386a32b5510a42c7f40f30cc10b72073cadd2a4e98020cfc11859fdc",
+				"4a491f75c6ff8fe79a1aa1045391160cbb30146b54f17b75d055b6f4e187ce8c069e9187484b1afeb29905d986fed21fc21d1189cd34c5c1de4c79f9291949cc",
+				"397228bdc77fd9ab9baf12d1b756a058d8749890d07bd345816766512c8bfc70",
+				"6c3903c8c906dfcf3b23f4c1f580c7e58d257be43528ea7eef4459c872be0413c2711850ec4f46de8aae7cb5a738be942f836b87ce954797bf32c4157864655e",
+				"59dc067cbd12ff78e84e78deff021a9968762d734e2a2efdc5761a0744c964a21c23dd7f245fd3fd26fc9494840e0045b5ab544748db2f61eb5af8f08f1ed54b",
+				"cec122882700dc1af4f1780374bee7523294347a734d4586ba57e79a5f33511c",
+				"61ab79addbbe181c4bae57a52bf8807ebdfb154c",
+				"8d2b400f"
+			],
+			"visibility": ["visible"]
+		},
+		{
+			"site": "original",
+			"run": 2,
+			"duration_ms": 1984.5999999940395,
+			"long_tasks": 16,
+			"longest_task_ms": 133,
+			"long_task_total_ms": 1886,
+			"digests": [
+				"dc1e3c57e079dd9487b3ed4395227138",
+				"5b8763809d119d790f28c89618b837621425d424",
+				"4d3288ac4eea725ac54f99f29eb76380bbbc6eb0a4913b7ed4eab7e8",
+				"281e519df3077b557c6b03f5da83c4e8d397219259615dd7c3308f89cae8f2a6",
+				"dba3f4798ad9c798805f99285d8a62a90ffd9454386a32b5510a42c7f40f30cc10b72073cadd2a4e98020cfc11859fdc",
+				"4a491f75c6ff8fe79a1aa1045391160cbb30146b54f17b75d055b6f4e187ce8c069e9187484b1afeb29905d986fed21fc21d1189cd34c5c1de4c79f9291949cc",
+				"397228bdc77fd9ab9baf12d1b756a058d8749890d07bd345816766512c8bfc70",
+				"6c3903c8c906dfcf3b23f4c1f580c7e58d257be43528ea7eef4459c872be0413c2711850ec4f46de8aae7cb5a738be942f836b87ce954797bf32c4157864655e",
+				"59dc067cbd12ff78e84e78deff021a9968762d734e2a2efdc5761a0744c964a21c23dd7f245fd3fd26fc9494840e0045b5ab544748db2f61eb5af8f08f1ed54b",
+				"cec122882700dc1af4f1780374bee7523294347a734d4586ba57e79a5f33511c",
+				"61ab79addbbe181c4bae57a52bf8807ebdfb154c",
+				"8d2b400f"
+			],
+			"visibility": ["visible"]
+		},
+		{
+			"site": "original",
+			"run": 3,
+			"duration_ms": 1998.3999999985099,
+			"long_tasks": 16,
+			"longest_task_ms": 132,
+			"long_task_total_ms": 1907,
+			"digests": [
+				"dc1e3c57e079dd9487b3ed4395227138",
+				"5b8763809d119d790f28c89618b837621425d424",
+				"4d3288ac4eea725ac54f99f29eb76380bbbc6eb0a4913b7ed4eab7e8",
+				"281e519df3077b557c6b03f5da83c4e8d397219259615dd7c3308f89cae8f2a6",
+				"dba3f4798ad9c798805f99285d8a62a90ffd9454386a32b5510a42c7f40f30cc10b72073cadd2a4e98020cfc11859fdc",
+				"4a491f75c6ff8fe79a1aa1045391160cbb30146b54f17b75d055b6f4e187ce8c069e9187484b1afeb29905d986fed21fc21d1189cd34c5c1de4c79f9291949cc",
+				"397228bdc77fd9ab9baf12d1b756a058d8749890d07bd345816766512c8bfc70",
+				"6c3903c8c906dfcf3b23f4c1f580c7e58d257be43528ea7eef4459c872be0413c2711850ec4f46de8aae7cb5a738be942f836b87ce954797bf32c4157864655e",
+				"59dc067cbd12ff78e84e78deff021a9968762d734e2a2efdc5761a0744c964a21c23dd7f245fd3fd26fc9494840e0045b5ab544748db2f61eb5af8f08f1ed54b",
+				"cec122882700dc1af4f1780374bee7523294347a734d4586ba57e79a5f33511c",
+				"61ab79addbbe181c4bae57a52bf8807ebdfb154c",
+				"8d2b400f"
+			],
+			"visibility": ["visible"]
+		},
+		{
+			"site": "tracepunk-after",
+			"run": 1,
+			"duration_ms": 2519.5,
+			"long_tasks": 0,
+			"longest_task_ms": 0,
+			"long_task_total_ms": 0,
+			"digests": [
+				"dc1e3c57e079dd9487b3ed4395227138",
+				"5b8763809d119d790f28c89618b837621425d424",
+				"4d3288ac4eea725ac54f99f29eb76380bbbc6eb0a4913b7ed4eab7e8",
+				"281e519df3077b557c6b03f5da83c4e8d397219259615dd7c3308f89cae8f2a6",
+				"dba3f4798ad9c798805f99285d8a62a90ffd9454386a32b5510a42c7f40f30cc10b72073cadd2a4e98020cfc11859fdc",
+				"4a491f75c6ff8fe79a1aa1045391160cbb30146b54f17b75d055b6f4e187ce8c069e9187484b1afeb29905d986fed21fc21d1189cd34c5c1de4c79f9291949cc",
+				"397228bdc77fd9ab9baf12d1b756a058d8749890d07bd345816766512c8bfc70",
+				"6c3903c8c906dfcf3b23f4c1f580c7e58d257be43528ea7eef4459c872be0413c2711850ec4f46de8aae7cb5a738be942f836b87ce954797bf32c4157864655e",
+				"59dc067cbd12ff78e84e78deff021a9968762d734e2a2efdc5761a0744c964a21c23dd7f245fd3fd26fc9494840e0045b5ab544748db2f61eb5af8f08f1ed54b",
+				"cec122882700dc1af4f1780374bee7523294347a734d4586ba57e79a5f33511c",
+				"61ab79addbbe181c4bae57a52bf8807ebdfb154c",
+				"8d2b400f"
+			],
+			"visibility": ["visible"]
+		},
+		{
+			"site": "tracepunk-after",
+			"run": 2,
+			"duration_ms": 1974.5,
+			"long_tasks": 0,
+			"longest_task_ms": 0,
+			"long_task_total_ms": 0,
+			"digests": [
+				"dc1e3c57e079dd9487b3ed4395227138",
+				"5b8763809d119d790f28c89618b837621425d424",
+				"4d3288ac4eea725ac54f99f29eb76380bbbc6eb0a4913b7ed4eab7e8",
+				"281e519df3077b557c6b03f5da83c4e8d397219259615dd7c3308f89cae8f2a6",
+				"dba3f4798ad9c798805f99285d8a62a90ffd9454386a32b5510a42c7f40f30cc10b72073cadd2a4e98020cfc11859fdc",
+				"4a491f75c6ff8fe79a1aa1045391160cbb30146b54f17b75d055b6f4e187ce8c069e9187484b1afeb29905d986fed21fc21d1189cd34c5c1de4c79f9291949cc",
+				"397228bdc77fd9ab9baf12d1b756a058d8749890d07bd345816766512c8bfc70",
+				"6c3903c8c906dfcf3b23f4c1f580c7e58d257be43528ea7eef4459c872be0413c2711850ec4f46de8aae7cb5a738be942f836b87ce954797bf32c4157864655e",
+				"59dc067cbd12ff78e84e78deff021a9968762d734e2a2efdc5761a0744c964a21c23dd7f245fd3fd26fc9494840e0045b5ab544748db2f61eb5af8f08f1ed54b",
+				"cec122882700dc1af4f1780374bee7523294347a734d4586ba57e79a5f33511c",
+				"61ab79addbbe181c4bae57a52bf8807ebdfb154c",
+				"8d2b400f"
+			],
+			"visibility": ["visible"]
+		},
+		{
+			"site": "tracepunk-after",
+			"run": 3,
+			"duration_ms": 1973.0,
+			"long_tasks": 0,
+			"longest_task_ms": 0,
+			"long_task_total_ms": 0,
+			"digests": [
+				"dc1e3c57e079dd9487b3ed4395227138",
+				"5b8763809d119d790f28c89618b837621425d424",
+				"4d3288ac4eea725ac54f99f29eb76380bbbc6eb0a4913b7ed4eab7e8",
+				"281e519df3077b557c6b03f5da83c4e8d397219259615dd7c3308f89cae8f2a6",
+				"dba3f4798ad9c798805f99285d8a62a90ffd9454386a32b5510a42c7f40f30cc10b72073cadd2a4e98020cfc11859fdc",
+				"4a491f75c6ff8fe79a1aa1045391160cbb30146b54f17b75d055b6f4e187ce8c069e9187484b1afeb29905d986fed21fc21d1189cd34c5c1de4c79f9291949cc",
+				"397228bdc77fd9ab9baf12d1b756a058d8749890d07bd345816766512c8bfc70",
+				"6c3903c8c906dfcf3b23f4c1f580c7e58d257be43528ea7eef4459c872be0413c2711850ec4f46de8aae7cb5a738be942f836b87ce954797bf32c4157864655e",
+				"59dc067cbd12ff78e84e78deff021a9968762d734e2a2efdc5761a0744c964a21c23dd7f245fd3fd26fc9494840e0045b5ab544748db2f61eb5af8f08f1ed54b",
+				"cec122882700dc1af4f1780374bee7523294347a734d4586ba57e79a5f33511c",
+				"61ab79addbbe181c4bae57a52bf8807ebdfb154c",
+				"8d2b400f"
+			],
+			"visibility": ["visible"]
+		}
+	]
+}

@@ -78,3 +78,7 @@ Metadata extraction now runs in a cancellable browser Web Worker: files up to 64
 Crypto lookups preserve successful sections when another endpoint fails and explicitly show unknown values and incomplete transaction coverage. Username scans can resume missing sites or retry errors/unknown results while preserving the original target and successful results. This state lasts only on the current page and is cleared by navigation or reload. See the [functional audit](docs/quality/2026-11-01-tool-audit.md) for validation and remaining limitations.
 
 Provider resilience and authenticated live checks are documented in the [provider recovery report](docs/quality/2026-11-01-provider-recovery.md). Ethereum retries temporary server failures once and can recover only the balance from PublicNode; unavailable counters and history remain unknown. Archive fallbacks explicitly identify reduced results or homepage-only coverage in both the interface and exports. Access failures and rate limits are not retried.
+
+## Measured frontend performance
+
+The [2026-11-01 comparison](docs/quality/2026-11-01-performance.md) documents controlled browser tests against the original deployment: 57% less initial homepage payload and no main-thread long tasks during the same 64 MiB hash workload. Hash computation time is effectively tied; the original still wins homepage LCP by 140 ms in this small sample. All four languages and twenty tools remain available.
