@@ -1,12 +1,34 @@
-# TRACE//PUNK
+<p align="center">
+  <img src="docs/presentation/officina-trace.png" alt="TRACE//PUNK — Segui le tracce. Collega i segnali." width="100%">
+</p>
 
-OSINT toolkit.
+<p align="center">
+  <a href="https://tracepunk.laccorsi-bondeno.workers.dev/"><b>APRI TRACE//PUNK ↗</b></a> ·
+  <a href="https://github.com/realfulvio/tracepunk/releases/latest"><b>Release</b></a> ·
+  <a href="#local-development">Installazione locale</a> ·
+  <a href="#acknowledgements">Crediti</a>
+</p>
 
-Live: [tracepunk.laccorsi-bondeno.workers.dev](https://tracepunk.laccorsi-bondeno.workers.dev/).
+<p align="center"><b>20 strumenti · 8 categorie · 4 lingue</b><br>Svelte + TypeScript · Cloudflare Workers</p>
 
-Hacker-punk interface with a searchable 20-tool catalogue, category filters and rewritten tool descriptions. Charcoal, cyan and magenta theme, responsive layouts, system fonts and no added UI runtime dependencies.
+## Un banco di lavoro per le fonti aperte
 
-Svelte static frontend and TypeScript API prepared for Cloudflare Workers Free. Derived from [Kerlooo/FreeOSINTUI](https://github.com/Kerlooo/FreeOSINTUI); inspired also by [OSINT-UI](https://osint-ui.com/). The original author, license and third-party notices are preserved in [NOTICE](NOTICE) and [.github/LICENSE](.github/LICENSE). Apache 2.0 **with Commons Clause**, not plain Apache 2.0. WhatsMyName data retains CC BY-SA 4.0.
+TRACE//PUNK riunisce ricerca su fonti pubbliche e analisi locale in un catalogo con ricerca e filtri. Apri l’app nel browser, scegli lo strumento e segui le piste: le fonti e i risultati parziali restano espliciti.
+
+<p align="center">
+  <a href="https://tracepunk.laccorsi-bondeno.workers.dev/"><img src="docs/presentation/homepage.png" alt="Screenshot reale della homepage TRACEPUNK con accesso al catalogo strumenti" width="100%"></a>
+  <br><sub>Homepage reale dell’app web. Nero, ciano e magenta, con animazioni controllabili.</sub>
+</p>
+
+| Ricognizione                             | Analisi locale                               | Fonti e risultati                                                             |
+| :--------------------------------------- | :------------------------------------------- | :---------------------------------------------------------------------------- |
+| IP, domini, username e profili pubblici. | Hash e metadati: i file restano nel browser. | Archivi, reputazione, URL e tracce crypto, con copertura parziale dichiarata. |
+
+Le ricerche online contattano servizi esterni, soggetti a disponibilità, copertura e limiti di frequenza. Le segnalazioni sono piste da verificare.
+
+Fork indipendente di [FreeOSINT-UI di kerlo](https://github.com/Kerlooo/FreeOSINTUI), con ispirazione da [OSINT-UI](https://osint-ui.com/). Autori, licenze e avvisi originali sono conservati in [NOTICE](NOTICE) e [LICENSE](.github/LICENSE): **Apache 2.0 con Commons Clause**, non Apache 2.0 semplice. I dati WhatsMyName mantengono CC BY-SA 4.0.
+
+---
 
 ## Local development
 
