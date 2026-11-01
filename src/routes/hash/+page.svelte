@@ -1,4 +1,7 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
+	import { onDestroy } from 'svelte';
+	import { hashFileLocal } from '$lib/hash/client.js';
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
 	import FileDrop from '$lib/components/FileDrop.svelte';
@@ -7,7 +10,7 @@
 	import ModeSwitch from '$lib/components/ModeSwitch.svelte';
 	import ProgressBar from '$lib/components/ProgressBar.svelte';
 	import ExportMenu from '$lib/components/ExportMenu.svelte';
-	import { hashFile, hashText } from '$lib/hash/compute.js';
+	import { hashText } from '$lib/hash/compute.js';
 	import { findMatches } from '$lib/hash/identify.js';
 	import { buildHashReport } from '$lib/hash/report.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
@@ -32,6 +35,13 @@
 	let fileError = $state('');
 	/** @type {AbortController | null} */
 	let fileController = null;
+	let fileBusy = $state(false);
+	function cancelFile() {
+		fileController?.abort();
+		fileController = null;
+		fileBusy = false;
+	}
+	onDestroy(cancelFile);
 
 	$effect(() => {
 		const current = text;
@@ -50,6 +60,7 @@
 		fileController?.abort();
 		const controller = new AbortController();
 		fileController = controller;
+		fileBusy = true;
 
 		file = selected;
 		fileDigests = null;
@@ -57,20 +68,33 @@
 		fileProgress = 0;
 
 		try {
-			fileDigests = await hashFile(selected, {
+			const computed = await hashFileLocal(selected, {
 				signal: controller.signal,
-				onProgress: (fraction) => (fileProgress = fraction)
+				onProgress: (fraction) => {
+					if (fileController === controller) fileProgress = fraction;
+				}
 			});
+			if (fileController === controller) fileDigests = computed;
 		} catch (error) {
 			if (!controller.signal.aborted) {
-				fileError = error instanceof Error ? error.message : String(error);
+				fileError =
+					error instanceof Error
+						? error.message.startsWith('local.')
+							? t(error.message)
+							: error.message
+						: String(error);
+			}
+		} finally {
+			if (fileController === controller) {
+				fileBusy = false;
+				fileController = null;
 			}
 		}
 	}
 
 	let digests = $derived(mode === 'text' ? textDigests : fileDigests);
 	let matches = $derived(digests ? findMatches(expected, digests) : []);
-	let hashingFile = $derived(mode === 'file' && file !== null && !fileDigests && !fileError);
+	let hashingFile = $derived(mode === 'file' && fileBusy);
 
 	const buildReport = () =>
 		buildHashReport({
@@ -82,7 +106,7 @@
 		});
 </script>
 
-<PageMeta title="{t('tools.hash.name')} — FreeOSINT-UI" description={t('hash.metaDescription')} />
+<PageMeta title="{t('tools.hash.name')} — TRACE//PUNK" description={t('hash.metaDescription')} />
 
 <ToolHeader title={t('tools.hash.name')} description={t('hash.intro')} />
 
@@ -106,6 +130,7 @@
 			<FileDrop {file} onselect={selectFile} />
 			{#if hashingFile}
 				<ProgressBar value={fileProgress} label={t('hash.hashingFile')} />
+				<button type="button" onclick={cancelFile}>{t('local.cancel')}</button>
 			{/if}
 			{#if fileError}
 				<p class="error" role="alert">{t('hash.fileError', { error: fileError })}</p>

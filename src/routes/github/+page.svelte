@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
@@ -131,7 +132,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.github.name')} — FreeOSINT-UI"
+	title="{t('tools.github.name')} — TRACE//PUNK"
 	description={t('github.metaDescription')}
 />
 
@@ -189,6 +190,7 @@
 					<GithubEmails
 						emails={emails.data?.emails ?? []}
 						scanned={emails.data?.scanned ?? []}
+						failed={emails.data?.failed ?? []}
 						commitsPerRepo={COMMITS_PER_REPO}
 					/>
 				</GithubSection>

@@ -1,6 +1,7 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
 	import LookupForm from '$lib/components/LookupForm.svelte';
 	import ProgressBar from '$lib/components/ProgressBar.svelte';
@@ -8,7 +9,8 @@
 	import UsernameStatusFilters from '$lib/components/UsernameStatusFilters.svelte';
 	import UsernameResultGroup from '$lib/components/UsernameResultGroup.svelte';
 	import ExportMenu from '$lib/components/ExportMenu.svelte';
-	import { ApiError, BACKEND_START_COMMAND, apiGet } from '$lib/api.js';
+	import { ApiError, apiGet } from '$lib/api.js';
+	import { remainingSites, replaceResult } from '$lib/username/session.js';
 	import { runPool } from '$lib/username/pool.js';
 	import { NSFW_CATEGORY, foundUrls, groupByCategory, summarize } from '$lib/username/results.js';
 	import { normalizeUsername } from '$lib/username/validate.js';
@@ -34,6 +36,9 @@
 	/** @type {Result[]} */
 	let results = $state([]);
 	let selected = $state(['found']);
+	let scanSites = $state([]);
+	let remaining = $derived(remainingSites(scanSites, results));
+	let retryable = $derived(remainingSites(scanSites, results, true));
 	/** @type {AbortController | null} */
 	let controller = null;
 
@@ -60,6 +65,7 @@
 	}
 
 	onMount(loadSites);
+	onDestroy(() => controller?.abort());
 
 	/** @param {string} value */
 	async function scan(value) {
@@ -68,15 +74,25 @@
 			error = invalid;
 			return;
 		}
-		controller?.abort();
+		cancel();
+		results = [];
+		scannedName = username;
+		scanSites = targetSites.map((site) => ({ ...site }));
+		total = scanSites.length;
+		await runSites(scanSites);
+	}
+
+	async function runSites(list) {
+		if (scanning || !list.length) return;
+		const username = scannedName;
 		const current = new AbortController();
 		controller = current;
 		error = '';
-		results = [];
-		scannedName = username;
-		const list = targetSites;
-		total = list.length;
 		scanning = true;
+		const record = (result) => {
+			if (controller === current && !current.signal.aborted)
+				results = replaceResult(results, result);
+		};
 
 		await runPool(
 			list,
@@ -89,7 +105,12 @@
 					});
 					return { ...result, unreliable: site.unreliable };
 				} catch (e) {
-					if (e instanceof ApiError && e.unreachable) {
+					if (
+						controller === current &&
+						!current.signal.aborted &&
+						e instanceof ApiError &&
+						e.unreachable
+					) {
 						backendDown = true;
 						current.abort();
 					}
@@ -99,9 +120,9 @@
 			{
 				concurrency: CONCURRENCY,
 				signal: current.signal,
-				onResult: (result) => results.push(result),
+				onResult: record,
 				onError: (e, site) =>
-					results.push({
+					record({
 						site: site.id,
 						name: site.name,
 						category: site.category,
@@ -131,7 +152,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.username.name')} — FreeOSINT-UI"
+	title="{t('tools.username.name')} — TRACE//PUNK"
 	description={t('username.metaDescription')}
 />
 
@@ -158,7 +179,6 @@
 				<strong>{t('backend.down')}</strong>
 				{t('backend.needed')}
 			</p>
-			<code>{BACKEND_START_COMMAND}</code>
 			<button type="button" onclick={loadSites}>{t('backend.retry')}</button>
 		</div>
 	{:else if error}
@@ -180,6 +200,19 @@
 			<div class="actions">
 				{#if scanning}
 					<button type="button" class="cancel" onclick={cancel}>{t('username.cancel')}</button>
+				{:else}
+					{#if remaining.length}<button
+							type="button"
+							disabled={backendDown || loadingSites}
+							onclick={() => runSites(remaining)}
+							>{t('username.resume', { count: remaining.length })}</button
+						>{/if}
+					{#if retryable.length}<button
+							type="button"
+							disabled={backendDown || loadingSites}
+							onclick={() => runSites(retryable)}
+							>{t('username.retryFailed', { count: retryable.length })}</button
+						>{/if}
 				{/if}
 				{#if urls}
 					<CopyButton value={urls} label={t('username.copyUrls')} />
@@ -192,6 +225,7 @@
 			{t('username.progress', { done: results.length, total })}{scanning ? '…' : '.'}
 		</p>
 
+		<p class="hint">{t('username.sessionHint')}</p>
 		<UsernameStatusFilters {counts} bind:selected />
 
 		{#if groups.length}
@@ -307,6 +341,7 @@
 
 	.actions {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
 

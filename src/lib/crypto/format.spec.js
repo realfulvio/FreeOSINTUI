@@ -1,6 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CHAINS } from './chains.js';
 import { formatAmount, formatUnits, shortenHash } from './format.js';
+
+const locale = vi.hoisted(() => ({ value: 'en' }));
+vi.mock('$lib/i18n/i18n.svelte.js', () => ({ getLocale: () => locale.value }));
+afterEach(() => {
+	locale.value = 'en';
+});
 
 describe('formatUnits', () => {
 	it('formats satoshi and wei', () => {
@@ -9,6 +15,12 @@ describe('formatUnits', () => {
 		expect(formatUnits('0', 8)).toBe('0');
 		expect(formatUnits('5774491790776062094343', 18, 6)).toBe('5,774.49179');
 		expect(formatUnits(-150000000n, 8)).toBe('-1.5');
+	});
+
+	it('uses distinct Italian group and decimal separators without rounding BigInts', () => {
+		locale.value = 'it';
+		expect(formatUnits(843741411250315n, 8)).toBe('8.437.414,11250315');
+		expect(formatUnits(-133284631800000n, 8)).toBe('-1.332.846,318');
 	});
 
 	it('shows dust that truncates to zero', () => {

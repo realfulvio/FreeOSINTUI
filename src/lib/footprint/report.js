@@ -1,4 +1,5 @@
-import { BACKEND_START_COMMAND } from '$lib/api.js';
+// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
+import { emptyFootprintMessage } from '$lib/footprint/coverage.js';
 import { t } from '$lib/i18n/i18n.svelte.js';
 import {
 	createReport,
@@ -55,7 +56,8 @@ export function buildFootprintReport({
 								index.error ??
 								[
 									t('footprint.captures', { count: index.count, n: index.count }),
-									index.truncated ? t('footprint.limitReached') : ''
+									index.truncated ? t('footprint.limitReached') : '',
+									index.warning ?? ''
 								]
 									.filter(Boolean)
 									.join(' ')
@@ -70,14 +72,15 @@ export function buildFootprintReport({
 			wayback.status === 'error' && wayback.backendDown
 				? {
 						status: 'error',
-						error: `${t('backend.down')} ${t('footprint.wayback.backendNeeded')} ${BACKEND_START_COMMAND}`
+						error: `${t('backend.down')} ${t('footprint.wayback.backendNeeded')}`
 					}
 				: wayback,
 			(/** @type {{ records: any[], truncated: boolean }} */ data) => [
 				text(
 					[
 						t('footprint.captures', { count: data.records.length, n: data.records.length }),
-						data.truncated ? t('footprint.limitReached') : ''
+						data.truncated ? t('footprint.limitReached') : '',
+						data.homepageOnly ? t('footprint.homepageFallback', { error: data.fallbackError }) : ''
 					]
 						.filter(Boolean)
 						.join(' ')
@@ -93,7 +96,7 @@ export function buildFootprintReport({
 			input: scopeInput(target),
 			sections: [
 				...sourceSections,
-				section(t('footprint.list.title'), [text(t('footprint.empty'))])
+				section(t('footprint.list.title'), [text(t(emptyFootprintMessage(cc, wayback)))])
 			]
 		});
 	}

@@ -1,3 +1,5 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { coverageNotes, historyNote } from './coverage.js';
 import { t } from '$lib/i18n/i18n.svelte.js';
 import { createReport, fields, list, stateSection, table, text } from '$lib/export/report.js';
 import { formatAmount } from './format.js';
@@ -24,6 +26,9 @@ export function buildCryptoReport({ target, chain, data, error }) {
 			? { status: 'error', error }
 			: { status: 'loading' };
 	const source = new URL(chain.api).host;
+	const summarySource = data?.sections?.summary?.value?.fallback
+		? 'ethereum-rpc.publicnode.com'
+		: source;
 
 	return createReport({
 		tool: 'crypto',
@@ -33,6 +38,8 @@ export function buildCryptoReport({ target, chain, data, error }) {
 				t('crypto.summary'),
 				trace,
 				(loaded) => [
+					...coverageNotes(loaded).map((note) => text(note)),
+					text(historyNote(loaded)),
 					fields([
 						{ label: t('crypto.addressHeading'), value: target.address },
 						...detectionRows(target, chain),
@@ -45,13 +52,20 @@ export function buildCryptoReport({ target, chain, data, error }) {
 						}))
 					)
 				],
-				{ source }
+				{ source: summarySource }
 			),
-			stateSection(t('crypto.latestTxs'), trace, (loaded) => txBlocks(loaded.txs, target, chain), {
-				source,
-				emptyText: t('crypto.noTxs'),
-				isEmpty: (loaded) => !loaded.txs.length
-			})
+			stateSection(
+				t('crypto.latestTxs'),
+				data?.sections?.transactions.status === 'error'
+					? { status: 'error', error: data.sections.transactions.error }
+					: trace,
+				(loaded) => [...txBlocks(loaded.txs, target, chain), text(historyNote(loaded))],
+				{
+					source,
+					emptyText: t('crypto.noTxs'),
+					isEmpty: (loaded) => !loaded.txs.length
+				}
+			)
 		]
 	});
 }

@@ -1,59 +1,81 @@
+<!-- Modified 2026 by realfulvio; original attribution in NOTICE. -->
 <script>
 	import { t } from '$lib/i18n/i18n.svelte.js';
-
-	const GITHUB_URL = 'https://github.com/Kerlooo';
-	const LINKEDIN_URL = 'https://www.linkedin.com/in/carlo-scaglione/';
+	import { SITE_NAME } from '$lib/site.js';
 </script>
 
 <footer>
 	<div class="inner">
-		<p>{t('nav.footerAbout')}</p>
-		<p class="credits">
-			{t('nav.inspiredBy')}
-			<a href="https://osint-ui.com/" target="_blank" rel="noopener noreferrer">OSINT-UI</a>.
-		</p>
-		<ul>
-			<li><a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a></li>
-			<li><a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-		</ul>
+		<div class="identity">
+			<strong>{SITE_NAME}<span aria-hidden="true">_</span></strong>
+			<p>{t('nav.footerAbout')}</p>
+		</div>
+		<div class="credits">
+			<a href="https://github.com/realfulvio/tracepunk" target="_blank" rel="noopener noreferrer"
+				>GitHub ↗</a
+			>
+			<p>
+				Based on <a href="https://github.com/Kerlooo/FreeOSINTUI">FreeOSINT-UI / kerlo</a><br />{t(
+					'nav.inspiredBy'
+				)} <a href="https://osint-ui.com/">OSINT-UI</a> ·
+				<a href="https://github.com/realfulvio/tracepunk/blob/main/.github/LICENSE"
+					>License &amp; credits</a
+				>
+			</p>
+		</div>
 	</div>
 </footer>
 
 <style>
 	footer {
 		border-top: 1px solid var(--color-border);
-		color: var(--color-text-dim);
-		font-size: 0.875rem;
+		background: #0d1119;
 	}
-
 	.inner {
 		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
 		justify-content: space-between;
-		gap: 0.5rem 1.5rem;
+		gap: 2rem;
 		max-width: var(--content-width);
-		margin: 0 auto;
-		padding: 1.25rem 1rem;
+		margin: auto;
+		padding: 2rem 2.5rem;
 	}
-
+	.identity {
+		max-width: 36rem;
+	}
+	strong {
+		font: 900 1.3rem var(--font-display);
+		letter-spacing: -0.04em;
+	}
+	strong span {
+		color: var(--color-punk);
+	}
 	p {
-		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 0.65rem;
+		line-height: 1.8;
+		margin: 0.7rem 0 0;
 	}
-
-	.credits a {
+	.credits {
+		text-align: right;
+		font-size: 0.75rem;
+	}
+	.credits p a {
 		color: var(--color-text-dim);
 	}
-
-	ul {
-		display: flex;
-		gap: 1.25rem;
-		margin: 0;
-		padding: 0;
-		list-style: none;
+	a {
+		text-decoration: none;
 	}
-
 	a:hover {
-		color: var(--color-text);
+		text-decoration: underline;
+	}
+	@media (max-width: 640px) {
+		.inner {
+			padding: 1.5rem 1rem;
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		.credits {
+			text-align: left;
+		}
 	}
 </style>

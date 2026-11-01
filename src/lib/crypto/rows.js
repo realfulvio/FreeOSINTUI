@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 import { checksumLabel, typeLabel } from './address.js';
 import { formatAmount } from './format.js';
@@ -32,7 +33,10 @@ export function detectionRows(target, chain) {
  */
 export function summaryRows(data, chain) {
 	return [
-		{ label: t('crypto.row.balance'), value: formatAmount(data.balance, chain) },
+		{
+			label: t('crypto.row.balance'),
+			value: data.balance === null ? t('crypto.unknown') : formatAmount(data.balance, chain)
+		},
 		{
 			label: t('crypto.row.received'),
 			value: data.received === null ? null : formatAmount(data.received, chain)
@@ -43,12 +47,15 @@ export function summaryRows(data, chain) {
 		},
 		{
 			label: t('crypto.row.txs'),
-			value: data.pendingTxCount
-				? t('crypto.txCountUnconfirmed', {
-						count: formatNumber(data.txCount),
-						pending: formatNumber(data.pendingTxCount)
-					})
-				: formatNumber(data.txCount)
+			value:
+				data.txCount === null
+					? t('crypto.unknown')
+					: data.pendingTxCount
+						? t('crypto.txCountUnconfirmed', {
+								count: formatNumber(data.txCount),
+								pending: formatNumber(data.pendingTxCount)
+							})
+						: formatNumber(data.txCount)
 		},
 		{ label: t('crypto.row.firstSeen'), value: formatUtc(data.firstSeen) },
 		{ label: t('crypto.row.lastSeen'), value: formatUtc(data.lastSeen) },

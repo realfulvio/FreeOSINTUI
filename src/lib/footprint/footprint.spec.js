@@ -108,7 +108,7 @@ describe('Common Crawl', () => {
 			fetch: /** @type {any} */ (fakeFetch),
 			onProgress: (partial) => progress.push(partial.indexes.length)
 		});
-		expect(requested).toHaveLength(4);
+		expect(requested).toHaveLength(5);
 		expect(result.done).toBe(true);
 		expect(result.records).toHaveLength(1);
 		expect(result.indexes.map((i) => [i.id, i.count, Boolean(i.error)])).toEqual([
@@ -367,5 +367,53 @@ describe('stats', () => {
 	it('filters by substring', () => {
 		expect(filterEntries(entries, ' PDF ')).toHaveLength(1);
 		expect(filterEntries(entries, '')).toHaveLength(5);
+	});
+});
+
+describe('Common Crawl degraded queries', () => {
+	it('recovers a smaller page and marks it incomplete even with fewer than five records', async () => {
+		const urls = [];
+		const data = await lookupCommonCrawl('example.com', {
+			fetch: async (url) => {
+				urls.push(url);
+				if (url.endsWith('collinfo.json')) return Response.json([{ id: 'CC-MAIN-2026-43' }]);
+				if (new URL(url).searchParams.get('limit') !== '5')
+					return new Response('', { status: 504 });
+				return new Response('{"url":"https://example.com/","timestamp":"20261101000000"}\n');
+			}
+		});
+		expect(urls).toHaveLength(3);
+		expect(data.records).toHaveLength(1);
+		expect(data.indexes[0]).toMatchObject({ truncated: true, error: null });
+		expect(data.indexes[0].warning).toContain('5 captures');
+	});
+	it('does not retry rate limits', async () => {
+		let calls = 0;
+		await expect(
+			lookupCommonCrawl('example.com', {
+				fetch: async (url) => {
+					calls++;
+					return url.endsWith('collinfo.json')
+						? Response.json([{ id: 'CC-MAIN-2026-43' }])
+						: new Response('', { status: 429 });
+				}
+			})
+		).rejects.toThrow();
+		expect(calls).toBe(2);
+	});
+	it('rejects a missing collection list instead of claiming an empty archive', async () => {
+		await expect(
+			lookupCommonCrawl('example.com', { fetch: async () => Response.json({ error: 'offline' }) })
+		).rejects.toThrow('collection');
+	});
+	it('preserves homepage coverage when parsing a backend answer', () => {
+		expect(
+			parseWaybackAnswer({
+				records: [],
+				truncated: true,
+				homepageOnly: true,
+				fallbackError: 'timeout'
+			})
+		).toMatchObject({ homepageOnly: true, fallbackError: 'timeout', truncated: true });
 	});
 });

@@ -63,3 +63,7 @@ CLAUDE.local.md
 .DS_Store
 Thumbs.db
 desktop.ini
+
+.dev.vars
+.dev.vars.*
+worker-configuration.d.ts

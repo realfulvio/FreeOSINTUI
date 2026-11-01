@@ -1,11 +1,11 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
 	import FootprintSource from '$lib/components/FootprintSource.svelte';
-	import { BACKEND_START_COMMAND } from '$lib/api.js';
 	import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 
 	/**
 	 * Status of the Wayback Machine query (through the backend).
-	 * @type {{ result: { status: 'loading' | 'done' | 'error', data?: { records: any[], truncated: boolean }, error?: string, backendDown?: boolean } }}
+	 * @type {{ result: { status: 'loading' | 'done' | 'error', data?: { records: any[], truncated: boolean, homepageOnly?: boolean, fallbackError?: string }, error?: string, backendDown?: boolean } }}
 	 */
 	let { result } = $props();
 </script>
@@ -25,11 +25,13 @@
 				<strong>{t('backend.down')}</strong>
 				{t('footprint.wayback.backendNeeded')}
 			</p>
-			<code>{BACKEND_START_COMMAND}</code>
 		</div>
 	{:else if result.status === 'error'}
 		<p class="error" role="alert">{result.error}</p>
 	{:else if result.data}
+		{#if result.data.homepageOnly}<p class="notice">
+				{t('footprint.homepageFallback', { error: result.data.fallbackError })}
+			</p>{/if}
 		<p class="count">
 			{t('footprint.captures', {
 				count: result.data.records.length,

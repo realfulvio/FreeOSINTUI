@@ -90,7 +90,7 @@ describe('toMarkdown', () => {
 	const markdown = toMarkdown(report);
 
 	it('writes a header with tool, input and date', () => {
-		expect(markdown).toMatch(/^# IP Analyzer report\n/);
+		expect(markdown).toMatch(/^# IP recon report\n/);
 		expect(markdown).toContain('- **Input:** `8.8.8.8`');
 		expect(markdown).toContain('- **Generated:** 2026-10-03T19:52:30.000Z');
 	});
@@ -140,16 +140,16 @@ describe('files', () => {
 
 	it('builds a safe file name with tool, input and minute', () => {
 		expect(reportFilename(report, 'md')).toBe(
-			'freeosintui-url-https-ex.com-a-b-c-1-20261003-1952.md'
+			'tracepunk-url-https-ex.com-a-b-c-1-20261003-1952.md'
 		);
 		const blank = createReport({ tool: 'hash', input: '', now, sections: [] });
-		expect(reportFilename(blank, 'json')).toBe('freeosintui-hash-20261003-1952.json');
+		expect(reportFilename(blank, 'json')).toBe('tracepunk-hash-20261003-1952.json');
 	});
 
 	it('serializes the report as JSON', () => {
 		expect(JSON.parse(toJson(report))).toEqual({
 			tool: 'url',
-			title: 'URL Analyzer',
+			title: 'URL inspection',
 			input: 'https://ex.com/a b?c=1',
 			generatedAt: '2026-10-03T19:52:30.000Z',
 			sections: []

@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE.
 // Favicon Hash (/favicon).
 export default {
 	en: {
@@ -7,7 +8,7 @@ export default {
 			'Hash a favicon the way internet scanners do and find other servers showing the same icon: phishing kits, hidden origins behind a CDN, admin panels of the same product. The file is hashed in your browser and never uploaded.',
 		fileHeading: 'Favicon file',
 		whyUpload:
-			'FreeOSINT-UI does not download favicons for you: fetching an arbitrary host would need a proxy open to abuse. Open the favicon in your browser, save it and drop the file here.',
+			'TRACE//PUNK does not download favicons for you: fetching an arbitrary host would need a proxy open to abuse. Open the favicon in your browser, save it and drop the file here.',
 		siteLabel: 'Site (optional)',
 		sitePlaceholder: 'example.com',
 		siteInvalid: 'Enter a domain or an http(s) URL.',
@@ -49,7 +50,7 @@ export default {
 			"Calcola l'hash di una favicon come fanno gli scanner di Internet e trova altri server che mostrano la stessa icona: kit di phishing, origini nascoste dietro una CDN, pannelli di amministrazione dello stesso prodotto. Il file viene elaborato nel tuo browser e non viene mai caricato.",
 		fileHeading: 'File favicon',
 		whyUpload:
-			'FreeOSINT-UI non scarica le favicon al posto tuo: contattare un host qualsiasi richiederebbe un proxy esposto ad abusi. Apri la favicon nel browser, salvala e trascina qui il file.',
+			'TRACE//PUNK non scarica le favicon al posto tuo: contattare un host qualsiasi richiederebbe un proxy esposto ad abusi. Apri la favicon nel browser, salvala e trascina qui il file.',
 		siteLabel: 'Sito (facoltativo)',
 		sitePlaceholder: 'example.com',
 		siteInvalid: 'Inserisci un dominio o un URL http(s).',
@@ -92,7 +93,7 @@ export default {
 			'Calculez le hash d’une favicon comme le font les scanners d’Internet et trouvez d’autres serveurs affichant la même icône : kits de phishing, origines cachées derrière un CDN, panneaux d’administration du même produit. Le fichier est traité dans votre navigateur et n’est jamais envoyé.',
 		fileHeading: 'Fichier favicon',
 		whyUpload:
-			'FreeOSINT-UI ne télécharge pas les favicons à votre place : contacter un hôte quelconque nécessiterait un proxy ouvert aux abus. Ouvrez la favicon dans votre navigateur, enregistrez-la et déposez le fichier ici.',
+			'TRACE//PUNK ne télécharge pas les favicons à votre place : contacter un hôte quelconque nécessiterait un proxy ouvert aux abus. Ouvrez la favicon dans votre navigateur, enregistrez-la et déposez le fichier ici.',
 		siteLabel: 'Site (facultatif)',
 		sitePlaceholder: 'example.com',
 		siteInvalid: 'Saisissez un domaine ou une URL http(s).',
@@ -135,7 +136,7 @@ export default {
 			'インターネットスキャナーと同じ方法で favicon をハッシュ化し、同じアイコンを表示している他のサーバーを見つけます: フィッシングキット、CDN の背後に隠れたオリジン、同じ製品の管理画面など。ファイルはブラウザ内でハッシュ化され、アップロードされることはありません。',
 		fileHeading: 'favicon ファイル',
 		whyUpload:
-			'FreeOSINT-UI は favicon を代わりにダウンロードしません。任意のホストへアクセスするには、悪用される恐れのあるプロキシが必要になるためです。ブラウザで favicon を開いて保存し、そのファイルをここにドロップしてください。',
+			'TRACE//PUNK は favicon を代わりにダウンロードしません。任意のホストへアクセスするには、悪用される恐れのあるプロキシが必要になるためです。ブラウザで favicon を開いて保存し、そのファイルをここにドロップしてください。',
 		siteLabel: 'サイト (任意)',
 		sitePlaceholder: 'example.com',
 		siteInvalid: 'ドメインまたは http(s) の URL を入力してください。',

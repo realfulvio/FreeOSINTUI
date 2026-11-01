@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -82,7 +83,7 @@
 	});
 </script>
 
-<PageMeta title="{t('tools.mac.name')} — FreeOSINT-UI" description={t('mac.metaDescription')} />
+<PageMeta title="{t('tools.mac.name')} — TRACE//PUNK" description={t('mac.metaDescription')} />
 
 <ToolHeader title={t('tools.mac.name')} description={t('mac.description')} />
 

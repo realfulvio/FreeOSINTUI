@@ -1,4 +1,7 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
+	import { onDestroy } from 'svelte';
+	import { readMetadataLocal } from '$lib/metadata/client.js';
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
 	import FileDrop from '$lib/components/FileDrop.svelte';
@@ -7,7 +10,7 @@
 	import MetadataGroups from '$lib/components/MetadataGroups.svelte';
 	import MetadataReverseSearch from '$lib/components/MetadataReverseSearch.svelte';
 	import ExportMenu from '$lib/components/ExportMenu.svelte';
-	import { buildResult, readMetadata } from '$lib/metadata/extract.js';
+	import { buildResult } from '$lib/metadata/extract.js';
 	import { buildMetadataReport } from '$lib/metadata/report.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
 
@@ -20,19 +23,34 @@
 	let busy = $state(false);
 	let error = $state('');
 	let run = 0;
+	let controller;
+	function cancel() {
+		controller?.abort();
+		run++;
+		busy = false;
+	}
+	onDestroy(cancel);
 
 	/** @param {File} selected */
 	async function selectFile(selected) {
+		controller?.abort();
+		controller = new AbortController();
 		const current = ++run;
 		file = selected;
 		raw = null;
 		error = '';
 		busy = true;
 		try {
-			const extracted = await readMetadata(selected);
+			const extracted = await readMetadataLocal(selected, { signal: controller.signal });
 			if (current === run) raw = extracted;
 		} catch (err) {
-			if (current === run) error = err instanceof Error ? err.message : String(err);
+			if (current === run)
+				error =
+					err instanceof Error
+						? err.message.startsWith('local.')
+							? t(err.message)
+							: err.message
+						: String(err);
 		} finally {
 			if (current === run) busy = false;
 		}
@@ -46,7 +64,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.metadata.name')} — FreeOSINT-UI"
+	title="{t('tools.metadata.name')} — TRACE//PUNK"
 	description={t('metadata.metaDescription')}
 />
 
@@ -55,7 +73,7 @@
 <div class="layout">
 	<section class="panel" aria-labelledby="file-heading">
 		<h2 id="file-heading">{t('metadata.fileHeading')}</h2>
-		<FileDrop {file} onselect={selectFile} />
+		<FileDrop {file} onselect={selectFile} hint={t('local.metadataBudget')} />
 		<p class="hint">{t('metadata.supportedHint')}</p>
 		<p class="hint">{t('metadata.strippedHint')}</p>
 		{#if result}
@@ -75,6 +93,7 @@
 		<h2 id="summary-heading">{t('metadata.summaryHeading')}</h2>
 		{#if busy}
 			<p class="hint">{t('metadata.reading')}</p>
+			<button type="button" onclick={cancel}>{t('local.cancel')}</button>
 		{:else if error}
 			<p class="error" role="alert">{t('metadata.readError', { message: error })}</p>
 		{:else if result}

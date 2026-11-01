@@ -32,6 +32,7 @@
 						{:else}
 							<span>
 								{t('footprint.captures', { count: index.count, n: formatNumber(index.count) })}
+								{#if index.warning}<span>{index.warning}</span>{/if}
 								{#if index.truncated}{t('footprint.limitReached')}{/if}
 							</span>
 						{/if}

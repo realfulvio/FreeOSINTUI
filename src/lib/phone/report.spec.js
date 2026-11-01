@@ -18,6 +18,6 @@ describe('buildPhoneReport', () => {
 		expect(markdown).toContain('| Calling code | +39 |');
 		expect(markdown).toContain('| E.164 | +39066982 |');
 		expect(markdown).toContain('- [WhatsApp](https://wa.me/39066982)');
-		expect(markdown).toContain('](https://freeosintui.vercel.app/dorks?type=phone&q=%2B39');
+		expect(markdown).toContain('](http://localhost:8787/dorks?type=phone&q=%2B39');
 	});
 });

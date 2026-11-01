@@ -1,8 +1,9 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { describe, expect, it, vi } from 'vitest';
 import { checkPwnedPassword, countInRange, sha1Hex, splitHash } from './pwned-passwords.js';
 
 const RANGE =
-	'003D68EB55068C33ACE09247EE4C639306B:29\r\n1E4C9B93F3F0682250B6CF8331B7EE68FD8:52372427\r\nFFFFF0000000000000000000000000000AA:0';
+	'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:29\r\n1E4C9B93F3F0682250B6CF8331B7EE68FD8:52372427\r\nFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:0';
 
 describe('sha1Hex / splitHash', () => {
 	it('computes an uppercase SHA-1 and splits it 5 + 35', async () => {
@@ -22,7 +23,7 @@ describe('countInRange', () => {
 
 	it('returns 0 when missing or only in padding', () => {
 		expect(countInRange(RANGE, 'ABCDEF')).toBe(0);
-		expect(countInRange(RANGE, 'FFFFF0000000000000000000000000000AA')).toBe(0);
+		expect(countInRange(RANGE, 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF')).toBe(0);
 	});
 });
 

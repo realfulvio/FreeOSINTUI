@@ -1,6 +1,8 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 // GitHub OSINT (/github): page, section components, profile rows and API errors.
 export default {
 	en: {
+		'emails.failed': 'Partial results. Repositories not checked: {repos}.',
 		metaDescription:
 			'Investigate a GitHub account: profile, repositories and languages, organizations, emails leaked in public commits, SSH and GPG keys. Uses the public GitHub API from your browser.',
 		intro:
@@ -106,6 +108,7 @@ export default {
 			'The same key tail on different accounts or servers can link identities. GPG keys often declare real email addresses.'
 	},
 	it: {
+		'emails.failed': 'Risultati parziali. Repository non verificati: {repos}.',
 		metaDescription:
 			"Indaga su un account GitHub: profilo, repository e linguaggi, organizzazioni, email esposte nei commit pubblici, chiavi SSH e GPG. Usa l'API pubblica di GitHub dal tuo browser.",
 		intro:
@@ -214,6 +217,7 @@ export default {
 			'La stessa parte finale di una chiave su account o server diversi può collegare identità. Le chiavi GPG dichiarano spesso indirizzi email reali.'
 	},
 	fr: {
+		'emails.failed': 'Résultats partiels. Dépôts non vérifiés : {repos}.',
 		metaDescription:
 			"Enquêtez sur un compte GitHub : profil, dépôts et langages, organisations, e-mails exposés dans les commits publics, clés SSH et GPG. Utilise l'API publique de GitHub depuis votre navigateur.",
 		intro:
@@ -322,6 +326,7 @@ export default {
 			'La même fin de clé sur différents comptes ou serveurs peut relier des identités. Les clés GPG déclarent souvent de vraies adresses e-mail.'
 	},
 	ja: {
+		'emails.failed': '部分的な結果です。未確認のリポジトリ: {repos}。',
 		metaDescription:
 			'GitHub アカウントを調査: プロフィール、リポジトリと言語、Organization、公開コミットで漏えいしたメールアドレス、SSH・GPG 鍵。ブラウザから公開 GitHub API を使用します。',
 		intro:

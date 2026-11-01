@@ -1,9 +1,10 @@
+// Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE.
 // Strings shared by several tools: generic words, shared components and network errors.
 export default {
 	en: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '.',
-		ogImageAlt: 'FreeOSINT-UI: free OSINT tools in your browser',
+		ogImageAlt: 'TRACE//PUNK: free OSINT tools in your browser',
 		yes: 'yes',
 		no: 'no',
 		unknown: 'Unknown',
@@ -28,7 +29,7 @@ export default {
 	it: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '.',
-		ogImageAlt: 'FreeOSINT-UI: strumenti OSINT gratuiti nel browser',
+		ogImageAlt: 'TRACE//PUNK: strumenti OSINT gratuiti nel browser',
 		yes: 'sì',
 		no: 'no',
 		unknown: 'Sconosciuto',
@@ -54,7 +55,7 @@ export default {
 	fr: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '.',
-		ogImageAlt: 'FreeOSINT-UI : outils OSINT gratuits dans votre navigateur',
+		ogImageAlt: 'TRACE//PUNK : outils OSINT gratuits dans votre navigateur',
 		yes: 'oui',
 		no: 'non',
 		unknown: 'Inconnu',
@@ -80,7 +81,7 @@ export default {
 	ja: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '。',
-		ogImageAlt: 'FreeOSINT-UI: ブラウザで使える無料の OSINT ツール',
+		ogImageAlt: 'TRACE//PUNK: ブラウザで使える無料の OSINT ツール',
 		yes: 'はい',
 		no: 'いいえ',
 		unknown: '不明',

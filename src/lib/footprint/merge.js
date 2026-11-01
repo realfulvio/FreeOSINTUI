@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 /** Source ids, also used as i18n keys (footprint.source.<id>). */
 export const SOURCES = ['commoncrawl', 'wayback'];
 
@@ -36,7 +37,12 @@ export function parseArchivedUrl(raw) {
 	if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
 	const host = url.hostname.toLowerCase().replace(/\.$/, '');
 	const path = url.pathname || '/';
-	return { host, path, search: url.search, key: `${host}${path}${url.search}` };
+	return {
+		host,
+		path,
+		search: url.search,
+		key: `${host}${url.port ? ':' + url.port : ''}${path}${url.search}`
+	};
 }
 
 /** Normalizes a CDX status: "-" or empty means unknown. */

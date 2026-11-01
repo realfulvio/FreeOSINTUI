@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { describe, expect, it } from 'vitest';
 import { decodeLabel, encodeLabel, toAscii, toUnicode } from './punycode.js';
 import { isValidDomain, isValidLabel, parseDomain, splitDomain } from './domain.js';
@@ -71,7 +72,7 @@ describe('parseDomain', () => {
 		});
 		expect(parseDomain('www.bbc.co.uk')).toMatchObject({ domain: 'bbc.co.uk', suffix: 'co.uk' });
 		expect(parseDomain('example.com.br')).toMatchObject({ name: 'example', suffix: 'com.br' });
-		expect(parseDomain('co.uk')).toMatchObject({ domain: 'co.uk', name: 'co', suffix: 'uk' });
+		expect(parseDomain('co.uk')).toHaveProperty('error');
 	});
 
 	it('converts IDN input to punycode and keeps the Unicode form', () => {
@@ -250,16 +251,21 @@ describe('resolution', () => {
 			aaaa: ['2001:db8::1'],
 			mx: ['mail.examp1e.com'],
 			ns: ['ns1.host.net'],
-			registered: true
+			hasDns: true
 		});
 	});
 
-	it('skips MX and AAAA when there is neither A nor NS', async () => {
+	it('checks all record types before reporting no DNS evidence', async () => {
 		/** @type {string[]} */
 		const calls = [];
 		const result = await resolveLookalike('nothing.com', { fetch: fakeDoh({}, calls) });
-		expect(result.registered).toBe(false);
-		expect(calls.sort()).toEqual(['nothing.com/A', 'nothing.com/NS']);
+		expect(result.hasDns).toBe(false);
+		expect(calls.sort()).toEqual([
+			'nothing.com/A',
+			'nothing.com/AAAA',
+			'nothing.com/MX',
+			'nothing.com/NS'
+		]);
 	});
 
 	it('resolves a list with a pool and reports errors per domain', async () => {
@@ -277,7 +283,7 @@ describe('resolution', () => {
 		await resolveAll(['a.com', 'b.com', 'broken.com'], {
 			fetch,
 			concurrency: 2,
-			onResult: (domain, records) => (results[domain] = records.registered),
+			onResult: (domain, records) => (results[domain] = records.hasDns),
 			onError: (domain) => errors.push(domain)
 		});
 		expect(results).toEqual({ 'a.com': true, 'b.com': false });

@@ -1,6 +1,18 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 // Crypto Tracer (/crypto): page, transaction list and address analysis.
 export default {
 	en: {
+		partial: 'Partial results',
+		rpcFallback: 'Balance recovered from PublicNode. Blockscout details are unavailable: {error}',
+		'section.summary': 'Balance and account',
+		'section.counters': 'Counters',
+		'section.transactions': 'Transactions',
+		unknown: 'Unknown',
+		invalidData: 'Unexpected data from the source.',
+		transactionsUnavailable: 'Transactions unavailable; this does not mean there are none.',
+		coverageComplete: 'Loaded {loaded} of {total} transactions reported by the source.',
+		coveragePartial: 'Incomplete history: {loaded} loaded; reported total: {total}.',
+		shownTxs: 'Showing {shown} of {loaded} loaded transactions. Export includes all loaded rows.',
 		metaDescription:
 			'Trace a Bitcoin, Litecoin or Ethereum address: detect the chain and address type, check the checksum, see balance, totals and the latest transactions with their counterparties.',
 		intro:
@@ -9,14 +21,14 @@ export default {
 		inputLabel: 'Wallet address',
 		trace: 'Trace',
 		sourcesHint:
-			'Data comes from public block explorers (mempool.space, litecoinspace.org, Blockscout) and is requested directly from your browser.',
+			'Data comes from public block explorers (mempool.space, litecoinspace.org, Blockscout, PublicNode RPC) and is requested directly from your browser.',
 		summary: 'Summary',
 		copyAddress: 'Copy address',
 		loadingData: 'Loading on-chain data…',
 		latestTxs: 'Latest transactions',
 		ethNativeOnly:
 			'Amounts are native ETH only: token transfers (ERC-20, NFTs) are not listed here.',
-		noTxs: 'No transactions found for this address.',
+		noTxs: 'No transactions in the page returned by the source.',
 		loadingTxs: 'Loading transactions…',
 		disclaimer:
 			'Blockchains are public, but linking an address to a person is always heuristic: exchanges, mixers and shared wallets make counterparties misleading. Treat every link as a lead to verify, not as proof.',
@@ -75,6 +87,19 @@ export default {
 		'col.counterparties': 'Counterparties'
 	},
 	it: {
+		partial: 'Risultati parziali',
+		rpcFallback:
+			'Saldo recuperato da PublicNode. I dettagli Blockscout non sono disponibili: {error}',
+		'section.summary': 'Saldo e conto',
+		'section.counters': 'Contatori',
+		'section.transactions': 'Transazioni',
+		unknown: 'Sconosciuto',
+		invalidData: 'Dati inattesi dalla fonte.',
+		transactionsUnavailable: 'Transazioni non disponibili: non significa che siano assenti.',
+		coverageComplete: 'Caricate {loaded} delle {total} transazioni dichiarate dalla fonte.',
+		coveragePartial: 'Cronologia incompleta: {loaded} caricate; totale dichiarato: {total}.',
+		shownTxs:
+			'Visualizzate {shown} di {loaded} transazioni caricate. L’esportazione le include tutte.',
 		metaDescription:
 			'Traccia un indirizzo Bitcoin, Litecoin o Ethereum: rileva la chain e il tipo di indirizzo, verifica il checksum, mostra saldo, totali e le ultime transazioni con le controparti.',
 		intro:
@@ -83,14 +108,14 @@ export default {
 		inputLabel: 'Indirizzo del wallet',
 		trace: 'Traccia',
 		sourcesHint:
-			'I dati provengono da block explorer pubblici (mempool.space, litecoinspace.org, Blockscout) e sono richiesti direttamente dal tuo browser.',
+			'I dati provengono da block explorer pubblici (mempool.space, litecoinspace.org, Blockscout, PublicNode RPC) e sono richiesti direttamente dal tuo browser.',
 		summary: 'Riepilogo',
 		copyAddress: 'Copia indirizzo',
 		loadingData: 'Caricamento dei dati on-chain…',
 		latestTxs: 'Ultime transazioni',
 		ethNativeOnly:
 			'Gli importi sono solo in ETH nativo: i trasferimenti di token (ERC-20, NFT) non sono elencati qui.',
-		noTxs: 'Nessuna transazione trovata per questo indirizzo.',
+		noTxs: 'Nessuna transazione nella pagina restituita dalla fonte.',
 		loadingTxs: 'Caricamento delle transazioni…',
 		disclaimer:
 			"Le blockchain sono pubbliche, ma collegare un indirizzo a una persona è sempre un'ipotesi: exchange, mixer e wallet condivisi rendono ingannevoli le controparti. Considera ogni collegamento una pista da verificare, non una prova.",
@@ -149,6 +174,17 @@ export default {
 		'col.counterparties': 'Controparti'
 	},
 	fr: {
+		partial: 'Résultats partiels',
+		rpcFallback: 'Solde récupéré via PublicNode. Détails Blockscout indisponibles : {error}',
+		'section.summary': 'Solde et compte',
+		'section.counters': 'Compteurs',
+		'section.transactions': 'Transactions',
+		unknown: 'Inconnu',
+		invalidData: 'Données inattendues de la source.',
+		transactionsUnavailable: 'Transactions indisponibles : cela ne signifie pas leur absence.',
+		coverageComplete: '{loaded} transactions chargées sur {total} déclarées par la source.',
+		coveragePartial: 'Historique incomplet : {loaded} chargées ; total déclaré : {total}.',
+		shownTxs: '{shown} transactions affichées sur {loaded} chargées. L’export les inclut toutes.',
 		metaDescription:
 			"Tracez une adresse Bitcoin, Litecoin ou Ethereum : détectez la chaîne et le type d'adresse, vérifiez le checksum, consultez le solde, les totaux et les dernières transactions avec leurs contreparties.",
 		intro:
@@ -157,14 +193,14 @@ export default {
 		inputLabel: 'Adresse du portefeuille',
 		trace: 'Tracer',
 		sourcesHint:
-			"Les données proviennent d'explorateurs de blocs publics (mempool.space, litecoinspace.org, Blockscout) et sont demandées directement depuis votre navigateur.",
+			"Les données proviennent d'explorateurs de blocs publics (mempool.space, litecoinspace.org, Blockscout, PublicNode RPC) et sont demandées directement depuis votre navigateur.",
 		summary: 'Résumé',
 		copyAddress: "Copier l'adresse",
 		loadingData: 'Chargement des données on-chain…',
 		latestTxs: 'Dernières transactions',
 		ethNativeOnly:
 			"Les montants concernent uniquement l'ETH natif : les transferts de tokens (ERC-20, NFT) ne sont pas listés ici.",
-		noTxs: 'Aucune transaction trouvée pour cette adresse.',
+		noTxs: 'Aucune transaction dans la page renvoyée par la source.',
 		loadingTxs: 'Chargement des transactions…',
 		disclaimer:
 			'Les blockchains sont publiques, mais relier une adresse à une personne reste toujours une hypothèse : exchanges, mixers et portefeuilles partagés rendent les contreparties trompeuses. Considérez chaque lien comme une piste à vérifier, pas comme une preuve.',
@@ -223,6 +259,17 @@ export default {
 		'col.counterparties': 'Contreparties'
 	},
 	ja: {
+		partial: '一部の結果',
+		rpcFallback: 'PublicNodeから残高を取得しました。Blockscoutの詳細は利用できません: {error}',
+		'section.summary': '残高とアカウント',
+		'section.counters': '件数',
+		'section.transactions': '取引',
+		unknown: '不明',
+		invalidData: '取得元から予期しないデータが返されました。',
+		transactionsUnavailable: '取引を取得できません。取引がないという意味ではありません。',
+		coverageComplete: '取得元の申告件数{total}件中{loaded}件を取得しました。',
+		coveragePartial: '不完全な履歴：取得{loaded}件、申告総数{total}件。',
+		shownTxs: '取得{loaded}件中{shown}件を表示。エクスポートには取得済みの全件が含まれます。',
 		metaDescription:
 			'Bitcoin、Litecoin、Ethereum のアドレスを追跡: チェーンとアドレス種別を判定し、チェックサムを確認して、残高、合計、取引相手を含む最新のトランザクションを表示します。',
 		intro:
@@ -231,14 +278,14 @@ export default {
 		inputLabel: 'ウォレットアドレス',
 		trace: '追跡',
 		sourcesHint:
-			'データは公開ブロックエクスプローラー (mempool.space、litecoinspace.org、Blockscout) から取得され、ブラウザから直接リクエストされます。',
+			'データは公開ブロックエクスプローラー (mempool.space、litecoinspace.org、Blockscout、PublicNode RPC) から取得され、ブラウザから直接リクエストされます。',
 		summary: '概要',
 		copyAddress: 'アドレスをコピー',
 		loadingData: 'オンチェーンデータを読み込み中…',
 		latestTxs: '最新のトランザクション',
 		ethNativeOnly:
 			'金額はネイティブ ETH のみです。トークン転送 (ERC-20、NFT) はここには表示されません。',
-		noTxs: 'このアドレスのトランザクションは見つかりませんでした。',
+		noTxs: '取得元が返したページに取引はありません。',
 		loadingTxs: 'トランザクションを読み込み中…',
 		disclaimer:
 			'ブロックチェーンは公開されていますが、アドレスと人物を結び付けるのは常に推測にすぎません。取引所、ミキサー、共有ウォレットがあるため、取引相手は誤解を招くことがあります。すべてのつながりは証拠ではなく、検証すべき手がかりとして扱ってください。',

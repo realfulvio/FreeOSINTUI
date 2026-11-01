@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -42,7 +43,7 @@
 	let registered = $derived(
 		runList.filter((candidate) => {
 			const result = results[candidate.domain];
-			return result?.status === 'done' && result.records.registered;
+			return result?.status === 'done' && result.records.hasDns;
 		})
 	);
 	let errors = $derived(
@@ -130,7 +131,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.lookalike.name')} — FreeOSINT-UI"
+	title="{t('tools.lookalike.name')} — TRACE//PUNK"
 	description={t('lookalike.metaDescription')}
 />
 

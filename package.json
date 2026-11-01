@@ -1,5 +1,5 @@
 {
-	"name": "freeosintui",
+	"name": "tracepunk",
 	"private": true,
 	"version": "0.0.1",
 	"license": "SEE LICENSE IN .github/LICENSE",
@@ -7,38 +7,55 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"dev:all": "concurrently -k -n web,api -c green,cyan \"vite dev\" \"cd backend && uv run uvicorn app.main:app --reload --port 8000\"",
-		"build": "vite build",
+		"dev:all": "concurrently -k -n web,api -c green,cyan \"vite dev\" \"wrangler dev --local --port 8787\"",
+		"build": "vite build && node scripts/build-site-metadata.js",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "npm run test:unit -- --run",
+		"dev:worker": "wrangler dev --local --port 8787",
+		"check:worker": "wrangler types && tsc -p tsconfig.worker.json",
+		"test:worker": "vitest run --config vitest.worker.config.ts",
+		"preview:worker": "npm run build && wrangler dev --local --port 8787",
+		"deploy:check": "npm run build && wrangler deploy --dry-run --outdir .wrangler/dry-run"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "^5.20261101.1",
 		"@eslint/js": "^10.0.1",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@types/node": "^24",
 		"concurrently": "^10.0.5",
+		"esbuild": "^0.28.2",
 		"eslint": "^10.4.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.19.0",
 		"globals": "^17.6.0",
+		"miniflare": "^5.20261023.3-beta",
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
 		"svelte": "^5.56.1",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.72.1",
 		"vite": "^8.0.16",
-		"vitest": "^4.1.8"
+		"vitest": "^4.1.8",
+		"wrangler": "^4.156.0"
 	},
 	"dependencies": {
+		"entities": "^9.0.0",
 		"exifr": "^7.1.3",
 		"fflate": "^0.8.3",
 		"hash-wasm": "^4.12.0",
+		"ipaddr.js": "^2.5.0",
 		"jspdf": "^4.2.1",
 		"jspdf-autotable": "^5.0.8",
-		"libphonenumber-js": "^1.13.14"
+		"libphonenumber-js": "^1.13.14",
+		"tldts": "^7.4.19"
+	},
+	"engines": {
+		"node": ">=22.12.0"
 	}
 }

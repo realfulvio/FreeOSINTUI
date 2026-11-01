@@ -1,3 +1,6 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { collectSections, amount, count } from './coverage.js';
+import { t } from '$lib/i18n/i18n.svelte.js';
 import { fetchJson } from '$lib/net.js';
 
 /**
@@ -7,14 +10,14 @@ import { fetchJson } from '$lib/net.js';
 export function summarizeUtxoStats(data) {
 	const chain = data.chain_stats;
 	const pool = data.mempool_stats;
-	const received = BigInt(chain.funded_txo_sum) + BigInt(pool.funded_txo_sum);
-	const sent = BigInt(chain.spent_txo_sum) + BigInt(pool.spent_txo_sum);
+	const received = amount(chain.funded_txo_sum) + amount(pool.funded_txo_sum);
+	const sent = amount(chain.spent_txo_sum) + amount(pool.spent_txo_sum);
 	return {
 		balance: received - sent,
 		received,
 		sent,
-		txCount: chain.tx_count + pool.tx_count,
-		pendingTxCount: pool.tx_count
+		txCount: count(chain.tx_count) + count(pool.tx_count),
+		pendingTxCount: count(pool.tx_count)
 	};
 }
 
@@ -25,6 +28,8 @@ export function summarizeUtxoStats(data) {
  * @param {string} address
  */
 export function parseUtxoTx(tx, address) {
+	if (typeof tx?.txid !== 'string' || !tx.txid || !Array.isArray(tx.vin) || !Array.isArray(tx.vout))
+		throw new Error(t('crypto.invalidData'));
 	const inputs = tx.vin.map((input) => ({
 		address: input.prevout?.scriptpubkey_address ?? null,
 		value: BigInt(input.prevout?.value ?? 0)
@@ -74,13 +79,28 @@ export function parseUtxoTx(tx, address) {
  */
 export async function fetchUtxoAddress(chain, address, options = {}) {
 	const base = `${chain.api}/address/${encodeURIComponent(address)}`;
-	const [stats, txs] = await Promise.all([
-		fetchJson(base, options),
-		fetchJson(`${base}/txs`, options)
-	]);
+	const sections = await collectSections(
+		{
+			summary: async () => summarizeUtxoStats(await fetchJson(base, options)),
+			transactions: async () => {
+				const txs = await fetchJson(`${base}/txs`, options);
+				if (!Array.isArray(txs)) throw new Error(t('crypto.invalidData'));
+				return txs.map((tx) => parseUtxoTx(tx, address));
+			}
+		},
+		options.signal
+	);
 	return {
-		...summarizeUtxoStats(stats),
+		...(sections.summary.value ?? {
+			balance: null,
+			received: null,
+			sent: null,
+			txCount: null,
+			pendingTxCount: null
+		}),
 		extra: [],
-		txs: txs.map((tx) => parseUtxoTx(tx, address))
+		txs: sections.transactions.value ?? [],
+		sections,
+		hasMore: false
 	};
 }

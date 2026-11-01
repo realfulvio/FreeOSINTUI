@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /api/
 
-Sitemap: https://freeosintui.vercel.app/sitemap.xml
+Sitemap: http://localhost:8787/sitemap.xml

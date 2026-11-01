@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { afterNavigate } from '$app/navigation';
@@ -110,7 +111,7 @@
 	const isEmptyList = (list) => !list?.length;
 </script>
 
-<PageMeta title="{t('tools.url.name')} — FreeOSINT-UI" description={t('url.metaDescription')} />
+<PageMeta title="{t('tools.url.name')} — TRACE//PUNK" description={t('url.metaDescription')} />
 
 <ToolHeader title={t('tools.url.name')} description={t('url.description')} />
 

@@ -1,4 +1,5 @@
-import { unzlibSync, inflateSync } from 'fflate';
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { inflateBounded, MetadataLimitError, checkFileSize } from './budget.js';
 import { readXmpProperty } from './xml.js';
 
 /**
@@ -274,7 +275,7 @@ function findObject(src, num, gen) {
  * @param {Record<string, PdfValue>} dict
  * @param {number} dictEnd
  */
-function readStream(src, dict, dictEnd) {
+function readStream(src, dict, dictEnd, budget) {
 	const match = /^\s*stream\r?\n/.exec(src.slice(dictEnd, dictEnd + 64));
 	if (!match) return null;
 	const start = dictEnd + match[0].length;
@@ -295,11 +296,13 @@ function readStream(src, dict, dictEnd) {
 	if (filters.length !== 1 || filters[0] !== 'FlateDecode' || dict.DecodeParms) return null;
 	const bytes = latin1ToBytes(data);
 	try {
-		return bytesToLatin1(unzlibSync(bytes));
-	} catch {
+		return bytesToLatin1(inflateBounded(bytes, true, budget));
+	} catch (error) {
+		if (error instanceof MetadataLimitError) throw error;
 		try {
-			return bytesToLatin1(inflateSync(bytes));
-		} catch {
+			return bytesToLatin1(inflateBounded(bytes, false, budget));
+		} catch (error) {
+			if (error instanceof MetadataLimitError) throw error;
 			return null;
 		}
 	}
@@ -310,7 +313,7 @@ function readStream(src, dict, dictEnd) {
  * @param {string} src
  * @returns {{ objects: Map<number, string>, failed: number }}
  */
-function readObjectStreams(src) {
+function readObjectStreams(src, budget) {
 	/** @type {Map<number, string>} */
 	const objects = new Map();
 	let failed = 0;
@@ -327,7 +330,7 @@ function readObjectStreams(src) {
 		)
 			continue;
 		const dict = value.value;
-		const data = readStream(src, dict, end);
+		const data = readStream(src, dict, end, budget);
 		const first = dict.First?.type === 'number' ? dict.First.value : NaN;
 		if (data === null || !Number.isFinite(first)) {
 			failed++;
@@ -400,6 +403,8 @@ export function readPdfXmp(xmp) {
  * @returns {PdfMetadata}
  */
 export function parsePdf(bytes) {
+	checkFileSize({ size: bytes.length });
+	const budget = { used: 0 };
 	const src = bytesToLatin1(bytes);
 	const version = src.match(/%PDF-(\d\.\d)/)?.[1] ?? '';
 	const encrypted = /\/Encrypt\s*(?:\d+\s+\d+\s+R|<<)/.test(src);
@@ -407,7 +412,7 @@ export function parsePdf(bytes) {
 
 	/** @type {ReturnType<typeof readObjectStreams> | null} */
 	let streams = null;
-	const getStreams = () => (streams ??= readObjectStreams(src));
+	const getStreams = () => (streams ??= readObjectStreams(src, budget));
 
 	/**
 	 * Resolves an indirect reference to its value, looking in object streams if needed.
@@ -464,7 +469,7 @@ export function parsePdf(bytes) {
 				value.value.Type.value !== 'Metadata'
 			)
 				continue;
-			const data = readStream(src, value.value, end);
+			const data = readStream(src, value.value, end, budget);
 			const found = data ? findXmp(data) : '';
 			if (found) xmpPacket = found;
 		}

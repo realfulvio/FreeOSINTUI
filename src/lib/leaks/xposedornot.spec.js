@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
 	checkEmailBreaches,
@@ -39,7 +40,7 @@ describe('parseCheckEmail', () => {
 
 	it('returns an empty list when not found', () => {
 		expect(parseCheckEmail({ Error: 'Not found', email: null })).toEqual([]);
-		expect(parseCheckEmail(null)).toEqual([]);
+		expect(() => parseCheckEmail(null)).toThrow();
 	});
 });
 

@@ -1,27 +1,29 @@
+/* Modified 2026 by realfulvio: hacker-punk visual system. Original attribution in NOTICE. */
 :root {
-	--color-text: #00ff41;
-	--color-text-dim: #00b32d;
-	--color-text-muted: #0a7a26;
-	--color-bg: #000;
-	--color-surface: #041a0a;
-	--color-border: #0d3d1a;
-	--color-danger: #ff3b3b;
-
-	--font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
-	--content-width: 72rem;
-	--radius: 4px;
+	--color-text: #e8edf1;
+	--color-text-dim: #adb8c5;
+	--color-text-muted: #8393a5;
+	--color-bg: #090b10;
+	--color-surface: #10151e;
+	--color-border: #2b3543;
+	--color-danger: #ff688a;
+	--color-accent: #59f5e1;
+	--color-punk: #ff55b4;
+	--font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+	--font-display: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+	--content-width: 86rem;
+	--radius: 0px;
 }
-
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
-
 html {
 	color-scheme: dark;
+	scroll-behavior: smooth;
+	scroll-padding-top: 6rem;
 }
-
 body {
 	margin: 0;
 	min-height: 100vh;
@@ -30,55 +32,65 @@ body {
 	font-family: var(--font-mono);
 	line-height: 1.6;
 }
-
-a {
-	color: var(--color-text);
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: -1;
+	background:
+		linear-gradient(#59f5e105 1px, transparent 1px),
+		linear-gradient(90deg, #59f5e105 1px, transparent 1px);
+	background-size: 64px 64px;
 }
-
+a {
+	color: var(--color-accent);
+	text-underline-offset: 4px;
+}
 h1,
 h2,
 h3 {
-	line-height: 1.2;
-	text-shadow: 0 0 8px var(--color-text-muted);
+	line-height: 1.15;
+	text-shadow: none;
 }
-
 ::selection {
-	background: var(--color-text);
-	color: var(--color-bg);
+	background: var(--color-punk);
+	color: #090b10;
 }
-
 :focus-visible {
-	outline: 2px solid var(--color-text);
-	outline-offset: 2px;
+	outline: 2px solid var(--color-accent);
+	outline-offset: 4px;
 }
-
 button,
 input,
-textarea {
+textarea,
+select {
 	font: inherit;
 	color: inherit;
 }
-
+button {
+	cursor: pointer;
+}
 input[type='text'],
+input[type='search'],
 textarea {
 	width: 100%;
-	padding: 0.75rem;
+	padding: 0.85rem 1rem;
 	background: var(--color-surface);
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius);
 	color: var(--color-text);
 }
-
 input[type='text']:focus,
+input[type='search']:focus,
 textarea:focus {
-	border-color: var(--color-text);
-	outline: none;
+	border-color: var(--color-accent);
+	outline: 2px solid #59f5e130;
+	outline-offset: 2px;
 }
-
 ::placeholder {
 	color: var(--color-text-muted);
 }
-
 .visually-hidden {
 	position: absolute;
 	width: 1px;
@@ -86,4 +98,15 @@ textarea:focus {
 	overflow: hidden;
 	clip-path: inset(50%);
 	white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
 }

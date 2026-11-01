@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -39,7 +40,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.timestamp.name')} — FreeOSINT-UI"
+	title="{t('tools.timestamp.name')} — TRACE//PUNK"
 	description={t('timestamp.metaDescription')}
 />
 

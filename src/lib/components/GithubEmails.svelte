@@ -1,12 +1,18 @@
+<!-- Modified 2026 by realfulvio; original attribution in NOTICE. -->
 <script>
 	import CopyButton from '$lib/components/CopyButton.svelte';
 	import { formatDate } from '$lib/github/analyze.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
 
-	/** @type {{ emails: import('$lib/github/analyze.js').EmailSummary[], scanned: string[], commitsPerRepo: number }} */
-	let { emails, scanned, commitsPerRepo } = $props();
+	/** @type {{ emails: import('$lib/github/analyze.js').EmailSummary[], scanned: string[], failed?: {repo: string, error: string}[], commitsPerRepo: number }} */
+	let { emails, scanned, failed = [], commitsPerRepo } = $props();
 </script>
 
+{#if failed.length}<p class="hint" role="status">
+		{t('github.emails.failed', {
+			repos: failed.map((item) => `${item.repo}: ${item.error}`).join('; ')
+		})}
+	</p>{/if}
 {#if scanned.length === 0}
 	<p class="hint">{t('github.emails.noRepos')}</p>
 {:else}

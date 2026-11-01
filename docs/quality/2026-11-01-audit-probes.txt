@@ -1,0 +1,49 @@
+// Diagnostic probes for the pre-publication review; assert CURRENT behavior, not desired behavior.
+import { it, expect } from 'vitest';
+import { checkEmailBreaches } from './leaks/xposedornot.js';
+import { SOURCES, fromBackend } from './reputation/sources.js';
+import { lookupEmailAuth } from './dns/email-auth.js';
+import { spfVerdict } from './email/mail-server.js';
+import { sameOrganization } from './headers/address.js';
+import { parseDomain } from './lookalike/domain.js';
+import { resolveLookalike } from './lookalike/resolve.js';
+import { fetchCommitEmails } from './github/lookup.js';
+const json = data => new Response(JSON.stringify(data), {headers:{'content-type':'application/json'}});
+it('AUDIT: malformed breach response becomes empty result', async()=>{
+ expect(await checkEmailBreaches('synthetic@example.test',{fetch:async()=>json({maintenance:true})})).toEqual([]);
+});
+it('AUDIT: malformed reputation response becomes not_listed', async()=>{
+ const otx=SOURCES.find(s=>s.id==='otx');
+ expect((await otx.lookup({kind:'domain',value:'example.test'},{fetch:async()=>json({maintenance:true})})).status).toBe('not_listed');
+ expect(fromBackend({status:'unexpected'},null).status).toBe('not_listed');
+});
+it('AUDIT: duplicate SPF records still produce good verdict', async()=>{
+ const auth=await lookupEmailAuth('example.test',{fetch:async url=>json({Status:0,Answer:String(url).includes('_dmarc')?[]:[
+ {name:'example.test.',type:16,TTL:60,data:'"v=spf1 -all"'},
+ {name:'example.test.',type:16,TTL:60,data:'"v=spf1 +all"'}]})});
+ expect(spfVerdict(auth.spf).level).toBe('good');
+});
+it('AUDIT: independent hosted domains are conflated',()=>{
+ expect(sameOrganization('alice.github.io','bob.github.io')).toBe(true);
+ expect(parseDomain('alice.github.io').domain).toBe('github.io');
+});
+it('AUDIT: AAAA-only host is dismissed before querying AAAA',async()=>{
+ const queries=[];
+ const result=await resolveLookalike('ipv6.example.test',{fetch:async url=>{
+ const type=new URL(url).searchParams.get('type');queries.push(type);
+ return json({Status:0,Answer:type==='AAAA'?[{name:'ipv6.example.test.',type:28,TTL:60,data:'2001:db8::1'}]:[]});
+ }});
+ expect(result.registered).toBe(false);expect(queries).toEqual(['A','NS']);
+});
+it('AUDIT: one failing commit source rejects the whole aggregate',async()=>{
+ const repos=['one','two'].map(name=>({name,full_name:`synthetic/${name}`,fork:false,size:1}));
+ await expect(fetchCommitEmails('synthetic',repos,{fetch:async url=>String(url).includes('/two/')?new Response('',{status:503}):json([])})).rejects.toThrow();
+});
+import { parseArchivedUrl } from './footprint/merge.js';
+import { countInRange } from './leaks/pwned-passwords.js';
+it('AUDIT: archive dedupe merges distinct nonstandard ports',()=>{
+ expect(parseArchivedUrl('https://example.test:8443/admin').key).toBe(parseArchivedUrl('https://example.test:9443/admin').key);
+});
+it('AUDIT: malformed password range is treated as zero matches',()=>{
+ expect(countInRange('<html>Temporarily unavailable</html>','A'.repeat(35))).toBe(0);
+});

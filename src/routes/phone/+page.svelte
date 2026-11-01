@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
@@ -24,7 +25,7 @@
 	const buildReport = () => buildPhoneReport({ input, result: result });
 </script>
 
-<PageMeta title="{t('tools.phone.name')} — FreeOSINT-UI" description={t('phone.metaDescription')} />
+<PageMeta title="{t('tools.phone.name')} — TRACE//PUNK" description={t('phone.metaDescription')} />
 
 <ToolHeader title={t('tools.phone.name')} description={t('phone.description')} />
 

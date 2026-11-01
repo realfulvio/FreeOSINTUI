@@ -1,4 +1,5 @@
 import { fetchJson, fetchText } from '$lib/net.js';
+import { t } from '$lib/i18n/i18n.svelte.js';
 import { cdxPattern } from './normalize.js';
 
 const BASE = 'https://index.commoncrawl.org';
@@ -73,7 +74,7 @@ export function ccIndexUrl(id, domain, subdomains, limit) {
  * @param {string} domain
  * @param {{ subdomains?: boolean, indexes?: number, limit?: number, signal?: AbortSignal, fetch?: typeof fetch, onProgress?: (partial: CcResult) => void }} [options]
  * @returns {Promise<CcResult>}
- * @typedef {{ indexes: { id: string, name: string, count: number, truncated: boolean, error: string | null }[], records: CaptureRecord[], done: boolean }} CcResult
+ * @typedef {{ indexes: { id: string, name: string, count: number, truncated: boolean, error: string | null, warning?: string }[], records: CaptureRecord[], done: boolean }} CcResult
  */
 export async function lookupCommonCrawl(domain, options = {}) {
 	const {
@@ -90,25 +91,40 @@ export async function lookupCommonCrawl(domain, options = {}) {
 		indexes
 	);
 
+	if (!collections.length) throw new Error('Invalid or empty Common Crawl collection list');
 	/** @type {CcResult} */
 	const result = { indexes: [], records: [], done: false };
 	/** @type {unknown} */
 	let firstError = null;
 	for (const { id, name } of collections) {
 		try {
-			const text = await fetchText(ccIndexUrl(id, domain, subdomains, limit), {
-				...net,
-				timeoutMs: 90000,
-				// "No captures found" is a 404.
-				allowNotFound: true
-			});
+			let text;
+			let warning;
+			const request = (max) =>
+				fetchText(ccIndexUrl(id, domain, subdomains, max), {
+					...net,
+					timeoutMs: 15000,
+					allowNotFound: true
+				});
+			try {
+				text = await request(limit);
+			} catch (error) {
+				signal?.throwIfAborted();
+				if (limit <= 5 || (error.status !== null && ![500, 502, 503, 504].includes(error.status)))
+					throw error;
+				text = await request(5);
+				warning = t('footprint.reducedFallback', { error: error.message });
+			}
+
 			const records = parseCcNdjson(text ?? '');
+			if (text?.trim() && !records.length) throw new Error('Invalid Common Crawl response');
 			result.records.push(...records);
 			result.indexes.push({
 				id,
 				name,
 				count: records.length,
-				truncated: records.length >= limit,
+				truncated: Boolean(warning) || records.length >= limit,
+				...(warning ? { warning } : {}),
 				error: null
 			});
 		} catch (error) {

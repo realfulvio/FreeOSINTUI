@@ -1,81 +1,7 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { parse } from 'tldts';
 import { t } from '$lib/i18n/i18n.svelte.js';
 import { toAscii, toUnicode } from './punycode.js';
-
-/**
- * Common multi-label public suffixes. Not the full Public Suffix List: enough to keep
- * `example.co.uk` from being treated as the domain `co` under `uk`.
- */
-export const MULTI_PART_SUFFIXES = new Set([
-	'co.uk',
-	'org.uk',
-	'me.uk',
-	'ltd.uk',
-	'plc.uk',
-	'net.uk',
-	'ac.uk',
-	'gov.uk',
-	'com.au',
-	'net.au',
-	'org.au',
-	'edu.au',
-	'gov.au',
-	'co.nz',
-	'org.nz',
-	'net.nz',
-	'com.br',
-	'net.br',
-	'org.br',
-	'gov.br',
-	'co.jp',
-	'ne.jp',
-	'or.jp',
-	'ac.jp',
-	'go.jp',
-	'co.kr',
-	'or.kr',
-	'co.in',
-	'net.in',
-	'org.in',
-	'gov.in',
-	'co.za',
-	'org.za',
-	'co.il',
-	'org.il',
-	'co.id',
-	'or.id',
-	'co.th',
-	'in.th',
-	'com.cn',
-	'net.cn',
-	'org.cn',
-	'gov.cn',
-	'com.hk',
-	'com.tw',
-	'com.sg',
-	'com.my',
-	'com.mx',
-	'com.ar',
-	'com.co',
-	'com.pe',
-	'com.ve',
-	'com.ec',
-	'com.uy',
-	'com.tr',
-	'com.ua',
-	'com.pl',
-	'com.ru',
-	'com.es',
-	'com.pt',
-	'com.gr',
-	'com.cy',
-	'com.eg',
-	'com.sa',
-	'com.pk',
-	'com.ng',
-	'com.ph',
-	'com.vn',
-	'com.bd'
-]);
 
 /**
  * Checks one ASCII label: 1 to 63 letters, digits or hyphens, no hyphen at either end,
@@ -101,13 +27,12 @@ export function isValidDomain(domain) {
  * @param {string} hostname
  */
 export function splitDomain(hostname) {
-	const labels = hostname.split('.');
-	const lastTwo = labels.slice(-2).join('.');
-	const suffixLength = labels.length > 2 && MULTI_PART_SUFFIXES.has(lastTwo) ? 2 : 1;
-	const suffix = labels.slice(-suffixLength).join('.');
-	const name = labels[labels.length - suffixLength - 1];
-	const subdomain = labels.slice(0, -suffixLength - 1).join('.');
-	return { subdomain, name, suffix };
+	const result = parse(hostname, { allowPrivateDomains: true });
+	return {
+		subdomain: result.subdomain ?? '',
+		name: result.domainWithoutSuffix ?? '',
+		suffix: result.publicSuffix ?? ''
+	};
 }
 
 /**

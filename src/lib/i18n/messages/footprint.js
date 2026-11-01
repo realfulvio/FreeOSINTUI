@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
 // Passive Site Footprint (/footprint).
 export default {
 	en: {
@@ -17,6 +18,8 @@ export default {
 			'the target site is never contacted. Only the Common Crawl index and the Wayback Machine are queried, and every link opens the archived copy, not the live site.',
 		pivots: 'Pivot:',
 		empty: 'No archived URLs found for this domain.',
+		incompleteEmpty:
+			'No URLs available to display: the archive checks are incomplete. This does not establish that no archived URLs exist.',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -24,14 +27,17 @@ export default {
 		captures: { one: '{n} capture', other: '{n} captures' },
 		urls: { one: '{n} URL', other: '{n} URLs' },
 		limitReached: '(limit reached, results are partial)',
+		reducedFallback: 'Broad query unavailable: showing at most 5 captures from this index. {error}',
+		homepageFallback:
+			'Domain-wide query unavailable: only up to 5 captures of the homepage are shown, excluding other paths and subdomains. {error}',
 		'cc.note':
 			'Latest {count} monthly crawls, queried one after the other from your browser. The index server is often slow or overloaded.',
 		'cc.loading': 'Querying crawls… {done}/{total} done.',
 		'wayback.note':
-			'First capture of each URL, through the FreeOSINT-UI backend (the Wayback CDX API cannot be called from the browser).',
+			'First capture of each URL, through the TRACE//PUNK backend (the Wayback CDX API cannot be called from the browser).',
 		'wayback.loading': 'Querying the Wayback Machine… this can take up to 30 seconds.',
 		'wayback.backendNeeded':
-			'The Wayback Machine section needs the FreeOSINT-UI Python backend; Common Crawl works without it. Start it with:',
+			'The Wayback Machine section needs the TRACE//PUNK API service; Common Crawl works without it. Please try again later.',
 		'stats.title': 'Overview',
 		'stats.total': { one: 'unique archived URL', other: 'unique archived URLs' },
 		'stats.bySource': 'By source',
@@ -44,7 +50,7 @@ export default {
 		'stats.unknown': 'unknown',
 		'stats.other': 'other',
 		'stats.note':
-			'URLs are merged ignoring http/https and the port. Wayback returns only the first capture of each URL, so "first seen" is exact for Wayback and "last seen" mostly comes from Common Crawl.',
+			'URLs are merged across http/https and default ports; nonstandard ports remain distinct. First and last seen describe only the loaded captures, not the complete history.',
 		'group.all': 'All URLs',
 		'group.documents': 'Documents',
 		'group.archives': 'Archives and backups',
@@ -114,6 +120,8 @@ export default {
 			"il sito non viene mai contattato. Vengono interrogati solo l'indice di Common Crawl e la Wayback Machine, e ogni link apre la copia archiviata, non il sito attuale.",
 		pivots: 'Continua con:',
 		empty: 'Nessun URL archiviato trovato per questo dominio.',
+		incompleteEmpty:
+			'Nessun URL disponibile da mostrare: i controlli degli archivi sono incompleti. Non significa che non esistano URL archiviati.',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -121,14 +129,18 @@ export default {
 		captures: { one: '{n} acquisizione', other: '{n} acquisizioni' },
 		urls: { one: '{n} URL', other: '{n} URL' },
 		limitReached: '(limite raggiunto, risultati parziali)',
+		reducedFallback:
+			'Ricerca estesa non disponibile: mostrate al massimo 5 acquisizioni da questo indice. {error}',
+		homepageFallback:
+			'Ricerca dell’intero dominio non disponibile: mostrate al massimo 5 acquisizioni della homepage, senza gli altri percorsi e sottodomini. {error}',
 		'cc.note':
 			"Ultime {count} scansioni mensili, interrogate una dopo l'altra dal tuo browser. Il server dell'indice è spesso lento o sovraccarico.",
 		'cc.loading': 'Interrogazione delle scansioni… {done}/{total} completate.',
 		'wayback.note':
-			'Prima acquisizione di ogni URL, tramite il backend di FreeOSINT-UI (la CDX API della Wayback Machine non si può chiamare dal browser).',
+			'Prima acquisizione di ogni URL, tramite il backend di TRACE//PUNK (la CDX API della Wayback Machine non si può chiamare dal browser).',
 		'wayback.loading': 'Interrogazione della Wayback Machine… può richiedere fino a 30 secondi.',
 		'wayback.backendNeeded':
-			'La sezione Wayback Machine richiede il backend Python di FreeOSINT-UI; Common Crawl funziona anche senza. Avvialo con:',
+			'La sezione Wayback Machine richiede il servizio API di TRACE//PUNK; Common Crawl funziona anche senza. Riprova tra poco.',
 		'stats.title': 'Panoramica',
 		'stats.total': { one: 'URL archiviato unico', other: 'URL archiviati unici' },
 		'stats.bySource': 'Per fonte',
@@ -141,7 +153,7 @@ export default {
 		'stats.unknown': 'sconosciuto',
 		'stats.other': 'altro',
 		'stats.note':
-			'Gli URL vengono uniti ignorando http/https e la porta. Wayback restituisce solo la prima acquisizione di ogni URL, quindi la "prima comparsa" è esatta per Wayback e l\'"ultima comparsa" viene per lo più da Common Crawl.',
+			'Gli URL vengono uniti tra http/https e porte predefinite; le porte non standard restano distinte. Prima e ultima comparsa descrivono solo le acquisizioni caricate, non la cronologia completa.',
 		'group.all': 'Tutti gli URL',
 		'group.documents': 'Documenti',
 		'group.archives': 'Archivi e backup',
@@ -211,6 +223,8 @@ export default {
 			"le site cible n'est jamais contacté. Seuls l'index de Common Crawl et la Wayback Machine sont interrogés, et chaque lien ouvre la copie archivée, pas le site en ligne.",
 		pivots: 'Poursuivre avec :',
 		empty: 'Aucune URL archivée trouvée pour ce domaine.',
+		incompleteEmpty:
+			'Aucune URL à afficher : les vérifications des archives sont incomplètes. Cela ne signifie pas qu’aucune URL archivée existe.',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -218,15 +232,18 @@ export default {
 		captures: { one: '{n} capture', other: '{n} captures' },
 		urls: { one: '{n} URL', other: '{n} URL' },
 		limitReached: '(limite atteinte, résultats partiels)',
+		reducedFallback: 'Recherche étendue indisponible : au plus 5 captures de cet index. {error}',
+		homepageFallback:
+			'Recherche du domaine indisponible : au plus 5 captures de la page d’accueil, sans les autres chemins et sous-domaines. {error}',
 		'cc.note':
 			"{count} derniers crawls mensuels, interrogés l'un après l'autre depuis votre navigateur. Le serveur d'index est souvent lent ou surchargé.",
 		'cc.loading': 'Interrogation des crawls… {done}/{total} terminés.',
 		'wayback.note':
-			"Première capture de chaque URL, via le backend de FreeOSINT-UI (l'API CDX de la Wayback Machine ne peut pas être appelée depuis le navigateur).",
+			"Première capture de chaque URL, via le backend de TRACE//PUNK (l'API CDX de la Wayback Machine ne peut pas être appelée depuis le navigateur).",
 		'wayback.loading':
 			"Interrogation de la Wayback Machine… cela peut prendre jusqu'à 30 secondes.",
 		'wayback.backendNeeded':
-			'La section Wayback Machine nécessite le backend Python de FreeOSINT-UI ; Common Crawl fonctionne sans. Démarrez-le avec :',
+			'La section Wayback Machine nécessite le service API de TRACE//PUNK ; Common Crawl fonctionne sans. Réessayez plus tard.',
 		'stats.title': 'Vue d’ensemble',
 		'stats.total': { one: 'URL archivée unique', other: 'URL archivées uniques' },
 		'stats.bySource': 'Par source',
@@ -239,7 +256,7 @@ export default {
 		'stats.unknown': 'inconnu',
 		'stats.other': 'autre',
 		'stats.note':
-			'Les URL sont fusionnées sans tenir compte de http/https ni du port. Wayback ne renvoie que la première capture de chaque URL : la « première apparition » est exacte pour Wayback et la « dernière apparition » vient surtout de Common Crawl.',
+			'Les URL sont fusionnées entre http/https et ports par défaut ; les autres ports restent distincts. Les dates décrivent uniquement les captures chargées, pas l’historique complet.',
 		'group.all': 'Toutes les URL',
 		'group.documents': 'Documents',
 		'group.archives': 'Archives et sauvegardes',
@@ -311,6 +328,8 @@ export default {
 			'対象サイトには一切アクセスしません。照会するのは Common Crawl のインデックスと Wayback Machine だけで、各リンクは稼働中のサイトではなくアーカイブ済みのコピーを開きます。',
 		pivots: '関連ツール:',
 		empty: 'このドメインのアーカイブ済み URL は見つかりませんでした。',
+		incompleteEmpty:
+			'表示できるURLがありません。アーカイブの確認が完了していないため、URLが存在しないとは判断できません。',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -318,14 +337,18 @@ export default {
 		captures: { other: 'キャプチャ {n} 件' },
 		urls: { other: 'URL {n} 件' },
 		limitReached: '(上限に達したため、結果は一部のみです)',
+		reducedFallback:
+			'広範囲の検索を利用できないため、このインデックスの最大5件を表示します。{error}',
+		homepageFallback:
+			'ドメイン全体の検索を利用できないため、ホームページの最大5件のみを表示します。他のパスやサブドメインは含みません。{error}',
 		'cc.note':
 			'直近 {count} 回の月次クロールを、ブラウザから順番に照会します。インデックスサーバーは遅いか過負荷になっていることがよくあります。',
 		'cc.loading': 'クロールを照会中… {done}/{total} 完了。',
 		'wayback.note':
-			'各 URL の最初のキャプチャです。FreeOSINT-UI のバックエンド経由で取得します (Wayback CDX API はブラウザから呼び出せません)。',
+			'各 URL の最初のキャプチャです。TRACE//PUNK のバックエンド経由で取得します (Wayback CDX API はブラウザから呼び出せません)。',
 		'wayback.loading': 'Wayback Machine を照会中… 最大 30 秒かかることがあります。',
 		'wayback.backendNeeded':
-			'Wayback Machine のセクションには FreeOSINT-UI の Python バックエンドが必要です。Common Crawl はバックエンドなしで動作します。次のコマンドで起動してください:',
+			'Wayback Machine のセクションには TRACE//PUNK の API サービスが必要です。Common Crawl はバックエンドなしで動作します。後でもう一度お試しください。',
 		'stats.title': '概要',
 		'stats.total': { other: '件の一意なアーカイブ済み URL' },
 		'stats.bySource': 'ソース別',
@@ -338,7 +361,7 @@ export default {
 		'stats.unknown': '不明',
 		'stats.other': 'その他',
 		'stats.note':
-			'URL は http/https とポートを区別せずに統合されます。Wayback は各 URL の最初のキャプチャしか返さないため、「初回確認」は Wayback では正確で、「最終確認」は主に Common Crawl に由来します。',
+			'http/httpsと標準ポートを統合しますが、非標準ポートは区別します。最初と最後の日付は読み込んだ記録のみを示し、全履歴ではありません。',
 		'group.all': 'すべての URL',
 		'group.documents': 'ドキュメント',
 		'group.archives': 'アーカイブとバックアップ',

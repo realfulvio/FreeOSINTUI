@@ -1,4 +1,12 @@
-import { unzipSync } from 'fflate';
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { Unzip, UnzipInflate } from 'fflate';
+import {
+	MAX_ENTRY_BYTES,
+	MAX_EXPANDED_BYTES,
+	MetadataLimitError,
+	joinChunks,
+	checkFileSize
+} from './budget.js';
 import { readAttributes, readElement, readElements } from './xml.js';
 
 /**
@@ -105,12 +113,38 @@ function documentKind(names) {
 export function parseOffice(bytes) {
 	/** @type {string[]} */
 	const names = [];
-	const files = unzipSync(bytes, {
-		filter: (file) => {
-			names.push(file.name);
-			return WANTED.has(file.name);
-		}
+	checkFileSize({ size: bytes.length });
+	const files = {};
+	let expanded = 0;
+	let pending = 0;
+	const archive = new Unzip((file) => {
+		names.push(file.name);
+		if (names.length > 10000) throw new MetadataLimitError();
+		if (!WANTED.has(file.name)) return;
+		if (file.originalSize > MAX_ENTRY_BYTES || Object.hasOwn(files, file.name))
+			throw new MetadataLimitError();
+		files[file.name] = null;
+		pending++;
+		const chunks = [];
+		let size = 0;
+		file.ondata = (error, chunk, final) => {
+			if (error) throw error;
+			size += chunk.length;
+			expanded += chunk.length;
+			if (size > MAX_ENTRY_BYTES || expanded > MAX_EXPANDED_BYTES) throw new MetadataLimitError();
+			chunks.push(chunk);
+			if (final) {
+				files[file.name] = joinChunks(chunks, size);
+				pending--;
+			}
+		};
+		file.start();
 	});
+	archive.register(UnzipInflate);
+	for (let offset = 0; offset < bytes.length; offset += 1024)
+		archive.push(bytes.subarray(offset, offset + 1024), offset + 1024 >= bytes.length);
+	if (pending) throw new Error('Incomplete ZIP metadata');
+
 	if (!names.includes('[Content_Types].xml')) return null;
 
 	const decoder = new TextDecoder('utf-8');

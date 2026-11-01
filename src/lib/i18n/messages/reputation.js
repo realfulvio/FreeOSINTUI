@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
 // Reputation Checker (/reputation).
 export default {
 	en: {
@@ -48,7 +49,7 @@ export default {
 		open: 'View on {source}',
 		notConfigured:
 			'Not configured: this source needs a free abuse.ch Auth-Key set as ABUSECH_AUTH_KEY on the backend.',
-		backendUnavailable: 'Needs the Python backend, which is not running.',
+		backendUnavailable: 'Needs the API service, which is not running.',
 		backendPartial:
 			'The browser-side sources still work; Tor, Spamhaus DROP, URLhaus and ThreatFox need the backend. Start it with:',
 		pivots: 'More on this indicator:',
@@ -137,7 +138,7 @@ export default {
 		open: 'Vedi su {source}',
 		notConfigured:
 			'Non configurata: questa fonte richiede una Auth-Key gratuita di abuse.ch impostata come ABUSECH_AUTH_KEY sul backend.',
-		backendUnavailable: 'Richiede il backend Python, che non è avviato.',
+		backendUnavailable: 'Richiede il servizio API, che non è avviato.',
 		backendPartial:
 			'Le fonti interrogate dal browser funzionano comunque; Tor, Spamhaus DROP, URLhaus e ThreatFox richiedono il backend. Avvialo con:',
 		pivots: 'Approfondisci questo indicatore:',
@@ -228,7 +229,7 @@ export default {
 		open: 'Voir sur {source}',
 		notConfigured:
 			'Non configurée : cette source nécessite une Auth-Key abuse.ch gratuite définie dans ABUSECH_AUTH_KEY sur le backend.',
-		backendUnavailable: "Nécessite le backend Python, qui n'est pas démarré.",
+		backendUnavailable: "Nécessite le service API, qui n'est pas démarré.",
 		backendPartial:
 			'Les sources interrogées par le navigateur fonctionnent toujours ; Tor, Spamhaus DROP, URLhaus et ThreatFox nécessitent le backend. Démarrez-le avec :',
 		pivots: 'En savoir plus sur cet indicateur :',
@@ -317,7 +318,7 @@ export default {
 		open: '{source} で表示',
 		notConfigured:
 			'未設定: このソースには、バックエンドで ABUSECH_AUTH_KEY として設定された無料の abuse.ch Auth-Key が必要です。',
-		backendUnavailable: 'Python バックエンドが必要ですが、起動していません。',
+		backendUnavailable: 'API サービスが必要ですが、起動していません。',
 		backendPartial:
 			'ブラウザ側のソースは引き続き動作します。Tor、Spamhaus DROP、URLhaus、ThreatFox にはバックエンドが必要です。次のコマンドで起動してください:',
 		pivots: 'このインジケーターをさらに調べる:',

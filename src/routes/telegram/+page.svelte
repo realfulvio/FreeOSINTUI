@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
@@ -5,7 +6,7 @@
 	import TelegramProfileCard from '$lib/components/TelegramProfileCard.svelte';
 	import TelegramPostList from '$lib/components/TelegramPostList.svelte';
 	import ExportMenu from '$lib/components/ExportMenu.svelte';
-	import { ApiError, BACKEND_START_COMMAND, apiGet } from '$lib/api.js';
+	import { ApiError, apiGet } from '$lib/api.js';
 	import { normalizeTelegramUsername } from '$lib/telegram/validate.js';
 	import { buildTelegramReport } from '$lib/telegram/report.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
@@ -51,7 +52,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.telegram.name')} — FreeOSINT-UI"
+	title="{t('tools.telegram.name')} — TRACE//PUNK"
 	description={t('telegram.metaDescription')}
 />
 
@@ -72,7 +73,6 @@
 				<strong>{t('backend.down')}</strong>
 				{t('backend.needed')}
 			</p>
-			<code>{BACKEND_START_COMMAND}</code>
 		</div>
 	{:else if error}
 		<p class="error" role="alert">{error}</p>
