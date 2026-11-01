@@ -2,6 +2,8 @@
 
 OSINT toolkit.
 
+Live: [tracepunk.laccorsi-bondeno.workers.dev](https://tracepunk.laccorsi-bondeno.workers.dev/).
+
 Hacker-punk interface with a searchable 20-tool catalogue, category filters and rewritten tool descriptions. Charcoal, cyan and magenta theme, responsive layouts, system fonts and no added UI runtime dependencies.
 
 Svelte static frontend and TypeScript API prepared for Cloudflare Workers Free. Derived from [Kerlooo/FreeOSINTUI](https://github.com/Kerlooo/FreeOSINTUI); inspired also by [OSINT-UI](https://osint-ui.com/). The original author, license and third-party notices are preserved in [NOTICE](NOTICE) and [.github/LICENSE](.github/LICENSE). Apache 2.0 **with Commons Clause**, not plain Apache 2.0. WhatsMyName data retains CC BY-SA 4.0.
@@ -55,7 +57,7 @@ Optional URLhaus/ThreatFox authentication uses `ABUSECH_AUTH_KEY`. Without it th
 
 ## Validation of this migration
 
-Local validation: 555 frontend tests and 126 Worker tests passed; TypeScript and lint passed; static build and Wrangler dry-run succeeded. Worker bundle approximately 238 KiB / 69 KiB gzip (includes the 716-site dataset). Local workerd smoke checks covered static routes, API JSON errors, optional-key behavior and site listing. No Cloudflare deployment or billing-plan change has been performed. Live third-party coverage and production CPU measurements remain deployment checks.
+Validation: 618 frontend tests and 130 Worker tests (748 total), TypeScript, lint, production build and Wrangler dry-run passed. PR #1 was merged and deployed to Cloudflare Workers Free on 2026-11-01. Production smoke checks passed for pages, health, username catalogue, Telegram, URLhaus and ThreatFox. Wayback returned explicitly marked partial homepage captures. The abuse.ch key is a Worker secret. See [deployment evidence](docs/quality/2026-11-01-deployment.md). Production CPU percentiles and sustained-load behavior have not been measured.
 
 `npm audit --omit=dev` reported no production dependency advisories at validation. Development tools still report 18 low/moderate advisories; compatible fixes were applied without forcing breaking framework/toolchain upgrades.
 
