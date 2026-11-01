@@ -19,18 +19,78 @@ export const DEFAULT_LOCALE = 'en';
  * `{ en: { title: '...' }, it: {...}, fr: {...}, ja: {...} }` and its keys are read as `phone.title`.
  * @type {Record<string, { default: Record<string, Record<string, Message>> }>}
  */
-const modules = import.meta.glob('./messages/*.js', { eager: true });
+const shared = import.meta.glob(
+	[
+		'./messages/common.js',
+		'./messages/nav.js',
+		'./messages/tools.js',
+		'./messages/home.js',
+		'./messages/backend.js',
+		'./messages/export.js',
+		'./messages/local.js',
+		'./messages/dns.js'
+	],
+	{ eager: true }
+);
+const loaders = import.meta.glob('./messages/*.js');
 
 /** @type {Record<string, Record<string, Message>>} locale -> flat key -> message */
 export const MESSAGES = Object.fromEntries(LOCALES.map(({ code }) => [code, {}]));
+const loaded = new Set();
+/** @type {Map<string, Promise<void>>} */
+const pending = new Map();
 
-for (const [path, module] of Object.entries(modules)) {
+/** @param {string} path @param {{ default: Record<string, Record<string, Message>> }} module */
+function register(path, module) {
 	const namespace = path.slice(path.lastIndexOf('/') + 1, -'.js'.length);
 	for (const { code } of LOCALES) {
 		for (const [key, message] of Object.entries(module.default[code] ?? {})) {
 			MESSAGES[code][`${namespace}.${key}`] = message;
 		}
 	}
+	loaded.add(namespace);
+}
+for (const [path, module] of Object.entries(shared)) register(path, module);
+
+/** Load all four languages for a namespace before rendering its tool.
+ * Failed loads are retryable; overlapping navigation/preload calls share a promise.
+ * @param {string} namespace
+ */
+export function loadNamespace(namespace) {
+	if (loaded.has(namespace)) return Promise.resolve();
+	const path = `./messages/${namespace}.js`;
+	if (!loaders[path]) return Promise.resolve();
+	if (!pending.has(namespace)) {
+		pending.set(
+			namespace,
+			loaders[path]()
+				.then((module) => {
+					register(
+						path,
+						/** @type {{ default: Record<string, Record<string, Message>> }} */ (module)
+					);
+				})
+				.finally(() => pending.delete(namespace))
+		);
+	}
+	return pending.get(namespace);
+}
+
+/** @param {string} pathname */
+export async function loadRouteMessages(pathname) {
+	const namespace = pathname.split('/').filter(Boolean)[0] || 'home';
+	// Shared analyzers/report builders sometimes use another tool's messages.
+	const dependencies = {
+		domain: ['dorks', 'footprint'],
+		footprint: ['dorks'],
+		hash: ['metadata'],
+		headers: ['ip'],
+		leaks: ['email'],
+		reputation: ['email', 'ip'],
+		url: ['ip']
+	};
+	const namespaces = [namespace, ...(dependencies[namespace] ?? [])];
+	await Promise.all(namespaces.map(loadNamespace));
 }
 
 /** @param {string | null | undefined} code */

@@ -200,7 +200,7 @@
 		animation-play-state: paused;
 	}
 	.hero-copy {
-		animation: arrive 0.6s ease-out both;
+		animation: hero-arrive 0.6s ease-out both;
 	}
 	.launch {
 		transition:
@@ -240,6 +240,15 @@
 	}
 	.grid li {
 		animation: arrive 0.35s ease-out both;
+	}
+	/* Keep the headline visible in the first paint; movement remains animated. */
+	@keyframes hero-arrive {
+		from {
+			transform: translateY(12px);
+		}
+		to {
+			transform: translateY(0);
+		}
 	}
 	@keyframes arrive {
 		from {
