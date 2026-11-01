@@ -18,6 +18,8 @@ export default {
 			'the target site is never contacted. Only the Common Crawl index and the Wayback Machine are queried, and every link opens the archived copy, not the live site.',
 		pivots: 'Pivot:',
 		empty: 'No archived URLs found for this domain.',
+		incompleteEmpty:
+			'No URLs available to display: the archive checks are incomplete. This does not establish that no archived URLs exist.',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -115,6 +117,8 @@ export default {
 			"il sito non viene mai contattato. Vengono interrogati solo l'indice di Common Crawl e la Wayback Machine, e ogni link apre la copia archiviata, non il sito attuale.",
 		pivots: 'Continua con:',
 		empty: 'Nessun URL archiviato trovato per questo dominio.',
+		incompleteEmpty:
+			'Nessun URL disponibile da mostrare: i controlli degli archivi sono incompleti. Non significa che non esistano URL archiviati.',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -212,6 +216,8 @@ export default {
 			"le site cible n'est jamais contacté. Seuls l'index de Common Crawl et la Wayback Machine sont interrogés, et chaque lien ouvre la copie archivée, pas le site en ligne.",
 		pivots: 'Poursuivre avec :',
 		empty: 'Aucune URL archivée trouvée pour ce domaine.',
+		incompleteEmpty:
+			'Aucune URL à afficher : les vérifications des archives sont incomplètes. Cela ne signifie pas qu’aucune URL archivée existe.',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',
@@ -312,6 +318,8 @@ export default {
 			'対象サイトには一切アクセスしません。照会するのは Common Crawl のインデックスと Wayback Machine だけで、各リンクは稼働中のサイトではなくアーカイブ済みのコピーを開きます。',
 		pivots: '関連ツール:',
 		empty: 'このドメインのアーカイブ済み URL は見つかりませんでした。',
+		incompleteEmpty:
+			'表示できるURLがありません。アーカイブの確認が完了していないため、URLが存在しないとは判断できません。',
 		'source.commoncrawl': 'Common Crawl',
 		'source.wayback': 'Wayback Machine',
 		'sourceShort.commoncrawl': 'CC',

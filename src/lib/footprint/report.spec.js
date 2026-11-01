@@ -75,6 +75,7 @@ describe('buildFootprintReport', () => {
 			)
 		);
 		expect(report.sections[1].error).toContain('Backend not running');
-		expect(toMarkdown(report)).toContain('No archived URLs found for this domain.');
+		expect(toMarkdown(report)).toContain('the archive checks are incomplete');
+		expect(toMarkdown(report)).not.toContain('No archived URLs found for this domain.');
 	});
 });

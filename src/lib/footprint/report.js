@@ -1,4 +1,5 @@
 // Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
+import { emptyFootprintMessage } from '$lib/footprint/coverage.js';
 import { t } from '$lib/i18n/i18n.svelte.js';
 import {
 	createReport,
@@ -93,7 +94,7 @@ export function buildFootprintReport({
 			input: scopeInput(target),
 			sections: [
 				...sourceSections,
-				section(t('footprint.list.title'), [text(t('footprint.empty'))])
+				section(t('footprint.list.title'), [text(t(emptyFootprintMessage(cc, wayback)))])
 			]
 		});
 	}

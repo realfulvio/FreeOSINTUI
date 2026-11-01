@@ -6,7 +6,7 @@ import { getLocale } from '$lib/i18n/i18n.svelte.js';
  * @returns {{ group: string, decimal: string }}
  */
 function localeSeparators() {
-	const parts = new Intl.NumberFormat(getLocale()).formatToParts(1000.5);
+	const parts = new Intl.NumberFormat(getLocale()).formatToParts(10000.5);
 	return {
 		group: parts.find((part) => part.type === 'group')?.value ?? ',',
 		decimal: parts.find((part) => part.type === 'decimal')?.value ?? '.'

@@ -21,6 +21,7 @@
 	import { groupEntries } from '$lib/footprint/classify.js';
 	import { computeStats, extractParams, findSubdomains } from '$lib/footprint/stats.js';
 	import { buildFootprintReport } from '$lib/footprint/report.js';
+	import { emptyFootprintMessage } from '$lib/footprint/coverage.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
 
 	/** @typedef {{ status: 'loading' | 'done' | 'error', data?: any, error?: string, backendDown?: boolean }} SectionState */
@@ -188,7 +189,7 @@
 				</div>
 			</div>
 		{:else if !busy}
-			<p class="empty" role="status">{t('footprint.empty')}</p>
+			<p class="empty" role="status">{t(emptyFootprintMessage(cc, wayback))}</p>
 		{/if}
 	{/key}
 {/if}
