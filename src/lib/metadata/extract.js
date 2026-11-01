@@ -1,7 +1,10 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { readMetadata } from './reader.js';
+export { readMetadata } from './reader.js';
 import { formatDate, formatNumber, t } from '$lib/i18n/i18n.svelte.js';
-import { detectFormat, formatLabel, IMAGE_FORMATS } from './detect.js';
+import { formatLabel, IMAGE_FORMATS } from './detect.js';
 import { formatBytes } from './format.js';
-import { imageHighlights, imageTagGroups, readImageMetadata } from './image.js';
+import { imageHighlights, imageTagGroups } from './image.js';
 import { parseOffice } from './office.js';
 import { parsePdf } from './pdf.js';
 
@@ -189,28 +192,6 @@ function officeResultFrom(office) {
 	if (!groups.length) notes.push(t('metadata.office.noteNoProperties'));
 	notes.push(t('metadata.office.noteCounters'));
 	return { kind, highlights: highlights.filter((row) => row.value), groups, notes };
-}
-
-/**
- * Reads a file once, entirely in the browser. The result does not depend on the language.
- * @param {File} file
- * @returns {Promise<RawMetadata>}
- */
-export async function readMetadata(file) {
-	const head = new Uint8Array(await file.slice(0, 1024).arrayBuffer());
-	const format = detectFormat(head);
-	/** @type {RawMetadata} */
-	const raw = {
-		format,
-		file: { name: file.name, size: file.size, type: file.type, lastModified: file.lastModified },
-		image: null,
-		pdf: null,
-		office: null
-	};
-	if (format && IMAGE_FORMATS.has(format)) raw.image = await readImageMetadata(file, format);
-	else if (format === 'pdf') raw.pdf = parsePdf(new Uint8Array(await file.arrayBuffer()));
-	else if (format === 'zip') raw.office = parseOffice(new Uint8Array(await file.arrayBuffer()));
-	return raw;
 }
 
 /**

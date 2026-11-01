@@ -1,8 +1,9 @@
+<!-- Modified 2026 by realfulvio; original attribution in NOTICE. -->
 <script>
 	import { t } from '$lib/i18n/i18n.svelte.js';
 
-	/** @type {{ file: File | null, onselect: (file: File) => void }} */
-	let { file, onselect } = $props();
+	/** @type {{ file: File | null, onselect: (file: File) => void, hint?: string }} */
+	let { file, onselect, hint } = $props();
 
 	let dragging = $state(false);
 
@@ -50,7 +51,7 @@
 		<span class="meta">{t('common.fileDropChosenHint', { size: formatSize(file.size) })}</span>
 	{:else}
 		<span class="name">{t('common.fileDropEmpty')}</span>
-		<span class="meta">{t('common.fileDropEmptyHint')}</span>
+		<span class="meta">{hint ?? t('common.fileDropEmptyHint')}</span>
 	{/if}
 </label>
 

@@ -1,5 +1,7 @@
 <!-- Modified 2026 by realfulvio: visual redesign; original attribution in NOTICE. -->
 <script>
+	import { onDestroy } from 'svelte';
+	import { coverageNotes, historyNote } from '$lib/crypto/coverage.js';
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolHeader from '$lib/components/ToolHeader.svelte';
 	import LookupForm from '$lib/components/LookupForm.svelte';
@@ -25,6 +27,7 @@
 	let data = $state(null);
 	/** @type {AbortController | null} */
 	let controller = null;
+	onDestroy(() => controller?.abort());
 
 	let chain = $derived(target ? CHAINS[target.chain] : null);
 
@@ -47,7 +50,8 @@
 				return;
 			}
 			target = analysis;
-			data = await traceAddress(analysis, { signal: current.signal });
+			const loaded = await traceAddress(analysis, { signal: current.signal });
+			if (controller === current && !current.signal.aborted) data = loaded;
 		} catch (err) {
 			if (!current.signal.aborted) error = err instanceof Error ? err.message : String(err);
 		} finally {
@@ -112,6 +116,7 @@
 			<KeyValueTable rows={detection} />
 			{#if data}
 				<KeyValueTable rows={summary} />
+				{#each coverageNotes(data) as note (note)}<p class="note" role="status">{note}</p>{/each}
 			{:else if busy}
 				<p class="hint">{t('crypto.loadingData')}</p>
 			{/if}
@@ -132,14 +137,23 @@
 		<section class="panel" aria-labelledby="crypto-txs-heading">
 			<h2 id="crypto-txs-heading">{t('crypto.latestTxs')}</h2>
 			{#if data}
-				{#if data.txs.length}
+				{#if data.sections.transactions.status === 'error'}
+					<p class="error">{t('crypto.transactionsUnavailable')}</p>
+				{:else if data.txs.length}
 					<CryptoTxList txs={data.txs.slice(0, SHOWN_TXS)} {chain} ontrace={retrace} />
+					<p class="hint">
+						{t('crypto.shownTxs', {
+							shown: Math.min(SHOWN_TXS, data.txs.length),
+							loaded: data.txs.length
+						})}
+					</p>
 					{#if target.chain === 'eth'}
 						<p class="hint">{t('crypto.ethNativeOnly')}</p>
 					{/if}
 				{:else}
 					<p class="hint">{t('crypto.noTxs')}</p>
 				{/if}
+				<p class="hint">{historyNote(data)}</p>
 			{:else if busy}
 				<p class="hint">{t('crypto.loadingTxs')}</p>
 			{/if}

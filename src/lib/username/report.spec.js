@@ -36,7 +36,7 @@ describe('buildUsernameReport', () => {
 
 	it('says when no account was found', () => {
 		const report = buildUsernameReport({ username: 'x', total: 1, scanning: false, results: [] });
-		expect(report.sections[0].note).toBeUndefined();
+		expect(report.sections[0].note).toMatch(/stopped before/);
 		expect(toMarkdown(report)).toContain('No accounts found.');
 	});
 });

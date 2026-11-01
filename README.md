@@ -68,3 +68,9 @@ Thanks also to [OSINT-UI](https://osint-ui.com/) for the original inspiration, a
 ## Pre-publication tool review
 
 The [functional audit](docs/quality/2026-11-01-tool-audit.md) records eight reproduced edge cases and their fixes: strict external-response handling, duplicate SPF/DMARC detection, Public Suffix List handling (including private suffixes), DNS evidence instead of inferred registration, partial GitHub results and archive-port deduplication. Regression tests include malformed and valid negative responses, partial/all-failed sources and hosted-domain boundaries. File-processing budgets and further functional improvements remain separate follow-up work.
+
+### Local file processing and partial coverage
+
+Metadata extraction now runs in a cancellable browser Web Worker: files up to 64 MiB, Office/PDF decompression limited to 4 MiB per entry and 16 MiB total, with a 30-second processing timeout. File hashing uses a separate Web Worker and 4 MiB chunks, with progress and cancellation; files are never uploaded.
+
+Crypto lookups preserve successful sections when another endpoint fails and explicitly show unknown values and incomplete transaction coverage. Username scans can resume missing sites or retry errors/unknown results while preserving the original target and successful results. This state lasts only on the current page and is cleared by navigation or reload. See the [functional audit](docs/quality/2026-11-01-tool-audit.md) for validation and remaining limitations.

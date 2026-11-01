@@ -2,6 +2,11 @@
 // Username Analyzer (/username).
 export default {
 	en: {
+		resume: 'Resume ({count} remaining)',
+		retryFailed: 'Retry errors / unknown ({count})',
+		sessionHint:
+			'Resume and retry use the original username and site selection. Results stay only on this page; reloading clears them. Each selected site needs another check.',
+		'report.paused': 'Scan stopped before all selected sites were checked.',
 		metaDescription:
 			'Check whether a username exists on hundreds of websites and social networks, using the WhatsMyName site list.',
 		description:
@@ -68,6 +73,11 @@ export default {
 		'category.video': 'Video'
 	},
 	it: {
+		resume: 'Riprendi ({count} rimanenti)',
+		retryFailed: 'Riprova errori / incerti ({count})',
+		sessionHint:
+			'Ripresa e nuovi tentativi usano username e siti della scansione originale. I risultati restano solo in questa pagina: ricaricandola si perdono. Ogni sito selezionato richiede un nuovo controllo.',
+		'report.paused': 'Scansione interrotta prima di controllare tutti i siti selezionati.',
 		metaDescription:
 			'Controlla se uno username esiste su centinaia di siti web e social network, usando la lista di siti WhatsMyName.',
 		description:
@@ -138,6 +148,11 @@ export default {
 		'category.video': 'Video'
 	},
 	fr: {
+		resume: 'Reprendre ({count} restants)',
+		retryFailed: 'Réessayer erreurs / inconnus ({count})',
+		sessionHint:
+			'La reprise utilise le pseudo et les sites d’origine. Résultats conservés uniquement sur cette page ; un rechargement les efface. Chaque site sélectionné nécessite une nouvelle vérification.',
+		'report.paused': 'Analyse arrêtée avant la vérification de tous les sites sélectionnés.',
 		metaDescription:
 			"Vérifiez si un nom d'utilisateur existe sur des centaines de sites web et réseaux sociaux, à l'aide de la liste de sites WhatsMyName.",
 		description:
@@ -209,6 +224,11 @@ export default {
 		'category.video': 'Vidéo'
 	},
 	ja: {
+		resume: '再開（残り{count}件）',
+		retryFailed: 'エラー・不明を再試行（{count}件）',
+		sessionHint:
+			'再開と再試行は元のユーザー名とサイト選択を使用します。結果はこのページのみで保持され、再読み込みすると消えます。各サイトで再度確認が必要です。',
+		'report.paused': '選択したすべてのサイトを確認する前にスキャンを停止しました。',
 		metaDescription:
 			'WhatsMyName のサイト一覧を使い、数百の Web サイトや SNS にユーザー名が存在するかを確認します。',
 		description:

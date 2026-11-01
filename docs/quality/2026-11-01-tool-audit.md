@@ -70,6 +70,28 @@ Gli otto casi della tabella sono ora coperti da `src/lib/prepublication.spec.js`
 - GitHub: risultati riusciti conservati, fonti fallite dichiarate in interfaccia e nei report; fallimento totale e annullamento rimangono errori.
 - Archivi: porte non standard preservate nella chiave; host, porte standard e deduplicazione HTTP/HTTPS mantengono la politica precedente.
 
-Restano proposte successive: decompressione limitata e Web Worker per file, copertura e risultati parziali crypto, ripresa scansioni username, miglioramenti ulteriori ai parser e alle fonti. Nessun deploy effettuato.
+La seconda fase qui sotto affronta file, crypto e ripresa username. Restano miglioramenti ulteriori ai parser e alle fonti. Nessun deploy effettuato.
 
 Validazione delle correzioni: 569 test frontend (14 casi nella nuova suite), 126 test Worker, lint, controllo tipi Worker, build e dry-run superati. Verifica browser del rifiuto di `co.uk` e di una risoluzione DNS per le varianti di `alice.github.io`; non costituisce un collaudo completo delle integrazioni esterne. Nessun deploy.
+
+## Seconda fase: file, crypto e ripresa scansioni
+
+Scelte implementative entro il perimetro approvato: elaborazione locale in Web Worker, nessun upload dei file, nessun servizio Cloudflare aggiuntivo; ripresa limitata alla pagina corrente, senza persistenza automatica delle ricerche. Il timeout termina il worker, quindi non dipende dalla cooperazione del parser.
+
+- **Metadati:** limite preventivo di 64 MiB sul file; Office/PDF espansi a blocchi con tetto di 4 MiB per elemento e 16 MiB complessivi; massimo 10.000 membri ZIP. Gli elementi Office non pertinenti vengono saltati. I limiti contano i byte effettivamente espansi anche se un archivio dichiara dimensioni false. Timeout di 30 secondi, pulsante di interruzione e terminazione al cambio file o uscita dalla pagina. Parser separati dalla presentazione e dalle traduzioni.
+- **Hash dei file:** i 12 algoritmi lavorano in un Web Worker, mantenendo la lettura a blocchi di 4 MiB. Nessun tetto applicativo alla dimensione totale e nessun timeout di 30 secondi per questo strumento; interruzione esplicita e uscita dalla pagina terminano il lavoro. Non è una garanzia di supportare ogni dimensione su ogni dispositivo.
+- **Crypto:** sezioni indipendenti con errori espliciti e risultati parziali; saldo/conteggi sconosciuti non diventano zero. HTTP 404 EVM non equivale a un saldo nullo. Copertura delle transazioni e paginazione dichiarate in pagina/report; prima attività non dedotta da una cronologia incompleta. Le transazioni indisponibili non vengono presentate come assenti. Il report comprende tutte le righe caricate, la pagina ne mostra al massimo dieci.
+- **Username:** snapshot di username e siti originali; ripresa dei soli siti mancanti e ripetizione dei soli errori/incerti, sostituendo i risultati per ID senza duplicati. Le risposte tardive di una scansione interrotta non modificano quella nuova. Il report segnala le scansioni incomplete. Navigazione o ricaricamento eliminano i risultati di sessione, come indicato nell'interfaccia.
+
+### Verifiche
+
+590 test frontend (21 nuovi casi), 126 test Worker, lint, controllo tipi, build e dry-run superati. Worker Cloudflare invariato: 237,60 KiB / 69,29 KiB gzip. Le nuove elaborazioni avvengono nel browser.
+
+Prove browser sulla build di produzione locale:
+
+- PDF sintetico: autore e titolo estratti dal Web Worker; file da 65 MiB rifiutato con messaggio leggibile.
+- File sintetico da 256 MiB: 12 hash completati, input modificabile durante il calcolo (osservato al 48%); SHA-256 confrontato con Python hashlib: `a6d72ac7690f53be6ae46ba88506bd97302a093f7108472bd9efc3cefda06484`. Seconda esecuzione interrotta dal pulsante. È una prova funzionale su questo browser, non un benchmark comparativo o mobile.
+- Username con API simulate: 10 siti, stop dopo due esiti, ripresa degli otto rimanenti pur cambiando il campo username; richiesta originale preservata e nuovo tentativo al solo sito fallito. Nessuna ricerca su persone.
+- Crypto con risposte simulate: saldo di test conservato, contatori HTTP 503 mostrati come sconosciuti e copertura parziale dichiarata. Simulazioni rimosse al termine.
+
+Restano fuori da questa fase il collaudo live completo dei provider, la validazione completa SPF/DMARC, l'eredità DMARC e gli altri approfondimenti indicati nella tabella. Nessun merge o deploy effettuato.

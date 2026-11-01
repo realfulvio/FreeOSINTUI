@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { t } from '$lib/i18n/i18n.svelte.js';
 import { createReport, fields, section, table, text } from '$lib/export/report.js';
 import { STATUSES, groupByCategory, summarize } from './results.js';
@@ -34,7 +35,11 @@ export function buildUsernameReport({ username, total, scanning, results }) {
 						...STATUSES.map((status) => ({ label: status.label, value: counts[status.id] }))
 					])
 				],
-				scanning ? { note: t('username.report.running') } : {}
+				scanning
+					? { note: t('username.report.running') }
+					: results.length < total
+						? { note: t('username.report.paused') }
+						: {}
 			),
 			section(
 				t('username.status.found'),

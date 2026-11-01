@@ -1,3 +1,5 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { collectSections, amount, count } from './coverage.js';
 import { fetchJson } from '$lib/net.js';
 import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 
@@ -39,6 +41,14 @@ function addressLabels(info) {
  * @param {string} address
  */
 export function parseEvmTx(tx, address) {
+	if (
+		typeof tx?.hash !== 'string' ||
+		!tx.hash ||
+		!tx.from?.hash ||
+		(tx.timestamp && !Number.isFinite(Date.parse(tx.timestamp)))
+	)
+		throw new Error(t('crypto.invalidData'));
+	amount(tx.value);
 	const self = address.toLowerCase();
 	const from = tx.from?.hash ?? null;
 	const to = tx.to?.hash ?? tx.created_contract?.hash ?? null;
@@ -69,16 +79,37 @@ export function parseEvmTx(tx, address) {
  */
 export async function fetchEvmAddress(chain, address, options = {}) {
 	const base = `${chain.api}/addresses/${address}`;
-	const opts = { ...options, allowNotFound: true };
-	const [info, counters, page] = await Promise.all([
-		fetchJson(base, opts),
-		fetchJson(`${base}/counters`, opts),
-		fetchJson(`${base}/transactions`, opts)
-	]);
+	const sections = await collectSections(
+		{
+			summary: async () => {
+				const info = await fetchJson(base, options);
+				amount(info?.coin_balance);
+				return { ...info, labels: addressLabels(info) };
+			},
+			counters: async () => {
+				const counters = await fetchJson(`${base}/counters`, options);
+				count(counters?.transactions_count);
+				if (counters.token_transfers_count != null) count(counters.token_transfers_count);
+				return counters;
+			},
+			transactions: async () => {
+				const page = await fetchJson(`${base}/transactions`, options);
+				if (!Array.isArray(page?.items)) throw new Error(t('crypto.invalidData'));
+				return {
+					txs: page.items.map((tx) => parseEvmTx(tx, address)),
+					hasMore: Boolean(page.next_page_params)
+				};
+			}
+		},
+		options.signal
+	);
+	const info = sections.summary.value;
+	const counters = sections.counters.value;
+	const page = sections.transactions.value;
 
 	const extra = [];
 	if (info) {
-		const labels = addressLabels(info);
+		const labels = info.labels;
 		extra.push(
 			row('crypto.row.accountType', () => t(info.is_contract ? 'crypto.contract' : 'crypto.wallet'))
 		);
@@ -93,12 +124,14 @@ export async function fetchEvmAddress(chain, address, options = {}) {
 	}
 
 	return {
-		balance: BigInt(info?.coin_balance ?? 0),
+		balance: info ? amount(info.coin_balance) : null,
 		received: null,
 		sent: null,
-		txCount: Number(counters?.transactions_count ?? 0),
-		pendingTxCount: 0,
+		txCount: counters ? count(counters.transactions_count) : null,
+		pendingTxCount: null,
 		extra,
-		txs: (page?.items ?? []).map((tx) => parseEvmTx(tx, address))
+		txs: page?.txs ?? [],
+		sections,
+		hasMore: page?.hasMore ?? true
 	};
 }

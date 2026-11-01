@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { CHAINS } from './chains.js';
 import { fetchEvmAddress } from './evm.js';
 import { fetchUtxoAddress } from './utxo.js';
@@ -13,7 +14,7 @@ export function activityRange(txs, txCount) {
 	if (!times.length) return { firstSeen: null, lastSeen: null };
 	const sorted = times.toSorted((a, b) => a.getTime() - b.getTime());
 	return {
-		firstSeen: txs.length >= txCount ? sorted[0] : null,
+		firstSeen: txCount !== null && txs.length >= txCount ? sorted[0] : null,
 		lastSeen: sorted.at(-1)
 	};
 }
@@ -29,5 +30,14 @@ export async function traceAddress(target, options = {}) {
 		chain.kind === 'evm'
 			? await fetchEvmAddress(chain, target.address, options)
 			: await fetchUtxoAddress(chain, target.address, options);
-	return { ...data, ...activityRange(data.txs, data.txCount) };
+	const historyComplete =
+		data.sections.transactions.status === 'done' &&
+		!data.hasMore &&
+		data.txCount !== null &&
+		data.txs.length === data.txCount;
+	return {
+		...data,
+		historyComplete,
+		...activityRange(data.txs, historyComplete ? data.txCount : null)
+	};
 }
