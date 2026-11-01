@@ -314,7 +314,8 @@
 
 	.results {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+		align-items: start;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
 		gap: 1.5rem;
 		margin-top: 1.5rem;
 	}

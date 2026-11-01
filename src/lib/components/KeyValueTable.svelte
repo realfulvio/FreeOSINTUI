@@ -35,13 +35,16 @@
 <style>
 	dl {
 		display: grid;
-		grid-template-columns: minmax(8rem, max-content) minmax(0, 1fr);
+		/* A long translated label must never consume the value column. */
+		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
 		margin: 0;
 		font-size: 0.875rem;
 	}
 
 	dt,
 	dd {
+		min-width: 0;
+		overflow-wrap: anywhere;
 		margin: 0;
 		padding: 0.45rem 0.75rem;
 		border-bottom: 1px solid var(--color-border);
@@ -49,10 +52,6 @@
 
 	dt {
 		color: var(--color-text-dim);
-	}
-
-	dd {
-		overflow-wrap: anywhere;
 	}
 
 	p {
