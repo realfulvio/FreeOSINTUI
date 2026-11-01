@@ -79,3 +79,32 @@ describe('buildFootprintReport', () => {
 		expect(toMarkdown(report)).not.toContain('No archived URLs found for this domain.');
 	});
 });
+
+it('exports reduced-query warnings and homepage-only coverage', () => {
+	const state = pageState(
+		{
+			status: 'done',
+			data: {
+				done: true,
+				indexes: [
+					{
+						name: 'CC',
+						count: 1,
+						error: null,
+						truncated: true,
+						warning: 'Reduced query after HTTP 504'
+					}
+				],
+				records: []
+			}
+		},
+		{
+			status: 'done',
+			data: { records: [], truncated: true, homepageOnly: true, fallbackError: 'timeout' }
+		}
+	);
+	const markdown = toMarkdown(buildFootprintReport(state));
+	expect(markdown).toContain('Reduced query after HTTP 504');
+	expect(markdown).toContain('homepage');
+	expect(markdown).toContain('archive checks are incomplete');
+});

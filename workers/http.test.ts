@@ -106,3 +106,42 @@ it('decodes declared legacy charset and retains language negotiation', async () 
 	const init = vi.mocked(fetch).mock.calls[0][1];
 	expect(new Headers(init?.headers).get('Accept-Language')).toBe('en-US,en;q=0.9');
 });
+
+describe('Wayback degraded coverage', () => {
+	it('recovers only homepage captures after a temporary source error', async () => {
+		const mock = vi
+			.fn()
+			.mockResolvedValueOnce(new Response('', { status: 503 }))
+			.mockResolvedValueOnce(new Response('20240101000000 https://example.com/ text/html 200\n'));
+		vi.stubGlobal('fetch', mock);
+		const result = await handleFootprint(
+			new URL('https://local/api/footprint/wayback?domain=example.com&subdomains=true')
+		);
+		expect(result).toMatchObject({
+			homepageOnly: true,
+			truncated: true,
+			records: [{ url: 'https://example.com/' }]
+		});
+		const fallback = new URL(mock.mock.calls[1][0]);
+		expect(fallback.searchParams.get('url')).toBe('example.com/');
+		expect(fallback.searchParams.get('limit')).toBe('5');
+		expect(fallback.searchParams.has('collapse')).toBe(false);
+	});
+	it.each([403, 429])('does not retry an access or rate limit failure %s', async (status) => {
+		const mock = vi.fn(async () => new Response('', { status }));
+		vi.stubGlobal('fetch', mock);
+		await expect(
+			handleFootprint(new URL('https://local/api/footprint/wayback?domain=example.com'))
+		).rejects.toThrow();
+		expect(mock).toHaveBeenCalledTimes(1);
+	});
+	it('rejects an HTML error page returned with HTTP 200', async () => {
+		vi.stubGlobal(
+			'fetch',
+			vi.fn(async () => new Response('<html>error</html>'))
+		);
+		await expect(
+			handleFootprint(new URL('https://local/api/footprint/wayback?domain=example.com'))
+		).rejects.toMatchObject({ status: 502 });
+	});
+});

@@ -26,6 +26,9 @@ export function buildCryptoReport({ target, chain, data, error }) {
 			? { status: 'error', error }
 			: { status: 'loading' };
 	const source = new URL(chain.api).host;
+	const summarySource = data?.sections?.summary?.value?.fallback
+		? 'ethereum-rpc.publicnode.com'
+		: source;
 
 	return createReport({
 		tool: 'crypto',
@@ -49,7 +52,7 @@ export function buildCryptoReport({ target, chain, data, error }) {
 						}))
 					)
 				],
-				{ source }
+				{ source: summarySource }
 			),
 			stateSection(
 				t('crypto.latestTxs'),

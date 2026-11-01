@@ -27,6 +27,9 @@ export default {
 		captures: { one: '{n} capture', other: '{n} captures' },
 		urls: { one: '{n} URL', other: '{n} URLs' },
 		limitReached: '(limit reached, results are partial)',
+		reducedFallback: 'Broad query unavailable: showing at most 5 captures from this index. {error}',
+		homepageFallback:
+			'Domain-wide query unavailable: only up to 5 captures of the homepage are shown, excluding other paths and subdomains. {error}',
 		'cc.note':
 			'Latest {count} monthly crawls, queried one after the other from your browser. The index server is often slow or overloaded.',
 		'cc.loading': 'Querying crawls… {done}/{total} done.',
@@ -47,7 +50,7 @@ export default {
 		'stats.unknown': 'unknown',
 		'stats.other': 'other',
 		'stats.note':
-			'URLs are merged ignoring http/https and the port. Wayback returns only the first capture of each URL, so "first seen" is exact for Wayback and "last seen" mostly comes from Common Crawl.',
+			'URLs are merged across http/https and default ports; nonstandard ports remain distinct. First and last seen describe only the loaded captures, not the complete history.',
 		'group.all': 'All URLs',
 		'group.documents': 'Documents',
 		'group.archives': 'Archives and backups',
@@ -126,6 +129,10 @@ export default {
 		captures: { one: '{n} acquisizione', other: '{n} acquisizioni' },
 		urls: { one: '{n} URL', other: '{n} URL' },
 		limitReached: '(limite raggiunto, risultati parziali)',
+		reducedFallback:
+			'Ricerca estesa non disponibile: mostrate al massimo 5 acquisizioni da questo indice. {error}',
+		homepageFallback:
+			'Ricerca dell’intero dominio non disponibile: mostrate al massimo 5 acquisizioni della homepage, senza gli altri percorsi e sottodomini. {error}',
 		'cc.note':
 			"Ultime {count} scansioni mensili, interrogate una dopo l'altra dal tuo browser. Il server dell'indice è spesso lento o sovraccarico.",
 		'cc.loading': 'Interrogazione delle scansioni… {done}/{total} completate.',
@@ -146,7 +153,7 @@ export default {
 		'stats.unknown': 'sconosciuto',
 		'stats.other': 'altro',
 		'stats.note':
-			'Gli URL vengono uniti ignorando http/https e la porta. Wayback restituisce solo la prima acquisizione di ogni URL, quindi la "prima comparsa" è esatta per Wayback e l\'"ultima comparsa" viene per lo più da Common Crawl.',
+			'Gli URL vengono uniti tra http/https e porte predefinite; le porte non standard restano distinte. Prima e ultima comparsa descrivono solo le acquisizioni caricate, non la cronologia completa.',
 		'group.all': 'Tutti gli URL',
 		'group.documents': 'Documenti',
 		'group.archives': 'Archivi e backup',
@@ -225,6 +232,9 @@ export default {
 		captures: { one: '{n} capture', other: '{n} captures' },
 		urls: { one: '{n} URL', other: '{n} URL' },
 		limitReached: '(limite atteinte, résultats partiels)',
+		reducedFallback: 'Recherche étendue indisponible : au plus 5 captures de cet index. {error}',
+		homepageFallback:
+			'Recherche du domaine indisponible : au plus 5 captures de la page d’accueil, sans les autres chemins et sous-domaines. {error}',
 		'cc.note':
 			"{count} derniers crawls mensuels, interrogés l'un après l'autre depuis votre navigateur. Le serveur d'index est souvent lent ou surchargé.",
 		'cc.loading': 'Interrogation des crawls… {done}/{total} terminés.',
@@ -246,7 +256,7 @@ export default {
 		'stats.unknown': 'inconnu',
 		'stats.other': 'autre',
 		'stats.note':
-			'Les URL sont fusionnées sans tenir compte de http/https ni du port. Wayback ne renvoie que la première capture de chaque URL : la « première apparition » est exacte pour Wayback et la « dernière apparition » vient surtout de Common Crawl.',
+			'Les URL sont fusionnées entre http/https et ports par défaut ; les autres ports restent distincts. Les dates décrivent uniquement les captures chargées, pas l’historique complet.',
 		'group.all': 'Toutes les URL',
 		'group.documents': 'Documents',
 		'group.archives': 'Archives et sauvegardes',
@@ -327,6 +337,10 @@ export default {
 		captures: { other: 'キャプチャ {n} 件' },
 		urls: { other: 'URL {n} 件' },
 		limitReached: '(上限に達したため、結果は一部のみです)',
+		reducedFallback:
+			'広範囲の検索を利用できないため、このインデックスの最大5件を表示します。{error}',
+		homepageFallback:
+			'ドメイン全体の検索を利用できないため、ホームページの最大5件のみを表示します。他のパスやサブドメインは含みません。{error}',
 		'cc.note':
 			'直近 {count} 回の月次クロールを、ブラウザから順番に照会します。インデックスサーバーは遅いか過負荷になっていることがよくあります。',
 		'cc.loading': 'クロールを照会中… {done}/{total} 完了。',
@@ -347,7 +361,7 @@ export default {
 		'stats.unknown': '不明',
 		'stats.other': 'その他',
 		'stats.note':
-			'URL は http/https とポートを区別せずに統合されます。Wayback は各 URL の最初のキャプチャしか返さないため、「初回確認」は Wayback では正確で、「最終確認」は主に Common Crawl に由来します。',
+			'http/httpsと標準ポートを統合しますが、非標準ポートは区別します。最初と最後の日付は読み込んだ記録のみを示し、全履歴ではありません。',
 		'group.all': 'すべての URL',
 		'group.documents': 'ドキュメント',
 		'group.archives': 'アーカイブとバックアップ',

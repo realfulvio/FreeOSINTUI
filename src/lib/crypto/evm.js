@@ -1,6 +1,7 @@
 // Modified 2026 by realfulvio; original attribution in NOTICE.
 import { collectSections, amount, count } from './coverage.js';
-import { fetchJson } from '$lib/net.js';
+import { fetchRpcBalance } from './rpc.js';
+import { fetchBlockscout } from './blockscout.js';
 import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 
 /**
@@ -82,18 +83,32 @@ export async function fetchEvmAddress(chain, address, options = {}) {
 	const sections = await collectSections(
 		{
 			summary: async () => {
-				const info = await fetchJson(base, options);
+				let info;
+				try {
+					info = await fetchBlockscout(base, options);
+				} catch (error) {
+					options.signal?.throwIfAborted();
+					// Do not retry forbidden, rate-limited, missing or malformed responses.
+					if (error.status !== null && ![500, 502, 503, 504].includes(error.status)) throw error;
+					const balance = await fetchRpcBalance(address, options);
+					return {
+						coin_balance: balance,
+						labels: [],
+						fallback: true,
+						fallbackError: error.message
+					};
+				}
 				amount(info?.coin_balance);
 				return { ...info, labels: addressLabels(info) };
 			},
 			counters: async () => {
-				const counters = await fetchJson(`${base}/counters`, options);
+				const counters = await fetchBlockscout(`${base}/counters`, options);
 				count(counters?.transactions_count);
 				if (counters.token_transfers_count != null) count(counters.token_transfers_count);
 				return counters;
 			},
 			transactions: async () => {
-				const page = await fetchJson(`${base}/transactions`, options);
+				const page = await fetchBlockscout(`${base}/transactions`, options);
 				if (!Array.isArray(page?.items)) throw new Error(t('crypto.invalidData'));
 				return {
 					txs: page.items.map((tx) => parseEvmTx(tx, address)),
@@ -110,9 +125,13 @@ export async function fetchEvmAddress(chain, address, options = {}) {
 	const extra = [];
 	if (info) {
 		const labels = info.labels;
-		extra.push(
-			row('crypto.row.accountType', () => t(info.is_contract ? 'crypto.contract' : 'crypto.wallet'))
-		);
+		if (info.fallback) extra.push({ label: 'RPC', value: 'PublicNode · eth_getBalance' });
+		if (typeof info.is_contract === 'boolean')
+			extra.push(
+				row('crypto.row.accountType', () =>
+					t(info.is_contract ? 'crypto.contract' : 'crypto.wallet')
+				)
+			);
 		if (labels.length) extra.push(row('crypto.row.labels', () => labels.join(', ')));
 		if (info.is_scam) extra.push(row('crypto.row.warning', () => t('crypto.scamFlag')));
 		if (info.creator_address_hash)

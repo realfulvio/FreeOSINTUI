@@ -37,9 +37,15 @@ export function coverageNotes(data) {
 	const failures = Object.entries(data.sections ?? {}).filter(
 		([, section]) => section.status === 'error'
 	);
-	return failures.map(
-		([key, section]) => `${t('crypto.partial')}: ${t(`crypto.section.${key}`)} — ${section.error}`
-	);
+	const fallback = data.sections?.summary?.value?.fallback;
+	return [
+		...(fallback
+			? [t('crypto.rpcFallback', { error: data.sections.summary.value.fallbackError })]
+			: []),
+		...failures.map(
+			([key, section]) => `${t('crypto.partial')}: ${t(`crypto.section.${key}`)} — ${section.error}`
+		)
+	];
 }
 export function historyNote(data) {
 	return t(data.historyComplete ? 'crypto.coverageComplete' : 'crypto.coveragePartial', {

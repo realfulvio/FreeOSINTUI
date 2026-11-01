@@ -3,6 +3,7 @@
 export default {
 	en: {
 		partial: 'Partial results',
+		rpcFallback: 'Balance recovered from PublicNode. Blockscout details are unavailable: {error}',
 		'section.summary': 'Balance and account',
 		'section.counters': 'Counters',
 		'section.transactions': 'Transactions',
@@ -20,7 +21,7 @@ export default {
 		inputLabel: 'Wallet address',
 		trace: 'Trace',
 		sourcesHint:
-			'Data comes from public block explorers (mempool.space, litecoinspace.org, Blockscout) and is requested directly from your browser.',
+			'Data comes from public block explorers (mempool.space, litecoinspace.org, Blockscout, PublicNode RPC) and is requested directly from your browser.',
 		summary: 'Summary',
 		copyAddress: 'Copy address',
 		loadingData: 'Loading on-chain data…',
@@ -87,6 +88,8 @@ export default {
 	},
 	it: {
 		partial: 'Risultati parziali',
+		rpcFallback:
+			'Saldo recuperato da PublicNode. I dettagli Blockscout non sono disponibili: {error}',
 		'section.summary': 'Saldo e conto',
 		'section.counters': 'Contatori',
 		'section.transactions': 'Transazioni',
@@ -105,7 +108,7 @@ export default {
 		inputLabel: 'Indirizzo del wallet',
 		trace: 'Traccia',
 		sourcesHint:
-			'I dati provengono da block explorer pubblici (mempool.space, litecoinspace.org, Blockscout) e sono richiesti direttamente dal tuo browser.',
+			'I dati provengono da block explorer pubblici (mempool.space, litecoinspace.org, Blockscout, PublicNode RPC) e sono richiesti direttamente dal tuo browser.',
 		summary: 'Riepilogo',
 		copyAddress: 'Copia indirizzo',
 		loadingData: 'Caricamento dei dati on-chain…',
@@ -172,6 +175,7 @@ export default {
 	},
 	fr: {
 		partial: 'Résultats partiels',
+		rpcFallback: 'Solde récupéré via PublicNode. Détails Blockscout indisponibles : {error}',
 		'section.summary': 'Solde et compte',
 		'section.counters': 'Compteurs',
 		'section.transactions': 'Transactions',
@@ -189,7 +193,7 @@ export default {
 		inputLabel: 'Adresse du portefeuille',
 		trace: 'Tracer',
 		sourcesHint:
-			"Les données proviennent d'explorateurs de blocs publics (mempool.space, litecoinspace.org, Blockscout) et sont demandées directement depuis votre navigateur.",
+			"Les données proviennent d'explorateurs de blocs publics (mempool.space, litecoinspace.org, Blockscout, PublicNode RPC) et sont demandées directement depuis votre navigateur.",
 		summary: 'Résumé',
 		copyAddress: "Copier l'adresse",
 		loadingData: 'Chargement des données on-chain…',
@@ -256,6 +260,7 @@ export default {
 	},
 	ja: {
 		partial: '一部の結果',
+		rpcFallback: 'PublicNodeから残高を取得しました。Blockscoutの詳細は利用できません: {error}',
 		'section.summary': '残高とアカウント',
 		'section.counters': '件数',
 		'section.transactions': '取引',
@@ -273,7 +278,7 @@ export default {
 		inputLabel: 'ウォレットアドレス',
 		trace: '追跡',
 		sourcesHint:
-			'データは公開ブロックエクスプローラー (mempool.space、litecoinspace.org、Blockscout) から取得され、ブラウザから直接リクエストされます。',
+			'データは公開ブロックエクスプローラー (mempool.space、litecoinspace.org、Blockscout、PublicNode RPC) から取得され、ブラウザから直接リクエストされます。',
 		summary: '概要',
 		copyAddress: 'アドレスをコピー',
 		loadingData: 'オンチェーンデータを読み込み中…',

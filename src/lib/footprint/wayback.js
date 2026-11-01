@@ -18,7 +18,11 @@ export function parseWaybackAnswer(json) {
 			mime: typeof r.mime === 'string' ? r.mime : null,
 			status: typeof r.status === 'string' ? r.status : null
 		}));
-	return { records, truncated: Boolean(json?.truncated) };
+	return {
+		records,
+		truncated: Boolean(json?.truncated),
+		...(json?.homepageOnly ? { homepageOnly: true, fallbackError: json.fallbackError } : {})
+	};
 }
 
 /**

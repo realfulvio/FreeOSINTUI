@@ -5,7 +5,7 @@
 
 	/**
 	 * Status of the Wayback Machine query (through the backend).
-	 * @type {{ result: { status: 'loading' | 'done' | 'error', data?: { records: any[], truncated: boolean }, error?: string, backendDown?: boolean } }}
+	 * @type {{ result: { status: 'loading' | 'done' | 'error', data?: { records: any[], truncated: boolean, homepageOnly?: boolean, fallbackError?: string }, error?: string, backendDown?: boolean } }}
 	 */
 	let { result } = $props();
 </script>
@@ -29,6 +29,9 @@
 	{:else if result.status === 'error'}
 		<p class="error" role="alert">{result.error}</p>
 	{:else if result.data}
+		{#if result.data.homepageOnly}<p class="notice">
+				{t('footprint.homepageFallback', { error: result.data.fallbackError })}
+			</p>{/if}
 		<p class="count">
 			{t('footprint.captures', {
 				count: result.data.records.length,

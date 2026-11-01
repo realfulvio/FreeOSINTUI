@@ -43,18 +43,42 @@ export async function handleFootprint(url: URL) {
 		collapse: 'urlkey',
 		limit: String(limit)
 	});
-	const result = await fetchText(
-		`https://web.archive.org/cdx/search/cdx?${query}`,
-		{},
-		{ maxBytes: 2 * 1024 * 1024, timeoutMs: 30000 }
-	);
-	requireOk(result, 'web.archive.org');
+	let homepageOnly = false;
+	let fallbackError: string | undefined;
+	const request = async () => {
+		const response = await fetchText(
+			`https://web.archive.org/cdx/search/cdx?${query}`,
+			{},
+			{ maxBytes: 2 * 1024 * 1024, timeoutMs: 15000 }
+		);
+		// Keep access/rate-limit failures out of the fallback path.
+		if ([500, 502, 503, 504].includes(response.status))
+			throw new HttpError(504, `web.archive.org HTTP ${response.status}`);
+		requireOk(response, 'web.archive.org');
+		return response;
+	};
+	let result;
+	try {
+		result = await request();
+	} catch (error) {
+		if (!(error instanceof HttpError) || error.status !== 504) throw error;
+		fallbackError = error.message;
+		homepageOnly = true;
+		query.set('url', `${domain}/`);
+		query.delete('collapse');
+		query.set('limit', String(Math.min(limit, 5)));
+		result = await request();
+	}
+
 	const records = parseCdx(result.body, result.complete).slice(0, limit);
+	if (result.body.trim() && !records.length)
+		throw new HttpError(502, 'Invalid Wayback CDX response.');
 	return {
 		domain,
 		subdomains,
 		limit,
-		truncated: !result.complete || records.length >= limit,
+		truncated: homepageOnly || !result.complete || records.length >= limit,
+		...(homepageOnly ? { homepageOnly, fallbackError } : {}),
 		records
 	};
 }

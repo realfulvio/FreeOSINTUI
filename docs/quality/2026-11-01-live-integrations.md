@@ -1,5 +1,6 @@
 # Collaudo delle integrazioni reali — 1 novembre 2026
 
+**Aggiornamento successivo:** vedere [recupero dei provider e collaudo autenticato](2026-11-01-provider-recovery.md). Gli esiti qui sotto restano la fotografia del primo collaudo, precedente alle correzioni e alla configurazione della chiave.
 Prove su `localhost:8788` con Wrangler locale, frontend compilato e richieste reali, senza mock. Le risposte fotografano questo ambiente e questo momento: non certificano disponibilità futura né il comportamento della rete Cloudflare in produzione.
 
 ## Metodo riproducibile

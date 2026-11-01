@@ -56,7 +56,8 @@ export function buildFootprintReport({
 								index.error ??
 								[
 									t('footprint.captures', { count: index.count, n: index.count }),
-									index.truncated ? t('footprint.limitReached') : ''
+									index.truncated ? t('footprint.limitReached') : '',
+									index.warning ?? ''
 								]
 									.filter(Boolean)
 									.join(' ')
@@ -78,7 +79,8 @@ export function buildFootprintReport({
 				text(
 					[
 						t('footprint.captures', { count: data.records.length, n: data.records.length }),
-						data.truncated ? t('footprint.limitReached') : ''
+						data.truncated ? t('footprint.limitReached') : '',
+						data.homepageOnly ? t('footprint.homepageFallback', { error: data.fallbackError }) : ''
 					]
 						.filter(Boolean)
 						.join(' ')
