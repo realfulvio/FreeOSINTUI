@@ -16,7 +16,7 @@ describe('buildHeadersReport', () => {
 		const markdown = toMarkdown(report);
 		expect(markdown).toContain('## Findings');
 		expect(markdown).toContain(
-			'| Likely originating IP | [192.0.2.45](https://freeosintui.vercel.app/ip?q=192.0.2.45) |'
+			'| Likely originating IP | [192.0.2.45](http://localhost:8787/ip?q=192.0.2.45) |'
 		);
 		expect(markdown).toContain('### Hop 1 ·');
 		expect(markdown).toContain('| DMARC | fail · example.net |');

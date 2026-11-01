@@ -1,3 +1,4 @@
+// Modified for Cloudflare Workers; original attribution in NOTICE.
 import { defineConfig } from 'vitest/config';
 import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
@@ -13,12 +14,12 @@ export default defineConfig({
 			adapter: adapter()
 		})
 	],
-	// The Python backend (backend/) serves /api; proxy it in dev and preview so there is no CORS.
+	// The TypeScript Worker serves /api; proxy it in dev and preview so there is no CORS.
 	server: {
-		proxy: { '/api': 'http://127.0.0.1:8000' }
+		proxy: { '/api': 'http://127.0.0.1:8787' }
 	},
 	preview: {
-		proxy: { '/api': 'http://127.0.0.1:8000' }
+		proxy: { '/api': 'http://127.0.0.1:8787' }
 	},
 	test: {
 		expect: { requireAssertions: true },

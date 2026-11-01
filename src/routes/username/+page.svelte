@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -8,7 +9,7 @@
 	import UsernameStatusFilters from '$lib/components/UsernameStatusFilters.svelte';
 	import UsernameResultGroup from '$lib/components/UsernameResultGroup.svelte';
 	import ExportMenu from '$lib/components/ExportMenu.svelte';
-	import { ApiError, BACKEND_START_COMMAND, apiGet } from '$lib/api.js';
+	import { ApiError, apiGet } from '$lib/api.js';
 	import { runPool } from '$lib/username/pool.js';
 	import { NSFW_CATEGORY, foundUrls, groupByCategory, summarize } from '$lib/username/results.js';
 	import { normalizeUsername } from '$lib/username/validate.js';
@@ -158,7 +159,6 @@
 				<strong>{t('backend.down')}</strong>
 				{t('backend.needed')}
 			</p>
-			<code>{BACKEND_START_COMMAND}</code>
 			<button type="button" onclick={loadSites}>{t('backend.retry')}</button>
 		</div>
 	{:else if error}

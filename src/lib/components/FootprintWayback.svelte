@@ -1,6 +1,6 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
 	import FootprintSource from '$lib/components/FootprintSource.svelte';
-	import { BACKEND_START_COMMAND } from '$lib/api.js';
 	import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 
 	/**
@@ -25,7 +25,6 @@
 				<strong>{t('backend.down')}</strong>
 				{t('footprint.wayback.backendNeeded')}
 			</p>
-			<code>{BACKEND_START_COMMAND}</code>
 		</div>
 	{:else if result.status === 'error'}
 		<p class="error" role="alert">{result.error}</p>

@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import { onMount } from 'svelte';
@@ -8,7 +9,7 @@
 	import ReputationSection from '$lib/components/ReputationSection.svelte';
 	import ReputationSummary from '$lib/components/ReputationSummary.svelte';
 	import ExportMenu from '$lib/components/ExportMenu.svelte';
-	import { ApiError, BACKEND_START_COMMAND } from '$lib/api.js';
+	import { ApiError } from '$lib/api.js';
 	import { parseIndicator } from '$lib/reputation/indicator.js';
 	import { countResults, sourcesFor } from '$lib/reputation/sources.js';
 	import { buildReputationReport } from '$lib/reputation/report.js';
@@ -154,7 +155,6 @@
 				<strong>{t('backend.down')}</strong>
 				{t('reputation.backendPartial')}
 			</p>
-			<code>{BACKEND_START_COMMAND}</code>
 		</div>
 	{/if}
 	{#if indicator}

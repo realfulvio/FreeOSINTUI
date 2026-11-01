@@ -59,7 +59,7 @@ describe('buildReputationReport', () => {
 		expect(markdown).toContain('- 2 sources unavailable.');
 		expect(markdown).toContain('| Result | listed |');
 		expect(markdown).toContain('- Botnet C2 · Mirai');
-		expect(markdown).toContain('**Error:** Needs the Python backend, which is not running.');
+		expect(markdown).toContain('**Error:** Needs the API service, which is not running.');
 		expect(markdown).toContain('Not configured');
 	});
 

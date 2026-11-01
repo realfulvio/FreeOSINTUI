@@ -1,5 +1,5 @@
+<!-- Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE. -->
 <script>
-	import { BACKEND_START_COMMAND } from '$lib/api.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
 
 	/**
@@ -42,7 +42,6 @@
 	{:else if result.status === 'backend'}
 		<div class="notice" role="alert">
 			<p><strong>{t('backend.down')}</strong> {t('backend.needed')}</p>
-			<code>{BACKEND_START_COMMAND}</code>
 		</div>
 	{:else if result.status === 'error'}
 		<p class="status error" role="alert">{result.error}</p>

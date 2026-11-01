@@ -1,14 +1,15 @@
+// Modified for Cloudflare Workers; original attribution in NOTICE.
 import { t } from '$lib/i18n/i18n.svelte.js';
 
 /**
- * Client for the optional Python backend (backend/). In dev, Vite proxies /api to it;
+ * Client for the Cloudflare Worker API. In dev, Vite proxies /api to it;
  * when frontend and backend are hosted separately, set VITE_API_BASE to the backend origin.
  */
 
 export const API_BASE = (import.meta.env?.VITE_API_BASE ?? '').replace(/\/$/, '');
 
 /** Command shown to the user when the backend is not running. */
-export const BACKEND_START_COMMAND = 'cd backend && uv run uvicorn app.main:app --port 8000';
+export const BACKEND_START_COMMAND = 'npm run dev:all';
 
 /** Error thrown by apiGet. `unreachable` is true when the backend is not running at all. */
 export class ApiError extends Error {

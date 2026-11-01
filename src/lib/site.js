@@ -1,5 +1,9 @@
 /** Public origin of the deployed site, used for canonical URLs, Open Graph and the sitemap. */
-export const SITE_URL = 'https://freeosintui.vercel.app';
+// Modified for this fork: set the public origin at build time.
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'http://localhost:8787').replace(
+	/\/$/,
+	''
+);
 
 export const SITE_NAME = 'FreeOSINT-UI';
 

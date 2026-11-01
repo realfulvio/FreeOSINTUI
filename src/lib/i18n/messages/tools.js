@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
 // Tool names, descriptions and categories (src/lib/tools.js).
 export default {
 	en: {
@@ -27,13 +28,13 @@ export default {
 			'Check which known data breaches include an email address, and whether a password has been exposed (k-anonymity: the password never leaves your browser).',
 		'username.name': 'Username Analyzer',
 		'username.description':
-			'Check whether a username exists on hundreds of websites and social networks (WhatsMyName list). Requires the Python backend.',
+			'Check whether a username exists on hundreds of websites and social networks (WhatsMyName list). Requires the API service.',
 		'phone.name': 'Phone Analyzer',
 		'phone.description':
 			'Validate a phone number offline: country, number type (mobile, fixed line, VoIP, toll free), standard formats and WhatsApp, Telegram and Google search links.',
 		'telegram.name': 'Telegram OSINT',
 		'telegram.description':
-			'Look up a Telegram username: account type (channel, group, bot, user), name, bio, subscribers or members and latest channel posts. Requires the Python backend.',
+			'Look up a Telegram username: account type (channel, group, bot, user), name, bio, subscribers or members and latest channel posts. Requires the API service.',
 		'crypto.name': 'Crypto Tracer',
 		'crypto.description':
 			'Detect and validate a Bitcoin, Litecoin or Ethereum address, then trace its balance, totals and latest transactions, following counterparties with one click.',
@@ -56,10 +57,10 @@ export default {
 			'Analyze raw email headers offline: Received path with hop delays, originating IP, SPF/DKIM/DMARC/ARC results and phishing triage findings such as Reply-To or Return-Path mismatches.',
 		'footprint.name': 'Passive Site Footprint',
 		'footprint.description':
-			"Map a site's archived URLs from Common Crawl and the Wayback Machine without contacting it: subdomains, documents, backups, config files, admin paths and parameters. The Wayback part requires the Python backend.",
+			"Map a site's archived URLs from Common Crawl and the Wayback Machine without contacting it: subdomains, documents, backups, config files, admin paths and parameters. The Wayback part requires the API service.",
 		'url.name': 'URL Analyzer',
 		'url.description':
-			'Break down a suspicious link without opening it: look-alike hosts, user@host and numeric-IP tricks, tracking parameters, hidden redirects, short link expansion, urlscan.io and URLhaus. Requires the Python backend.',
+			'Break down a suspicious link without opening it: look-alike hosts, user@host and numeric-IP tricks, tracking parameters, hidden redirects, short link expansion, urlscan.io and URLhaus. Requires the API service.',
 		'timestamp.name': 'ID and Timestamp Decoder',
 		'timestamp.description':
 			'Decode the creation date hidden in X, Discord, Instagram, TikTok, Mastodon and LinkedIn IDs, UUIDs, ULIDs and ObjectIds, read Unix, FILETIME, Chrome, Cocoa and Excel timestamps, or convert a date into all of them.',
@@ -68,7 +69,7 @@ export default {
 			'Find the vendor of a MAC address from the IEEE registries, convert it to every notation and EUI-64, and spot multicast, locally administered and randomized private addresses. Works offline.',
 		'reputation.name': 'Reputation Checker',
 		'reputation.description':
-			'Check an IP, domain, URL or email against public blocklists and threat feeds: OTX, StopForumSpam, Tor exits, Spamhaus DROP, URLhaus, ThreatFox. A listing is a lead, not proof. Partly requires the Python backend.'
+			'Check an IP, domain, URL or email against public blocklists and threat feeds: OTX, StopForumSpam, Tor exits, Spamhaus DROP, URLhaus, ThreatFox. A listing is a lead, not proof. Partly requires the API service.'
 	},
 	it: {
 		'category.search': 'Ricerca',
@@ -97,13 +98,13 @@ export default {
 			'Controlla in quali data breach noti compare un indirizzo email e se una password è stata esposta (k-anonymity: la password non lascia mai il tuo browser).',
 		'username.name': 'Analisi Username',
 		'username.description':
-			'Controlla se uno username esiste su centinaia di siti web e social network (lista WhatsMyName). Richiede il backend Python.',
+			'Controlla se uno username esiste su centinaia di siti web e social network (lista WhatsMyName). Richiede il servizio API.',
 		'phone.name': 'Analisi Telefono',
 		'phone.description':
 			'Verifica un numero di telefono offline: paese, tipo di numero (mobile, fisso, VoIP, numero verde), formati standard e link di ricerca per WhatsApp, Telegram e Google.',
 		'telegram.name': 'Telegram OSINT',
 		'telegram.description':
-			'Cerca uno username Telegram: tipo di account (canale, gruppo, bot, utente), nome, bio, iscritti o membri e ultimi post del canale. Richiede il backend Python.',
+			'Cerca uno username Telegram: tipo di account (canale, gruppo, bot, utente), nome, bio, iscritti o membri e ultimi post del canale. Richiede il servizio API.',
 		'crypto.name': 'Tracciamento Crypto',
 		'crypto.description':
 			'Rileva e verifica un indirizzo Bitcoin, Litecoin o Ethereum, poi traccia saldo, totali e ultime transazioni, seguendo le controparti con un clic.',
@@ -126,10 +127,10 @@ export default {
 			"Analizza offline gli header grezzi di un'email: percorso Received con i ritardi tra i salti, IP di origine, risultati SPF/DKIM/DMARC/ARC e segnalazioni di triage del phishing, come Reply-To o Return-Path diversi.",
 		'footprint.name': 'Impronta Passiva del Sito',
 		'footprint.description':
-			'Mappa gli URL archiviati di un sito da Common Crawl e Wayback Machine senza contattarlo: sottodomini, documenti, backup, file di configurazione, percorsi admin e parametri. La parte Wayback richiede il backend Python.',
+			'Mappa gli URL archiviati di un sito da Common Crawl e Wayback Machine senza contattarlo: sottodomini, documenti, backup, file di configurazione, percorsi admin e parametri. La parte Wayback richiede il servizio API.',
 		'url.name': 'Analisi URL',
 		'url.description':
-			'Scomponi un link sospetto senza aprirlo: host somiglianti, trucchi user@host e IP numerici, parametri di tracciamento, redirect nascosti, espansione link brevi, urlscan.io e URLhaus. Richiede il backend Python.',
+			'Scomponi un link sospetto senza aprirlo: host somiglianti, trucchi user@host e IP numerici, parametri di tracciamento, redirect nascosti, espansione link brevi, urlscan.io e URLhaus. Richiede il servizio API.',
 		'timestamp.name': 'Decoder di ID e Timestamp',
 		'timestamp.description':
 			'Decodifica la data di creazione nascosta negli ID di X, Discord, Instagram, TikTok, Mastodon e LinkedIn, negli UUID, ULID e ObjectId, leggi timestamp Unix, FILETIME, Chrome, Cocoa ed Excel o converti una data in tutti i formati.',
@@ -138,7 +139,7 @@ export default {
 			'Trova il produttore di un indirizzo MAC dai registri IEEE, convertilo in tutte le notazioni e in EUI-64 e riconosci gli indirizzi multicast, amministrati localmente e privati casuali. Funziona offline.',
 		'reputation.name': 'Verifica Reputazione',
 		'reputation.description':
-			'Controlla IP, dominio, URL o email su blocklist pubbliche e feed di minacce: OTX, StopForumSpam, uscite Tor, Spamhaus DROP, URLhaus, ThreatFox. Una segnalazione è una pista, non una prova. In parte richiede il backend Python.'
+			'Controlla IP, dominio, URL o email su blocklist pubbliche e feed di minacce: OTX, StopForumSpam, uscite Tor, Spamhaus DROP, URLhaus, ThreatFox. Una segnalazione è una pista, non una prova. In parte richiede il servizio API.'
 	},
 	fr: {
 		'category.search': 'Recherche',
@@ -167,13 +168,13 @@ export default {
 			'Vérifiez dans quelles fuites de données connues figure une adresse e-mail, et si un mot de passe a été exposé (k-anonymity : le mot de passe ne quitte jamais votre navigateur).',
 		'username.name': "Analyse de Nom d'utilisateur",
 		'username.description':
-			"Vérifiez si un nom d'utilisateur existe sur des centaines de sites web et réseaux sociaux (liste WhatsMyName). Nécessite le backend Python.",
+			"Vérifiez si un nom d'utilisateur existe sur des centaines de sites web et réseaux sociaux (liste WhatsMyName). Nécessite le service API.",
 		'phone.name': 'Analyse de Téléphone',
 		'phone.description':
 			'Validez un numéro de téléphone hors ligne : pays, type de numéro (mobile, fixe, VoIP, numéro gratuit), formats standard et liens de recherche WhatsApp, Telegram et Google.',
 		'telegram.name': 'Telegram OSINT',
 		'telegram.description':
-			"Recherchez un nom d'utilisateur Telegram : type de compte (canal, groupe, bot, utilisateur), nom, bio, abonnés ou membres et derniers messages du canal. Nécessite le backend Python.",
+			"Recherchez un nom d'utilisateur Telegram : type de compte (canal, groupe, bot, utilisateur), nom, bio, abonnés ou membres et derniers messages du canal. Nécessite le service API.",
 		'crypto.name': 'Traceur Crypto',
 		'crypto.description':
 			'Détectez et validez une adresse Bitcoin, Litecoin ou Ethereum, puis tracez son solde, ses totaux et ses dernières transactions, en suivant les contreparties en un clic.',
@@ -196,10 +197,10 @@ export default {
 			"Analysez hors ligne les en-têtes bruts d'un e-mail : chemin Received avec les délais entre sauts, IP d'origine, résultats SPF/DKIM/DMARC/ARC et signalements de tri du phishing, comme un Reply-To ou un Return-Path différent.",
 		'footprint.name': 'Empreinte Passive du Site',
 		'footprint.description':
-			"Cartographiez les URL archivées d'un site via Common Crawl et la Wayback Machine sans le contacter : sous-domaines, documents, sauvegardes, fichiers de configuration, chemins admin et paramètres. La partie Wayback nécessite le backend Python.",
+			"Cartographiez les URL archivées d'un site via Common Crawl et la Wayback Machine sans le contacter : sous-domaines, documents, sauvegardes, fichiers de configuration, chemins admin et paramètres. La partie Wayback nécessite le service API.",
 		'url.name': "Analyse d'URL",
 		'url.description':
-			"Décortiquez un lien suspect sans l'ouvrir : hôtes sosies, astuces user@host et IP numériques, paramètres de suivi, redirections cachées, liens courts, urlscan.io et URLhaus. Nécessite le backend Python.",
+			"Décortiquez un lien suspect sans l'ouvrir : hôtes sosies, astuces user@host et IP numériques, paramètres de suivi, redirections cachées, liens courts, urlscan.io et URLhaus. Nécessite le service API.",
 		'timestamp.name': "Décodeur d'Identifiants et d'Horodatages",
 		'timestamp.description':
 			'Décodez la date de création cachée dans les identifiants X, Discord, Instagram, TikTok, Mastodon et LinkedIn, les UUID, ULID et ObjectId, lisez les horodatages Unix, FILETIME, Chrome, Cocoa et Excel ou convertissez une date.',
@@ -208,7 +209,7 @@ export default {
 			"Trouvez le fabricant d'une adresse MAC dans les registres IEEE, convertissez-la dans toutes les notations et en EUI-64, et repérez les adresses multicast, locales et privées aléatoires. Fonctionne hors ligne.",
 		'reputation.name': 'Vérification de Réputation',
 		'reputation.description':
-			'Vérifiez une IP, un domaine, une URL ou un e-mail sur des listes de blocage et flux de menaces publics : OTX, StopForumSpam, sorties Tor, Spamhaus DROP, URLhaus, ThreatFox. Un signalement est une piste, pas une preuve. Nécessite en partie le backend Python.'
+			'Vérifiez une IP, un domaine, une URL ou un e-mail sur des listes de blocage et flux de menaces publics : OTX, StopForumSpam, sorties Tor, Spamhaus DROP, URLhaus, ThreatFox. Un signalement est une piste, pas une preuve. Nécessite en partie le service API.'
 	},
 	ja: {
 		'category.search': '検索',
@@ -237,13 +238,13 @@ export default {
 			'メールアドレスが既知のデータ漏えいに含まれているか、パスワードが流出していないかを確認します (k-匿名性: パスワードがブラウザの外に送られることはありません)。',
 		'username.name': 'ユーザー名分析',
 		'username.description':
-			'ユーザー名が数百の Web サイトや SNS に存在するかを確認します (WhatsMyName リスト)。Python バックエンドが必要です。',
+			'ユーザー名が数百の Web サイトや SNS に存在するかを確認します (WhatsMyName リスト)。API サービスが必要です。',
 		'phone.name': '電話番号分析',
 		'phone.description':
 			'電話番号をオフラインで検証します: 国、番号種別 (携帯、固定、VoIP、フリーダイヤル)、標準形式、WhatsApp・Telegram・Google の検索リンク。',
 		'telegram.name': 'Telegram OSINT',
 		'telegram.description':
-			'Telegram のユーザー名を検索します: アカウント種別 (チャンネル、グループ、ボット、ユーザー)、名前、自己紹介、購読者数またはメンバー数、チャンネルの最新投稿。Python バックエンドが必要です。',
+			'Telegram のユーザー名を検索します: アカウント種別 (チャンネル、グループ、ボット、ユーザー)、名前、自己紹介、購読者数またはメンバー数、チャンネルの最新投稿。API サービスが必要です。',
 		'crypto.name': '暗号資産トレーサー',
 		'crypto.description':
 			'Bitcoin、Litecoin、Ethereum のアドレスを検出・検証し、残高、合計、最新のトランザクションを追跡します。取引相手もワンクリックでたどれます。',
@@ -266,10 +267,10 @@ export default {
 			'メールの生ヘッダーをオフラインで分析します: ホップごとの遅延付きの Received 経路、送信元 IP、SPF/DKIM/DMARC/ARC の結果、Reply-To や Return-Path の不一致などのフィッシング判定の所見。',
 		'footprint.name': 'パッシブ サイトフットプリント',
 		'footprint.description':
-			'サイトに接続せずに、Common Crawl と Wayback Machine からアーカイブ済み URL を洗い出します: サブドメイン、ドキュメント、バックアップ、設定ファイル、管理画面のパス、パラメータ。Wayback 部分には Python バックエンドが必要です。',
+			'サイトに接続せずに、Common Crawl と Wayback Machine からアーカイブ済み URL を洗い出します: サブドメイン、ドキュメント、バックアップ、設定ファイル、管理画面のパス、パラメータ。Wayback 部分には API サービスが必要です。',
 		'url.name': 'URL 分析',
 		'url.description':
-			'怪しいリンクを開かずに分解します: 類似ホスト、user@host や数値 IP のトリック、トラッキングパラメータ、隠れたリダイレクト、短縮 URL の展開、urlscan.io と URLhaus。Python バックエンドが必要です。',
+			'怪しいリンクを開かずに分解します: 類似ホスト、user@host や数値 IP のトリック、トラッキングパラメータ、隠れたリダイレクト、短縮 URL の展開、urlscan.io と URLhaus。API サービスが必要です。',
 		'timestamp.name': 'ID・タイムスタンプデコーダー',
 		'timestamp.description':
 			'X、Discord、Instagram、TikTok、Mastodon、LinkedIn の ID や UUID、ULID、ObjectId に隠れた作成日時をデコードし、Unix、FILETIME、Chrome、Cocoa、Excel のタイムスタンプを読み取ります。日付からすべての形式への変換も可能です。',
@@ -278,6 +279,6 @@ export default {
 			'IEEE の登録情報から MAC アドレスのベンダーを調べ、すべての表記と EUI-64 に変換し、マルチキャスト、ローカル管理、ランダム化されたプライベートアドレスを見分けます。オフラインで動作します。',
 		'reputation.name': 'レピュテーションチェック',
 		'reputation.description':
-			'IP、ドメイン、URL、メールアドレスを公開ブロックリストや脅威フィードと照合します: OTX、StopForumSpam、Tor 出口ノード、Spamhaus DROP、URLhaus、ThreatFox。掲載は手がかりであり、証拠ではありません。一部 Python バックエンドが必要です。'
+			'IP、ドメイン、URL、メールアドレスを公開ブロックリストや脅威フィードと照合します: OTX、StopForumSpam、Tor 出口ノード、Spamhaus DROP、URLhaus、ThreatFox。掲載は手がかりであり、証拠ではありません。一部 API サービスが必要です。'
 	}
 };

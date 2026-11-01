@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
 // Passive Site Footprint (/footprint).
 export default {
 	en: {
@@ -31,7 +32,7 @@ export default {
 			'First capture of each URL, through the FreeOSINT-UI backend (the Wayback CDX API cannot be called from the browser).',
 		'wayback.loading': 'Querying the Wayback Machine… this can take up to 30 seconds.',
 		'wayback.backendNeeded':
-			'The Wayback Machine section needs the FreeOSINT-UI Python backend; Common Crawl works without it. Start it with:',
+			'The Wayback Machine section needs the FreeOSINT-UI API service; Common Crawl works without it. Please try again later.',
 		'stats.title': 'Overview',
 		'stats.total': { one: 'unique archived URL', other: 'unique archived URLs' },
 		'stats.bySource': 'By source',
@@ -128,7 +129,7 @@ export default {
 			'Prima acquisizione di ogni URL, tramite il backend di FreeOSINT-UI (la CDX API della Wayback Machine non si può chiamare dal browser).',
 		'wayback.loading': 'Interrogazione della Wayback Machine… può richiedere fino a 30 secondi.',
 		'wayback.backendNeeded':
-			'La sezione Wayback Machine richiede il backend Python di FreeOSINT-UI; Common Crawl funziona anche senza. Avvialo con:',
+			'La sezione Wayback Machine richiede il servizio API di FreeOSINT-UI; Common Crawl funziona anche senza. Riprova tra poco.',
 		'stats.title': 'Panoramica',
 		'stats.total': { one: 'URL archiviato unico', other: 'URL archiviati unici' },
 		'stats.bySource': 'Per fonte',
@@ -226,7 +227,7 @@ export default {
 		'wayback.loading':
 			"Interrogation de la Wayback Machine… cela peut prendre jusqu'à 30 secondes.",
 		'wayback.backendNeeded':
-			'La section Wayback Machine nécessite le backend Python de FreeOSINT-UI ; Common Crawl fonctionne sans. Démarrez-le avec :',
+			'La section Wayback Machine nécessite le service API de FreeOSINT-UI ; Common Crawl fonctionne sans. Réessayez plus tard.',
 		'stats.title': 'Vue d’ensemble',
 		'stats.total': { one: 'URL archivée unique', other: 'URL archivées uniques' },
 		'stats.bySource': 'Par source',
@@ -325,7 +326,7 @@ export default {
 			'各 URL の最初のキャプチャです。FreeOSINT-UI のバックエンド経由で取得します (Wayback CDX API はブラウザから呼び出せません)。',
 		'wayback.loading': 'Wayback Machine を照会中… 最大 30 秒かかることがあります。',
 		'wayback.backendNeeded':
-			'Wayback Machine のセクションには FreeOSINT-UI の Python バックエンドが必要です。Common Crawl はバックエンドなしで動作します。次のコマンドで起動してください:',
+			'Wayback Machine のセクションには FreeOSINT-UI の API サービスが必要です。Common Crawl はバックエンドなしで動作します。後でもう一度お試しください。',
 		'stats.title': '概要',
 		'stats.total': { other: '件の一意なアーカイブ済み URL' },
 		'stats.bySource': 'ソース別',

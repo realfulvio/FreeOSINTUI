@@ -1,4 +1,4 @@
-import { BACKEND_START_COMMAND } from '$lib/api.js';
+// Modified 2026 by realfulvio for Cloudflare Workers; original attribution in NOTICE.
 import { t } from '$lib/i18n/i18n.svelte.js';
 import {
 	createReport,
@@ -113,7 +113,7 @@ function withBackend(state) {
 	return state.status === 'backend'
 		? {
 				status: 'error',
-				error: `${t('backend.down')} ${t('backend.needed')} ${BACKEND_START_COMMAND}`
+				error: `${t('backend.down')} ${t('backend.needed')}`
 			}
 		: /** @type {any} */ (state);
 }
