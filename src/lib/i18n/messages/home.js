@@ -1,6 +1,7 @@
 // Modified 2026 by realfulvio; original attribution in NOTICE.
 export default {
 	en: {
+		animations: 'Animations',
 		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			'Free OSINT tools: Google dorks, username, email, phone, domain and IP analysis, breach check, metadata extractor, hash checker and more.',
@@ -30,6 +31,7 @@ export default {
 			'Online lookups contact external services. Results depend on their coverage and availability.'
 	},
 	it: {
+		animations: 'Animazioni',
 		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			'Strumenti OSINT gratuiti: Google dork, analisi di username, email, telefono, dominio e IP, controllo dei data breach, estrattore di metadati, verifica hash e altro.',
@@ -59,6 +61,7 @@ export default {
 			'Le ricerche online contattano servizi esterni. I risultati dipendono dalla loro copertura e disponibilità.'
 	},
 	fr: {
+		animations: 'Animations',
 		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			"Outils OSINT gratuits : Google dorks, analyse de nom d'utilisateur, e-mail, téléphone, domaine et IP, vérification de fuites de données, extracteur de métadonnées, vérificateur de hash et plus.",
@@ -88,6 +91,7 @@ export default {
 			'Les recherches en ligne contactent des services externes. Les résultats dépendent de leur couverture et de leur disponibilité.'
 	},
 	ja: {
+		animations: 'アニメーション',
 		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			'無料の OSINT ツール: Google dork、ユーザー名・メールアドレス・電話番号・ドメイン・IP の分析、データ漏えいチェック、メタデータ抽出、ハッシュチェッカーなど。',

@@ -1,11 +1,31 @@
 <!-- Modified 2026 by realfulvio: hacker-punk catalogue. Original attribution in NOTICE. -->
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import PageMeta from '$lib/components/PageMeta.svelte';
 	import ToolCard from '$lib/components/ToolCard.svelte';
 	import { TOOLS, toolsByCategory } from '$lib/tools.js';
 	import { t } from '$lib/i18n/i18n.svelte.js';
 	import { structuredDataTag } from '$lib/site.js';
 	const groups = toolsByCategory();
+	let motionPaused = $state(false);
+	let motionVisible = $state(true);
+	let motionDocumentVisible = $state(true);
+	let heroElement: HTMLElement;
+	onMount(() => {
+		const observer = new IntersectionObserver(([entry]) => {
+			motionVisible = entry.isIntersecting;
+		});
+		observer.observe(heroElement);
+		const visibility = () => {
+			motionDocumentVisible = !document.hidden;
+		};
+		visibility();
+		document.addEventListener('visibilitychange', visibility);
+		return () => {
+			observer.disconnect();
+			document.removeEventListener('visibilitychange', visibility);
+		};
+	});
 	let query = $state('');
 	let category = $state('all');
 	const filtered = $derived(
@@ -28,7 +48,12 @@
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- Own structured data with escaped markup. -->
 	{@html structuredDataTag({ description: t('home.metaDescription'), tools: TOOLS })}
 </svelte:head>
-<section class="hero" aria-labelledby="hero-title">
+<section
+	class="hero"
+	bind:this={heroElement}
+	class:motion-paused={motionPaused || !motionVisible || !motionDocumentVisible}
+	aria-labelledby="hero-title"
+>
 	<div class="hero-copy">
 		<div class="eyebrow">
 			<span class="square"></span>
@@ -37,10 +62,17 @@
 		<h1 id="hero-title">{t('home.headlineA')}<br /><span>{t('home.headlineB')}</span></h1>
 		<p class="intro">{t('home.tagline')}</p>
 		<a class="launch" href="#catalogue">{t('home.browse')} <span aria-hidden="true">↗</span></a>
+		<button
+			class="motion-toggle"
+			aria-pressed={!motionPaused}
+			onclick={() => (motionPaused = !motionPaused)}
+			>{t('home.animations')} <span aria-hidden="true">{motionPaused ? '▶' : 'Ⅱ'}</span></button
+		>
 	</div>
 	<div class="signal" aria-hidden="true">
 		<div class="signal-top"><span>FIELD NOTES / OSINT</span><span>[01—20]</span></div>
 		<div class="signal-art">
+			<div class="radar-sweep"></div>
 			<div class="orbit orbit-one"></div>
 			<div class="orbit orbit-two"></div>
 			<div class="crosshair"></div>
@@ -116,6 +148,152 @@
 </section>
 
 <style>
+	.motion-toggle {
+		display: block;
+		margin-top: 1rem;
+		padding: 0.4rem 0;
+		border: 0;
+		background: none;
+		color: var(--color-text-dim);
+		font-size: 0.65rem;
+	}
+	.motion-toggle span {
+		color: var(--color-accent);
+		margin-left: 0.6rem;
+	}
+	.signal {
+		animation: signal-drift 7s ease-in-out infinite;
+	}
+	.radar-sweep {
+		position: absolute;
+		width: 240px;
+		height: 240px;
+		left: 50%;
+		top: 50%;
+		border-radius: 50%;
+		background: conic-gradient(
+			from 0deg,
+			transparent 0deg 260deg,
+			#59f5e130 340deg,
+			#59f5e180 359deg,
+			transparent 360deg
+		);
+		animation: radar-turn 6s linear infinite;
+	}
+	.orbit-two {
+		animation: radar-turn 32s linear infinite reverse;
+	}
+	.point {
+		animation: node-pulse 3.6s ease-in-out infinite;
+	}
+	.p2 {
+		animation-delay: -1.2s;
+	}
+	.p3 {
+		animation-delay: -2.4s;
+	}
+	.core span {
+		animation: core-drift 4s ease-in-out infinite;
+	}
+	.motion-paused .signal,
+	.motion-paused .signal * {
+		animation-play-state: paused;
+	}
+	.hero-copy {
+		animation: arrive 0.6s ease-out both;
+	}
+	.launch {
+		transition:
+			transform 0.2s,
+			box-shadow 0.2s,
+			background 0.2s;
+	}
+	.launch span {
+		transition: transform 0.2s;
+	}
+	.launch:hover,
+	.launch:focus-visible {
+		transform: translateY(-3px);
+		box-shadow: 6px 7px 0 #ff55b440;
+	}
+	.launch:hover span,
+	.launch:focus-visible span {
+		transform: translate(3px, -3px);
+	}
+	.filters button {
+		transition:
+			color 0.18s,
+			background 0.18s,
+			transform 0.18s;
+	}
+	.filters button:hover {
+		transform: translateX(3px);
+	}
+	.search {
+		transition:
+			border-color 0.2s,
+			box-shadow 0.2s;
+	}
+	.search:focus-within {
+		border-color: var(--color-accent);
+		box-shadow: 4px 4px 0 #59f5e118;
+	}
+	.grid li {
+		animation: arrive 0.35s ease-out both;
+	}
+	@keyframes arrive {
+		from {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	@keyframes radar-turn {
+		from {
+			transform: translate(-50%, -50%) rotate(0);
+		}
+		to {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+	@keyframes signal-drift {
+		0%,
+		100% {
+			transform: translateY(0) rotate(2deg);
+		}
+		50% {
+			transform: translateY(-7px) rotate(0.5deg);
+		}
+	}
+	@keyframes node-pulse {
+		0%,
+		100% {
+			opacity: 0.5;
+			transform: scale(0.85);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1.3);
+		}
+	}
+	@keyframes core-drift {
+		0%,
+		100% {
+			transform: translate(0, 0);
+		}
+		50% {
+			transform: translate(3px, -3px);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.motion-toggle {
+			display: none;
+		}
+	}
+
 	aside,
 	.tool-browser {
 		min-width: 0;

@@ -58,3 +58,9 @@ Optional URLhaus/ThreatFox authentication uses `ABUSECH_AUTH_KEY`. Without it th
 Local validation: 555 frontend tests and 126 Worker tests passed; TypeScript and lint passed; static build and Wrangler dry-run succeeded. Worker bundle approximately 238 KiB / 69 KiB gzip (includes the 716-site dataset). Local workerd smoke checks covered static routes, API JSON errors, optional-key behavior and site listing. No Cloudflare deployment or billing-plan change has been performed. Live third-party coverage and production CPU measurements remain deployment checks.
 
 `npm audit --omit=dev` reported no production dependency advisories at validation. Development tools still report 18 low/moderate advisories; compatible fixes were applied without forcing breaking framework/toolchain upgrades.
+
+## Acknowledgements
+
+Thank you to [kerlo](https://github.com/Kerlooo) for creating [FreeOSINT-UI](https://github.com/Kerlooo/FreeOSINTUI) and making its code available. TRACEPUNK builds directly on that work; our interface, Workers port and subsequent changes do not replace the original author's credit.
+
+Thanks also to [OSINT-UI](https://osint-ui.com/) for the original inspiration, and to the [WhatsMyName contributors](https://github.com/WebBreacher/WhatsMyName) and the maintainers of the public data sources and libraries used by these tools. See [NOTICE](NOTICE) for attribution and third-party licenses.

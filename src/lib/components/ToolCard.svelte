@@ -27,6 +27,24 @@
 </a>
 
 <style>
+	.arrow {
+		transition: transform 0.2s;
+	}
+	.card:hover .arrow,
+	.card:focus-visible .arrow {
+		transform: translate(3px, -3px);
+	}
+	.card::after {
+		transition:
+			width 0.2s,
+			height 0.2s;
+	}
+	.card:hover::after,
+	.card:focus-visible::after {
+		width: 24px;
+		height: 24px;
+	}
+
 	.card {
 		display: flex;
 		flex-direction: column;
@@ -53,7 +71,8 @@
 		border-right: 1px solid var(--color-punk);
 		border-bottom: 1px solid var(--color-punk);
 	}
-	.card:hover {
+	.card:hover,
+	.card:focus-visible {
 		border-color: var(--color-accent);
 		background: #131e27;
 		transform: translateY(-2px);
