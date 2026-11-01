@@ -111,7 +111,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.reputation.name')} — OSINT / LAB"
+	title="{t('tools.reputation.name')} — TRACE//PUNK"
 	description={t('reputation.metaDescription')}
 />
 

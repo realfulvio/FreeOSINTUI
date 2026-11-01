@@ -135,7 +135,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.footprint.name')} — OSINT / LAB"
+	title="{t('tools.footprint.name')} — TRACE//PUNK"
 	description={t('footprint.metaDescription')}
 />
 

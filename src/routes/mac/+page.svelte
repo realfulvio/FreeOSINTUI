@@ -83,7 +83,7 @@
 	});
 </script>
 
-<PageMeta title="{t('tools.mac.name')} — OSINT / LAB" description={t('mac.metaDescription')} />
+<PageMeta title="{t('tools.mac.name')} — TRACE//PUNK" description={t('mac.metaDescription')} />
 
 <ToolHeader title={t('tools.mac.name')} description={t('mac.description')} />
 

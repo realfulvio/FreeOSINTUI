@@ -32,7 +32,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.dorks.name')} — OSINT / LAB"
+	title="{t('tools.dorks.name')} — TRACE//PUNK"
 	description={t('tools.dorks.description')}
 />
 

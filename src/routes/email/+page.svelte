@@ -119,7 +119,7 @@
 	});
 </script>
 
-<PageMeta title="{t('tools.email.name')} — OSINT / LAB" description={t('email.metaDescription')} />
+<PageMeta title="{t('tools.email.name')} — TRACE//PUNK" description={t('email.metaDescription')} />
 
 <ToolHeader title={t('tools.email.name')} description={t('email.intro')} />
 

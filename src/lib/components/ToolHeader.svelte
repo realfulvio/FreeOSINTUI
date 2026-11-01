@@ -6,7 +6,7 @@
 
 <header>
 	<div class="tool-kicker">
-		<span aria-hidden="true">↗</span> OSINT / LAB <span aria-hidden="true">//</span> FIELD TOOL
+		<span aria-hidden="true">↗</span> TRACE//PUNK <span aria-hidden="true">//</span> FIELD TOOL
 	</div>
 	<h1>{title}</h1>
 	<p>{description}</p>

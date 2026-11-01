@@ -83,7 +83,7 @@
 		});
 </script>
 
-<PageMeta title="{t('tools.hash.name')} — OSINT / LAB" description={t('hash.metaDescription')} />
+<PageMeta title="{t('tools.hash.name')} — TRACE//PUNK" description={t('hash.metaDescription')} />
 
 <ToolHeader title={t('tools.hash.name')} description={t('hash.intro')} />
 

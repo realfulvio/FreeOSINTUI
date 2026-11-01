@@ -47,7 +47,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.metadata.name')} — OSINT / LAB"
+	title="{t('tools.metadata.name')} — TRACE//PUNK"
 	description={t('metadata.metaDescription')}
 />
 

@@ -131,7 +131,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.lookalike.name')} — OSINT / LAB"
+	title="{t('tools.lookalike.name')} — TRACE//PUNK"
 	description={t('lookalike.metaDescription')}
 />
 

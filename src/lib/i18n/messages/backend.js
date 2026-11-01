@@ -3,22 +3,22 @@
 export default {
 	en: {
 		down: 'Backend not running.',
-		needed: 'This tool needs the OSINT / LAB API service. Please try again later.',
+		needed: 'This tool needs the TRACE//PUNK API service. Please try again later.',
 		retry: 'Retry'
 	},
 	it: {
 		down: 'Backend non avviato.',
-		needed: 'Questo strumento richiede il servizio API di OSINT / LAB. Riprova tra poco.',
+		needed: 'Questo strumento richiede il servizio API di TRACE//PUNK. Riprova tra poco.',
 		retry: 'Riprova'
 	},
 	fr: {
 		down: 'Backend non démarré.',
-		needed: 'Cet outil nécessite le service API de OSINT / LAB. Réessayez plus tard.',
+		needed: 'Cet outil nécessite le service API de TRACE//PUNK. Réessayez plus tard.',
 		retry: 'Réessayer'
 	},
 	ja: {
 		down: 'バックエンドが起動していません。',
-		needed: 'このツールには OSINT / LAB の API サービスが必要です。後でもう一度お試しください。',
+		needed: 'このツールには TRACE//PUNK の API サービスが必要です。後でもう一度お試しください。',
 		retry: '再試行'
 	}
 };

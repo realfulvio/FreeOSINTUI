@@ -32,7 +32,7 @@
 	<nav aria-label={t('nav.main')}>
 		<a class="brand" href={resolve('/')}>
 			<span class="brand-mark" aria-hidden="true">↗</span><span
-				>{SITE_NAME}<small>OPEN SOURCE INTELLIGENCE</small></span
+				>{SITE_NAME}<small>OSINT toolkit</small></span
 			>
 		</a>
 		<ul class="top">

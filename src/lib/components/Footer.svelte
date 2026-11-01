@@ -11,14 +11,14 @@
 			<p>{t('nav.footerAbout')}</p>
 		</div>
 		<div class="credits">
-			<a href="https://github.com/realfulvio/FreeOSINTUI" target="_blank" rel="noopener noreferrer"
+			<a href="https://github.com/realfulvio/tracepunk" target="_blank" rel="noopener noreferrer"
 				>GitHub ↗</a
 			>
 			<p>
 				Based on <a href="https://github.com/Kerlooo/FreeOSINTUI">FreeOSINT-UI / kerlo</a><br />{t(
 					'nav.inspiredBy'
 				)} <a href="https://osint-ui.com/">OSINT-UI</a> ·
-				<a href="https://github.com/realfulvio/FreeOSINTUI/blob/main/.github/LICENSE"
+				<a href="https://github.com/realfulvio/tracepunk/blob/main/.github/LICENSE"
 					>License &amp; credits</a
 				>
 			</p>

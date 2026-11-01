@@ -89,7 +89,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.favicon.name')} — OSINT / LAB"
+	title="{t('tools.favicon.name')} — TRACE//PUNK"
 	description={t('favicon.metaDescription')}
 />
 

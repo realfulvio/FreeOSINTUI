@@ -1,6 +1,8 @@
-# OSINT / LAB — working name
+# TRACE//PUNK
 
-Hacker-punk interface with a searchable 20-tool catalogue, category filters and rewritten tool descriptions. Charcoal, cyan and magenta theme, responsive layouts, system fonts and no added UI runtime dependencies. The display name is provisional; repository renaming is pending.
+OSINT toolkit.
+
+Hacker-punk interface with a searchable 20-tool catalogue, category filters and rewritten tool descriptions. Charcoal, cyan and magenta theme, responsive layouts, system fonts and no added UI runtime dependencies.
 
 Svelte static frontend and TypeScript API prepared for Cloudflare Workers Free. Derived from [Kerlooo/FreeOSINTUI](https://github.com/Kerlooo/FreeOSINTUI); inspired also by [OSINT-UI](https://osint-ui.com/). The original author, license and third-party notices are preserved in [NOTICE](NOTICE) and [.github/LICENSE](.github/LICENSE). Apache 2.0 **with Commons Clause**, not plain Apache 2.0. WhatsMyName data retains CC BY-SA 4.0.
 

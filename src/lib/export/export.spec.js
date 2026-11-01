@@ -140,10 +140,10 @@ describe('files', () => {
 
 	it('builds a safe file name with tool, input and minute', () => {
 		expect(reportFilename(report, 'md')).toBe(
-			'freeosintui-url-https-ex.com-a-b-c-1-20261003-1952.md'
+			'tracepunk-url-https-ex.com-a-b-c-1-20261003-1952.md'
 		);
 		const blank = createReport({ tool: 'hash', input: '', now, sections: [] });
-		expect(reportFilename(blank, 'json')).toBe('freeosintui-hash-20261003-1952.json');
+		expect(reportFilename(blank, 'json')).toBe('tracepunk-hash-20261003-1952.json');
 	});
 
 	it('serializes the report as JSON', () => {

@@ -40,7 +40,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.timestamp.name')} — OSINT / LAB"
+	title="{t('tools.timestamp.name')} — TRACE//PUNK"
 	description={t('timestamp.metaDescription')}
 />
 

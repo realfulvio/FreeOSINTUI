@@ -4,7 +4,7 @@ export default {
 	en: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '.',
-		ogImageAlt: 'OSINT / LAB: free OSINT tools in your browser',
+		ogImageAlt: 'TRACE//PUNK: free OSINT tools in your browser',
 		yes: 'yes',
 		no: 'no',
 		unknown: 'Unknown',
@@ -29,7 +29,7 @@ export default {
 	it: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '.',
-		ogImageAlt: 'OSINT / LAB: strumenti OSINT gratuiti nel browser',
+		ogImageAlt: 'TRACE//PUNK: strumenti OSINT gratuiti nel browser',
 		yes: 'sì',
 		no: 'no',
 		unknown: 'Sconosciuto',
@@ -55,7 +55,7 @@ export default {
 	fr: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '.',
-		ogImageAlt: 'OSINT / LAB : outils OSINT gratuits dans votre navigateur',
+		ogImageAlt: 'TRACE//PUNK : outils OSINT gratuits dans votre navigateur',
 		yes: 'oui',
 		no: 'non',
 		unknown: 'Inconnu',
@@ -81,7 +81,7 @@ export default {
 	ja: {
 		// Sentence-final full stop, for text joined around markup.
 		period: '。',
-		ogImageAlt: 'OSINT / LAB: ブラウザで使える無料の OSINT ツール',
+		ogImageAlt: 'TRACE//PUNK: ブラウザで使える無料の OSINT ツール',
 		yes: 'はい',
 		no: 'いいえ',
 		unknown: '不明',

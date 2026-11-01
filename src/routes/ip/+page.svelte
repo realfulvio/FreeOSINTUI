@@ -151,7 +151,7 @@
 	});
 </script>
 
-<PageMeta title="{t('tools.ip.name')} — OSINT / LAB" description={t('ip.metaDescription')} />
+<PageMeta title="{t('tools.ip.name')} — TRACE//PUNK" description={t('ip.metaDescription')} />
 
 <ToolHeader title={t('tools.ip.name')} description={t('ip.intro')} />
 

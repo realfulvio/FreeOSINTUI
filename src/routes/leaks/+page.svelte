@@ -110,7 +110,7 @@
 	});
 </script>
 
-<PageMeta title="{t('tools.leaks.name')} — OSINT / LAB" description={t('leaks.metaDescription')} />
+<PageMeta title="{t('tools.leaks.name')} — TRACE//PUNK" description={t('leaks.metaDescription')} />
 
 <ToolHeader title={t('tools.leaks.name')} description={t('leaks.intro')} />
 

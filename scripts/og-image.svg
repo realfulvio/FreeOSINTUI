@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 <rect width="1200" height="630" fill="#090b10"/><path d="M60 0v630M1140 0v630M0 100h1200M0 550h1200" stroke="#2b3543" fill="none"/>
 <rect x="86" y="35" width="38" height="38" fill="#59f5e1"/><path d="m96 63 18-18m-14 0h14v14" stroke="#090b10" stroke-width="3" fill="none"/>
-<g font-family="Arial,Helvetica,sans-serif" font-weight="900"><text x="145" y="65" font-size="32" fill="#e8edf1">OSINT / LAB</text><text x="85" y="235" font-size="72" fill="#e8edf1">FOLLOW THE TRACES.</text><text x="85" y="325" font-size="72" fill="#59f5e1">CONNECT THE SIGNALS.</text></g>
-<g font-family="monospace" fill="#adb8c5" font-size="20"><text x="86" y="405">PUBLIC DATA. HUMAN CURIOSITY.</text><text x="86" y="505">20 TOOLS / OPEN SOURCE INTELLIGENCE</text><text x="86" y="598">IDENTITY × NETWORK × ARTIFACTS</text></g><path d="M1020 475h80v20h-80z" fill="#ff55b4" transform="rotate(-8 1060 485)"/>
+<g font-family="Arial,Helvetica,sans-serif" font-weight="900"><text x="145" y="65" font-size="32" fill="#e8edf1">TRACE//PUNK</text><text x="85" y="235" font-size="72" fill="#e8edf1">FOLLOW THE TRACES.</text><text x="85" y="325" font-size="72" fill="#59f5e1">CONNECT THE SIGNALS.</text></g>
+<g font-family="monospace" fill="#adb8c5" font-size="20"><text x="86" y="405">PUBLIC DATA. HUMAN CURIOSITY.</text><text x="86" y="505">20 TOOLS / OSINT toolkit</text><text x="86" y="598">IDENTITY × NETWORK × ARTIFACTS</text></g><path d="M1020 475h80v20h-80z" fill="#ff55b4" transform="rotate(-8 1060 485)"/>
 </svg>

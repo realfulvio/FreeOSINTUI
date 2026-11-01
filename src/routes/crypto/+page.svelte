@@ -75,7 +75,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.crypto.name')} — OSINT / LAB"
+	title="{t('tools.crypto.name')} — TRACE//PUNK"
 	description={t('crypto.metaDescription')}
 />
 

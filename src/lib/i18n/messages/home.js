@@ -1,7 +1,7 @@
 // Modified 2026 by realfulvio; original attribution in NOTICE.
 export default {
 	en: {
-		title: 'OSINT / LAB — Follow the traces',
+		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			'Free OSINT tools: Google dorks, username, email, phone, domain and IP analysis, breach check, metadata extractor, hash checker and more.',
 		intro:
@@ -15,7 +15,7 @@ export default {
 		eyebrow: 'OPEN SOURCES. SHARP QUESTIONS.',
 		headlineA: 'FOLLOW THE TRACES.',
 		headlineB: 'CONNECT THE SIGNALS.',
-		tagline: 'Public data. Clear leads. Your investigation.',
+		tagline: 'OSINT toolkit',
 		browse: 'Explore the tools',
 		searchLabel: 'Find a tool',
 		searchPlaceholder: 'Domain, username, metadata…',
@@ -30,7 +30,7 @@ export default {
 			'Online lookups contact external services. Results depend on their coverage and availability.'
 	},
 	it: {
-		title: 'OSINT / LAB — Segui le tracce',
+		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			'Strumenti OSINT gratuiti: Google dork, analisi di username, email, telefono, dominio e IP, controllo dei data breach, estrattore di metadati, verifica hash e altro.',
 		intro:
@@ -44,7 +44,7 @@ export default {
 		eyebrow: 'FONTI APERTE. DOMANDE PRECISE.',
 		headlineA: 'SEGUI LE TRACCE.',
 		headlineB: 'COLLEGA I SEGNALI.',
-		tagline: 'Dati pubblici. Piste concrete. La tua indagine.',
+		tagline: 'OSINT toolkit',
 		browse: 'Esplora gli strumenti',
 		searchLabel: 'Trova uno strumento',
 		searchPlaceholder: 'Dominio, username, metadati…',
@@ -59,7 +59,7 @@ export default {
 			'Le ricerche online contattano servizi esterni. I risultati dipendono dalla loro copertura e disponibilità.'
 	},
 	fr: {
-		title: 'OSINT / LAB — Suivez les traces',
+		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			"Outils OSINT gratuits : Google dorks, analyse de nom d'utilisateur, e-mail, téléphone, domaine et IP, vérification de fuites de données, extracteur de métadonnées, vérificateur de hash et plus.",
 		intro:
@@ -73,7 +73,7 @@ export default {
 		eyebrow: 'SOURCES OUVERTES. QUESTIONS PRÉCISES.',
 		headlineA: 'SUIVEZ LES TRACES.',
 		headlineB: 'RELIEZ LES SIGNAUX.',
-		tagline: 'Données publiques. Pistes concrètes. Votre enquête.',
+		tagline: 'OSINT toolkit',
 		browse: 'Explorer les outils',
 		searchLabel: 'Trouver un outil',
 		searchPlaceholder: 'Domaine, pseudonyme, métadonnées…',
@@ -88,7 +88,7 @@ export default {
 			'Les recherches en ligne contactent des services externes. Les résultats dépendent de leur couverture et de leur disponibilité.'
 	},
 	ja: {
-		title: 'OSINT / LAB — 痕跡をたどる',
+		title: 'TRACE//PUNK — OSINT toolkit',
 		metaDescription:
 			'無料の OSINT ツール: Google dork、ユーザー名・メールアドレス・電話番号・ドメイン・IP の分析、データ漏えいチェック、メタデータ抽出、ハッシュチェッカーなど。',
 		intro:
@@ -101,7 +101,7 @@ export default {
 		eyebrow: '公開情報から、確かな問いへ。',
 		headlineA: '痕跡をたどる。',
 		headlineB: '手がかりをつなぐ。',
-		tagline: '公開データ。具体的な手がかり。あなたの調査。',
+		tagline: 'OSINT toolkit',
 		browse: 'ツールを探す',
 		searchLabel: 'ツールを検索',
 		searchPlaceholder: 'ドメイン、ユーザー名、メタデータ…',

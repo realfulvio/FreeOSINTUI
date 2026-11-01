@@ -66,7 +66,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.headers.name')} — OSINT / LAB"
+	title="{t('tools.headers.name')} — TRACE//PUNK"
 	description={t('headers.metaDescription')}
 />
 

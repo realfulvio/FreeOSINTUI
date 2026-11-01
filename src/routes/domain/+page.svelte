@@ -105,7 +105,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.domain.name')} — OSINT / LAB"
+	title="{t('tools.domain.name')} — TRACE//PUNK"
 	description={t('domain.metaDescription')}
 />
 

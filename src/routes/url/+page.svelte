@@ -111,7 +111,7 @@
 	const isEmptyList = (list) => !list?.length;
 </script>
 
-<PageMeta title="{t('tools.url.name')} — OSINT / LAB" description={t('url.metaDescription')} />
+<PageMeta title="{t('tools.url.name')} — TRACE//PUNK" description={t('url.metaDescription')} />
 
 <ToolHeader title={t('tools.url.name')} description={t('url.description')} />
 

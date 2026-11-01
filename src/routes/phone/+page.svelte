@@ -25,7 +25,7 @@
 	const buildReport = () => buildPhoneReport({ input, result: result });
 </script>
 
-<PageMeta title="{t('tools.phone.name')} — OSINT / LAB" description={t('phone.metaDescription')} />
+<PageMeta title="{t('tools.phone.name')} — TRACE//PUNK" description={t('phone.metaDescription')} />
 
 <ToolHeader title={t('tools.phone.name')} description={t('phone.description')} />
 

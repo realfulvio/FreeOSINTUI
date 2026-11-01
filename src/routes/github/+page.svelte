@@ -132,7 +132,7 @@
 </script>
 
 <PageMeta
-	title="{t('tools.github.name')} — OSINT / LAB"
+	title="{t('tools.github.name')} — TRACE//PUNK"
 	description={t('github.metaDescription')}
 />
 

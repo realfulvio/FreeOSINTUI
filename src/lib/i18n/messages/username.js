@@ -5,7 +5,7 @@ export default {
 		metaDescription:
 			'Check whether a username exists on hundreds of websites and social networks, using the WhatsMyName site list.',
 		description:
-			'Check whether a username is registered on hundreds of websites, social networks and forums. Each site is checked by the OSINT / LAB backend using the WhatsMyName detection rules.',
+			'Check whether a username is registered on hundreds of websites, social networks and forums. Each site is checked by the TRACE//PUNK backend using the WhatsMyName detection rules.',
 		heading: 'Username',
 		inputLabel: 'Username',
 		placeholder: 'e.g. torvalds',
@@ -71,7 +71,7 @@ export default {
 		metaDescription:
 			'Controlla se uno username esiste su centinaia di siti web e social network, usando la lista di siti WhatsMyName.',
 		description:
-			'Controlla se uno username è registrato su centinaia di siti web, social network e forum. Ogni sito viene controllato dal backend di OSINT / LAB con le regole di rilevamento di WhatsMyName.',
+			'Controlla se uno username è registrato su centinaia di siti web, social network e forum. Ogni sito viene controllato dal backend di TRACE//PUNK con le regole di rilevamento di WhatsMyName.',
 		heading: 'Username',
 		inputLabel: 'Username',
 		placeholder: 'es. torvalds',
@@ -141,7 +141,7 @@ export default {
 		metaDescription:
 			"Vérifiez si un nom d'utilisateur existe sur des centaines de sites web et réseaux sociaux, à l'aide de la liste de sites WhatsMyName.",
 		description:
-			"Vérifiez si un nom d'utilisateur est enregistré sur des centaines de sites web, réseaux sociaux et forums. Chaque site est vérifié par le backend OSINT / LAB avec les règles de détection de WhatsMyName.",
+			"Vérifiez si un nom d'utilisateur est enregistré sur des centaines de sites web, réseaux sociaux et forums. Chaque site est vérifié par le backend TRACE//PUNK avec les règles de détection de WhatsMyName.",
 		heading: "Nom d'utilisateur",
 		inputLabel: "Nom d'utilisateur",
 		placeholder: 'ex. torvalds',
@@ -212,7 +212,7 @@ export default {
 		metaDescription:
 			'WhatsMyName のサイト一覧を使い、数百の Web サイトや SNS にユーザー名が存在するかを確認します。',
 		description:
-			'数百の Web サイト、SNS、フォーラムにユーザー名が登録されているかを確認します。各サイトは WhatsMyName の検出ルールに従って OSINT / LAB のバックエンドが確認します。',
+			'数百の Web サイト、SNS、フォーラムにユーザー名が登録されているかを確認します。各サイトは WhatsMyName の検出ルールに従って TRACE//PUNK のバックエンドが確認します。',
 		heading: 'ユーザー名',
 		inputLabel: 'ユーザー名',
 		placeholder: '例: torvalds',
