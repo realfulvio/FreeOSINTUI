@@ -81,4 +81,4 @@ Provider resilience and authenticated live checks are documented in the [provide
 
 ## Measured frontend performance
 
-The [2026-11-01 comparison](docs/quality/2026-11-01-performance.md) documents controlled browser tests against the original deployment: 57% less initial homepage payload and no main-thread long tasks during the same 64 MiB hash workload. Hash computation time is effectively tied; the original still wins homepage LCP by 140 ms in this small sample. All four languages and twenty tools remain available.
+The [latest comparison and readability fix](docs/quality/2026-11-01-first-paint-and-readability.md) records a 392 ms median homepage LCP versus 536 ms for the original in three paired lab runs, with 58% less initial payload. The [identical-work hash benchmark](docs/quality/2026-11-01-performance.md) found effectively tied computation time and no main-thread long tasks for TRACEPUNK. These are small browser lab samples, not universal speed guarantees. All four languages and twenty tools remain available.

@@ -1,0 +1,53 @@
+{
+	"conditions": "Same Chrome profile, 390x844 DPR1, CPU4, latency150ms, download200000 B/s, upload93750 B/s, HTTP cache disabled, Italian locale, 5-second observation; three alternating runs/site, warm connections and extensions present.",
+	"samples": [
+		{
+			"site": "original",
+			"run": 1,
+			"lcp_ms": 528,
+			"cls": 0.19751254210190855,
+			"bytes": 169456,
+			"visible": "visible"
+		},
+		{
+			"site": "tracepunk-css",
+			"run": 1,
+			"lcp_ms": 392,
+			"cls": 0.07178241829860324,
+			"bytes": 71755,
+			"visible": "visible"
+		},
+		{
+			"site": "original",
+			"run": 2,
+			"lcp_ms": 536,
+			"cls": 0.19751254210190855,
+			"bytes": 169456,
+			"visible": "visible"
+		},
+		{
+			"site": "tracepunk-css",
+			"run": 2,
+			"lcp_ms": 400,
+			"cls": 0,
+			"bytes": 71715,
+			"visible": "visible"
+		},
+		{
+			"site": "original",
+			"run": 3,
+			"lcp_ms": 564,
+			"cls": 0.19751254210190855,
+			"bytes": 169456,
+			"visible": "visible"
+		},
+		{
+			"site": "tracepunk-css",
+			"run": 3,
+			"lcp_ms": 380,
+			"cls": 0.07178241829860324,
+			"bytes": 71685,
+			"visible": "visible"
+		}
+	]
+}
