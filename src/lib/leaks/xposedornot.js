@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { FetchError, fetchJson } from '$lib/net.js';
 import { t } from '$lib/i18n/i18n.svelte.js';
 
@@ -10,8 +11,13 @@ const API = 'https://api.xposedornot.com/v1';
  * @returns {string[]}
  */
 export function parseCheckEmail(json) {
-	if (!json || !Array.isArray(json.breaches)) return [];
-	return [...new Set(json.breaches.flat().filter((name) => typeof name === 'string' && name))];
+	if (json?.Error === 'Not found') return [];
+	if (!Array.isArray(json?.breaches) || json.Error)
+		throw new FetchError(t('common.invalidResponse', { host: 'XposedOrNot' }));
+	const names = json.breaches.flat();
+	if (names.some((name) => typeof name !== 'string' || !name.trim()))
+		throw new FetchError(t('common.invalidResponse', { host: 'XposedOrNot' }));
+	return [...new Set(names)];
 }
 
 /**
@@ -111,10 +117,10 @@ export async function checkEmailBreaches(email, options = {}) {
 	let json;
 	try {
 		json = await fetchJson(`${API}/check-email/${encodeURIComponent(email)}`, {
-			...options,
-			allowNotFound: true
+			...options
 		});
 	} catch (error) {
+		if (error instanceof FetchError && error.status === 404) return [];
 		throw explainError(error);
 	}
 	const names = parseCheckEmail(json);

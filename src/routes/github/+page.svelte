@@ -190,6 +190,7 @@
 					<GithubEmails
 						emails={emails.data?.emails ?? []}
 						scanned={emails.data?.scanned ?? []}
+						failed={emails.data?.failed ?? []}
 						commitsPerRepo={COMMITS_PER_REPO}
 					/>
 				</GithubSection>

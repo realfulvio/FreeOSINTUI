@@ -1,3 +1,5 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { getDomain } from 'tldts';
 /**
  * Address fields (From, To, Reply-To...) and domain helpers for alignment checks.
  */
@@ -74,59 +76,13 @@ export function findEmails(text) {
 }
 
 /**
- * Second-level labels under which registrations happen one level deeper (co.uk,
- * com.au...). Not a full Public Suffix List, only the common ones.
- */
-const TWO_LEVEL_SUFFIXES = new Set([
-	'ac.uk',
-	'co.uk',
-	'gov.uk',
-	'ltd.uk',
-	'me.uk',
-	'net.uk',
-	'org.uk',
-	'plc.uk',
-	'com.au',
-	'net.au',
-	'org.au',
-	'edu.au',
-	'gov.au',
-	'co.nz',
-	'org.nz',
-	'co.jp',
-	'ne.jp',
-	'or.jp',
-	'ac.jp',
-	'co.kr',
-	'co.in',
-	'co.il',
-	'co.za',
-	'com.ar',
-	'com.br',
-	'com.cn',
-	'com.hk',
-	'com.mx',
-	'com.my',
-	'com.pl',
-	'com.sg',
-	'com.tr',
-	'com.tw',
-	'com.ua',
-	'net.br',
-	'org.br'
-]);
-
-/**
  * Registrable ("organizational") domain used for relaxed alignment:
  * `mail.news.example.co.uk` → `example.co.uk`.
  * @param {string | null | undefined} domain
  */
 export function organizationalDomain(domain) {
 	if (!domain) return '';
-	const labels = domain.toLowerCase().replace(/\.$/, '').split('.').filter(Boolean);
-	if (labels.length <= 2) return labels.join('.');
-	const lastTwo = labels.slice(-2).join('.');
-	return TWO_LEVEL_SUFFIXES.has(lastTwo) ? labels.slice(-3).join('.') : lastTwo;
+	return getDomain(domain.toLowerCase().replace(/\.$/, ''), { allowPrivateDomains: true }) ?? '';
 }
 
 /**

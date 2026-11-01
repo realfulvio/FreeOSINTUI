@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { githubFetch } from './api.js';
 import { extractCommitEmails, mergeEmails, pickCommitRepos } from './analyze.js';
 
@@ -92,7 +93,7 @@ export async function fetchKeys(username, options = {}) {
  */
 export async function fetchCommitEmails(login, repos, options = {}) {
 	const picked = pickCommitRepos(repos, COMMIT_REPOS);
-	const results = await Promise.all(
+	const results = await Promise.allSettled(
 		picked.map(async (repo) => {
 			const commits = await call(
 				`/repos/${repo.full_name
@@ -104,8 +105,25 @@ export async function fetchCommitEmails(login, repos, options = {}) {
 			return extractCommitEmails(commits ?? [], login, repo.full_name);
 		})
 	);
+	options.signal?.throwIfAborted();
+	const successful = results.flatMap((result, i) =>
+		result.status === 'fulfilled' ? [{ repo: picked[i].full_name, emails: result.value }] : []
+	);
+	const failed = results.flatMap((result, i) =>
+		result.status === 'rejected'
+			? [
+					{
+						repo: picked[i].full_name,
+						error: result.reason instanceof Error ? result.reason.message : String(result.reason)
+					}
+				]
+			: []
+	);
+	if (failed.length && !successful.length)
+		throw new Error(failed.map((item) => `${item.repo}: ${item.error}`).join('; '));
 	return {
-		emails: mergeEmails(results.flat()),
-		scanned: picked.map((repo) => repo.full_name)
+		emails: mergeEmails(successful.flatMap((item) => item.emails)),
+		scanned: successful.map((item) => item.repo),
+		failed
 	};
 }

@@ -1,7 +1,10 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 // Shared DNS strings: DNS-over-HTTPS errors and SPF/DMARC findings and labels
 // (used by the Domain Analyzer and the Email Analyzer).
 export default {
 	en: {
+		duplicateAuth:
+			'Multiple {type} records: invalid configuration; no positive verdict can be given.',
 		lookupFailed: 'DNS lookup failed (status {status}).',
 		'finding.good': 'OK',
 		'finding.warn': 'WEAK',
@@ -36,6 +39,8 @@ export default {
 		'dmarc.noRecord': 'No DMARC record (TXT at _dmarc).'
 	},
 	it: {
+		duplicateAuth:
+			'Più record {type}: configurazione non valida; impossibile dare un giudizio positivo.',
 		lookupFailed: 'Query DNS non riuscita (stato {status}).',
 		'finding.good': 'OK',
 		'finding.warn': 'DEBOLE',
@@ -75,6 +80,8 @@ export default {
 		'dmarc.noRecord': 'Nessun record DMARC (TXT su _dmarc).'
 	},
 	fr: {
+		duplicateAuth:
+			'Plusieurs enregistrements {type} : configuration invalide, aucun avis positif possible.',
 		lookupFailed: 'Échec de la requête DNS (statut {status}).',
 		'finding.good': 'OK',
 		'finding.warn': 'FAIBLE',
@@ -115,6 +122,7 @@ export default {
 		'dmarc.noRecord': 'Aucun enregistrement DMARC (TXT sur _dmarc).'
 	},
 	ja: {
+		duplicateAuth: '{type} レコードが複数あります。設定が無効なため、肯定的な判定はできません。',
 		lookupFailed: 'DNS 検索に失敗しました (ステータス {status})。',
 		'finding.good': 'OK',
 		'finding.warn': '弱い',

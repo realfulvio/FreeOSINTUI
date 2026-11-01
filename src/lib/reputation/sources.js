@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 /**
  * Reputation sources. Each lookup resolves to one normalized result:
  * `{ status: 'listed' | 'not_listed' | 'unavailable', checked, date, link, details, reason? }`.
@@ -11,7 +12,8 @@
  */
 
 import { md5 } from 'hash-wasm';
-import { fetchJson } from '$lib/net.js';
+import { t } from '$lib/i18n/i18n.svelte.js';
+import { FetchError, fetchJson } from '$lib/net.js';
 import { apiGet } from '$lib/api.js';
 
 /**
@@ -59,10 +61,19 @@ export function otxTarget(indicator) {
  * @param {any} json
  */
 export function parseOtx(json) {
-	const info = json?.pulse_info ?? {};
+	const info = json?.pulse_info;
+	if (
+		!info ||
+		!Number.isSafeInteger(info.count) ||
+		info.count < 0 ||
+		!Array.isArray(info.pulses) ||
+		info.pulses.some((p) => !p || typeof p !== 'object') ||
+		info.count < info.pulses.length
+	)
+		throw new FetchError(t('common.invalidResponse', { host: 'AlienVault OTX' }));
 	/** @type {any[]} */
 	const pulses = Array.isArray(info.pulses) ? info.pulses : [];
-	const count = Number(info.count) || pulses.length;
+	const count = info.count;
 	const recent = pulses
 		.map((pulse) => ({
 			id: String(pulse.id ?? ''),
@@ -95,7 +106,7 @@ const otx = {
 		const encoded = encodeURIComponent(target.value);
 		const json = await fetchJson(
 			`https://otx.alienvault.com/api/v1/indicators/${target.api}/${encoded}/general`,
-			{ signal, fetch, allowNotFound: true, timeoutMs: OTX_TIMEOUT_MS }
+			{ signal, fetch, timeoutMs: OTX_TIMEOUT_MS }
 		);
 		const details = parseOtx(json);
 		return {
@@ -115,7 +126,9 @@ const otx = {
  */
 export function parseStopForumSpam(json, field) {
 	if (json?.success !== 1) throw new Error(`StopForumSpam: ${json?.error ?? 'request failed'}`);
-	const entry = json[field] ?? {};
+	const entry = json[field];
+	if (!entry || ![0, 1, '0', '1'].includes(entry.appears))
+		throw new FetchError(t('common.invalidResponse', { host: 'StopForumSpam' }));
 	const appears = Number(entry.appears) > 0;
 	return {
 		appears,
@@ -163,6 +176,8 @@ const stopForumSpam = {
  * @returns {SourceResult}
  */
 export function fromBackend(data, link) {
+	if (!data || !['listed', 'not_listed', 'not_configured'].includes(data.status))
+		throw new FetchError(t('common.invalidResponse', { host: 'TRACEPUNK API' }));
 	const base = {
 		checked: String(data.checked ?? ''),
 		date: data.date ?? null,

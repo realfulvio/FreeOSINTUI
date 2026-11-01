@@ -1,3 +1,4 @@
+<!-- Modified 2026 by realfulvio; original attribution in NOTICE. -->
 <script>
 	import { resolve } from '$app/paths';
 	import { GENERATORS } from '$lib/lookalike/generators.js';
@@ -17,7 +18,7 @@
 	let addresses = $derived(records ? [...records.a, ...records.aaaa] : []);
 </script>
 
-<li class:registered={records?.registered}>
+<li class:registered={records?.hasDns}>
 	<div class="name">
 		<strong>{candidate.unicode}</strong>
 		{#if candidate.unicode !== candidate.domain}
@@ -33,7 +34,7 @@
 		<p class="status">{t('lookalike.pending')}</p>
 	{:else if result.status === 'error'}
 		<p class="status error">{t('lookalike.lookupError', { message: result.error })}</p>
-	{:else if !result.records.registered}
+	{:else if !result.records.hasDns}
 		<p class="status">{t('lookalike.unregistered')}</p>
 	{:else}
 		<dl>

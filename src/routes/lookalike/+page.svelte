@@ -43,7 +43,7 @@
 	let registered = $derived(
 		runList.filter((candidate) => {
 			const result = results[candidate.domain];
-			return result?.status === 'done' && result.records.registered;
+			return result?.status === 'done' && result.records.hasDns;
 		})
 	);
 	let errors = $derived(

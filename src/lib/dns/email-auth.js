@@ -1,3 +1,6 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { FetchError } from '$lib/net.js';
+import { t } from '$lib/i18n/i18n.svelte.js';
 import { resolveDns } from './doh.js';
 
 const SPF_QUALIFIERS = { '+': 'pass', '-': 'fail', '~': 'softfail', '?': 'neutral' };
@@ -62,7 +65,11 @@ export async function lookupEmailAuth(domain, options = {}) {
 		resolveDns(domain, 'TXT', options),
 		resolveDns(`_dmarc.${domain}`, 'TXT', options)
 	]);
-	const spf = txt.find((r) => /^v=spf1(\s|$)/i.test(r.data));
-	const dmarc = dmarcTxt.find((r) => /^v=DMARC1/i.test(r.data));
+	const spfRecords = txt.filter((r) => /^v=spf1(\s|$)/i.test(r.data));
+	const dmarcRecords = dmarcTxt.filter((r) => /^v=DMARC1(?:;|\s|$)/i.test(r.data));
+	if (spfRecords.length > 1 || dmarcRecords.length > 1)
+		throw new FetchError(t('dns.duplicateAuth', { type: spfRecords.length > 1 ? 'SPF' : 'DMARC' }));
+	const spf = spfRecords[0];
+	const dmarc = dmarcRecords[0];
 	return { spf: spf ? parseSpf(spf.data) : null, dmarc: dmarc ? parseDmarc(dmarc.data) : null };
 }

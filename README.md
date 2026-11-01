@@ -64,3 +64,7 @@ Local validation: 555 frontend tests and 126 Worker tests passed; TypeScript and
 Thank you to [kerlo](https://github.com/Kerlooo) for creating [FreeOSINT-UI](https://github.com/Kerlooo/FreeOSINTUI) and making its code available. TRACEPUNK builds directly on that work; our interface, Workers port and subsequent changes do not replace the original author's credit.
 
 Thanks also to [OSINT-UI](https://osint-ui.com/) for the original inspiration, and to the [WhatsMyName contributors](https://github.com/WebBreacher/WhatsMyName) and the maintainers of the public data sources and libraries used by these tools. See [NOTICE](NOTICE) for attribution and third-party licenses.
+
+## Pre-publication tool review
+
+The [functional audit](docs/quality/2026-11-01-tool-audit.md) records eight reproduced edge cases and their fixes: strict external-response handling, duplicate SPF/DMARC detection, Public Suffix List handling (including private suffixes), DNS evidence instead of inferred registration, partial GitHub results and archive-port deduplication. Regression tests include malformed and valid negative responses, partial/all-failed sources and hosted-domain boundaries. File-processing budgets and further functional improvements remain separate follow-up work.

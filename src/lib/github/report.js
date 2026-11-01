@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 import { createReport, fields, list, stateSection, table, text } from '$lib/export/report.js';
 import {
@@ -152,13 +153,22 @@ function repoLabel(repo) {
 }
 
 /**
- * @param {{ emails: import('./analyze.js').EmailSummary[], scanned: string[] }} data
+ * @param {{ emails: import('./analyze.js').EmailSummary[], scanned: string[], failed?: {repo: string, error: string}[] }} data
  * @param {number} commitsPerRepo
  */
-function emailBlocks({ emails, scanned }, commitsPerRepo) {
+function emailBlocks({ emails, scanned, failed = [] }, commitsPerRepo) {
 	if (!scanned.length) return [text(t('github.emails.noRepos'))];
 	return [
 		text(t('github.emails.scanned', { count: commitsPerRepo, repos: scanned.join(', ') })),
+		...(failed.length
+			? [
+					text(
+						t('github.emails.failed', {
+							repos: failed.map((item) => `${item.repo}: ${item.error}`).join('; ')
+						})
+					)
+				]
+			: []),
 		emails.length
 			? table(
 					[

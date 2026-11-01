@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { describe, expect, it } from 'vitest';
 import { md5 } from 'hash-wasm';
 import { parseIndicator } from './indicator.js';
@@ -104,11 +105,11 @@ describe('AlienVault OTX', () => {
 		});
 	});
 
-	it('treats 404 and zero pulses as not listed', async () => {
+	it('keeps an HTTP failure distinct from a valid zero-pulse result', async () => {
 		const missing = fakeFetch(() => ({ status: 404, body: {} }));
-		expect((await source('otx').lookup(ind('example.com'), { fetch: missing.fetch })).status).toBe(
-			'not_listed'
-		);
+		await expect(
+			source('otx').lookup(ind('example.com'), { fetch: missing.fetch })
+		).rejects.toThrow();
 		const empty = fakeFetch(() => ({ body: { pulse_info: { count: 0, pulses: [] } } }));
 		expect((await source('otx').lookup(ind('example.com'), { fetch: empty.fetch })).status).toBe(
 			'not_listed'

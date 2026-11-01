@@ -59,4 +59,17 @@ Riferimenti: [SPF RFC 7208, selezione dei record](https://www.rfc-editor.org/rfc
 3. Budget e reattività dei file locali, scansioni selettive: misurare prima/dopo con fixture riproducibili.
 4. Verifica delle integrazioni reali con dati pubblici di test e controlli dei limiti; pubblicazione solo dopo le correzioni prioritarie.
 
-Le correzioni funzionali descritte qui **non sono ancora implementate**. Animazioni e ringraziamenti sono una modifica separata richiesta durante la revisione.
+## Correzioni implementate dopo la revisione
+
+Gli otto casi della tabella sono ora coperti da `src/lib/prepublication.spec.js` con aspettative corrette (prima otto fallimenti, poi tutti superati). Le prove diagnostiche originali restano un documento storico, non una suite da usare sulla versione corretta.
+
+- Breach/password/reputazione: payload inattesi e stati sconosciuti causano errore; OTX HTTP 404 è fonte non disponibile, non un responso negativo. Le risposte valide senza segnalazioni continuano a funzionare.
+- SPF/DMARC: record multipli causano un errore esplicito anziché selezionare il primo. Non è una validazione completa della sintassi SPF/DMARC, né implementa ancora l'eredità DMARC.
+- Domini: `tldts` sostituisce due liste manuali e include i suffissi privati; tenant distinti restano separati. Il dataset segue la versione bloccata nel lockfile e va aggiornato con le dipendenze.
+- DNS: quattro tipi interrogati, inclusi AAAA e MX, con etichette “evidenze DNS” in tutte le lingue. La presenza di null MX conta come evidenza DNS, senza dichiarare server di posta utilizzabili. La registrazione non viene dedotta dal DNS.
+- GitHub: risultati riusciti conservati, fonti fallite dichiarate in interfaccia e nei report; fallimento totale e annullamento rimangono errori.
+- Archivi: porte non standard preservate nella chiave; host, porte standard e deduplicazione HTTP/HTTPS mantengono la politica precedente.
+
+Restano proposte successive: decompressione limitata e Web Worker per file, copertura e risultati parziali crypto, ripresa scansioni username, miglioramenti ulteriori ai parser e alle fonti. Nessun deploy effettuato.
+
+Validazione delle correzioni: 569 test frontend (14 casi nella nuova suite), 126 test Worker, lint, controllo tipi Worker, build e dry-run superati. Verifica browser del rifiuto di `co.uk` e di una risoluzione DNS per le varianti di `alice.github.io`; non costituisce un collaudo completo delle integrazioni esterne. Nessun deploy.

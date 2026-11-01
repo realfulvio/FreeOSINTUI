@@ -1,4 +1,6 @@
-import { fetchText } from '$lib/net.js';
+// Modified 2026 by realfulvio; original attribution in NOTICE.
+import { t } from '$lib/i18n/i18n.svelte.js';
+import { FetchError, fetchText } from '$lib/net.js';
 
 /**
  * Uppercase hex SHA-1 of a string, computed locally with Web Crypto.
@@ -29,11 +31,15 @@ export function splitHash(hash) {
  */
 export function countInRange(text, suffix) {
 	const wanted = suffix.toUpperCase();
-	for (const line of text.split(/\r?\n/)) {
-		const [lineSuffix, count] = line.trim().split(':');
-		if (lineSuffix?.toUpperCase() === wanted) return Number(count) || 0;
+	const lines = text.trim().split(/\r?\n/);
+	let matches = 0;
+	for (const line of lines) {
+		const match = /^([A-F0-9]{35}):(\d+)$/i.exec(line.trim());
+		if (!match || !Number.isSafeInteger(Number(match[2])))
+			throw new FetchError(t('common.invalidResponse', { host: 'Have I Been Pwned' }));
+		if (match[1].toUpperCase() === wanted) matches = Math.max(matches, Number(match[2]));
 	}
-	return 0;
+	return matches;
 }
 
 /**

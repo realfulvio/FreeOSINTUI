@@ -1,3 +1,4 @@
+// Modified 2026 by realfulvio; original attribution in NOTICE.
 import { formatNumber, t } from '$lib/i18n/i18n.svelte.js';
 import { createReport, list, section, table, text } from '$lib/export/report.js';
 import { GENERATORS, countByType } from './generators.js';
@@ -7,7 +8,7 @@ import { GENERATORS, countByType } from './generators.js';
 
 /**
  * Builds the exported report of the Lookalike Domain Finder page. Registered names are
- * listed with their records; the many unregistered ones are only counted, per type.
+ * listed with their observed DNS records; names without observed DNS are only counted, per type.
  * @param {{
  *   target: { domain: string, unicode: string },
  *   candidates: Candidate[],
@@ -23,7 +24,7 @@ export function buildLookalikeReport({ target, candidates, runList, results, sto
 		const result = results[candidate.domain];
 		return result?.status === 'done' ? result.records : null;
 	};
-	const registered = runList.filter((candidate) => recordsOf(candidate)?.registered);
+	const registered = runList.filter((candidate) => recordsOf(candidate)?.hasDns);
 	const failed = runList.filter((candidate) => results[candidate.domain]?.status === 'error');
 	const done = runList.filter((candidate) => results[candidate.domain]).length;
 
@@ -51,7 +52,7 @@ export function buildLookalikeReport({ target, candidates, runList, results, sto
 			generator.label,
 			generated[generator.id],
 			run.filter((candidate) => results[candidate.domain]).length,
-			run.filter((candidate) => recordsOf(candidate)?.registered).length
+			run.filter((candidate) => recordsOf(candidate)?.hasDns).length
 		];
 	});
 

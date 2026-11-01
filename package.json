@@ -52,7 +52,8 @@
 		"ipaddr.js": "^2.5.0",
 		"jspdf": "^4.2.1",
 		"jspdf-autotable": "^5.0.8",
-		"libphonenumber-js": "^1.13.14"
+		"libphonenumber-js": "^1.13.14",
+		"tldts": "^7.4.19"
 	},
 	"engines": {
 		"node": ">=22.12.0"
